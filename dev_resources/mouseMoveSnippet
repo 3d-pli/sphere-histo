@@ -1,0 +1,8 @@
+        dx = event.x() - self.last_x
+        dy = event.y() - self.last_y
+        if bool(event.buttons()) and bool(QtCore.Qt.LeftButton):
+            self.angle_x = self.angle_x + dy
+            self.angle_y = self.angle_y + dx
+        elif bool(event.buttons()) and bool(QtCore.Qt.RightButton):
+            self.angle_x = self.angle_x + dy
+            self.angle_z = self.angle_z + dx
