@@ -33,25 +33,25 @@ void SphereWidget::paintGL() {
         }
         // TEST ***
 
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-        glBegin(GL_TRIANGLE_FAN);
-            glVertex3d(0, 1, 0);
-            glVertex3d(1, 0, 0);
-            glVertex3d(0, 0, 1);
 
-            glVertex3d(0, 1, 0);
-            glVertex3d(0, 0, 1);
-            glVertex3d(-1, 0, 0);
+//        glBegin(GL_TRIANGLE_FAN);
+//            glVertex3d(0, 1, 0);
+//            glVertex3d(1, 0, 0);
+//            glVertex3d(0, 0, 1);
 
-            glVertex3d(0, 1, 0);
-            glVertex3d(-1, 0, 0);
-            glVertex3d(0, 0, -1);
+//            glVertex3d(0, 1, 0);
+//            glVertex3d(0, 0, 1);
+//            glVertex3d(-1, 0, 0);
 
-            glVertex3d(0, 1, 0);
-            glVertex3d(0, 0, -1);
-            glVertex3d(1, 0, 0);
+//            glVertex3d(0, 1, 0);
+//            glVertex3d(-1, 0, 0);
+//            glVertex3d(0, 0, -1);
 
-        glEnd();
+//            glVertex3d(0, 1, 0);
+//            glVertex3d(0, 0, -1);
+//            glVertex3d(1, 0, 0);
+
+//        glEnd();
 
 
         glBegin(GL_POINTS);
@@ -67,6 +67,24 @@ void SphereWidget::paintGL() {
             glVertex3d(-point.x(), -point.y(), -point.z());
         }
         glEnd();
+
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        glBegin(GL_TRIANGLES);
+        for (size_t i = 0; i < 20; i++) {
+           glColor3f(0,0,0);
+           glVertex3d(  ico_vertices[ico_indices[i][0]] [0],
+                        ico_vertices[ico_indices[i][0]] [1],
+                        ico_vertices[ico_indices[i][0]] [2]);
+           glVertex3d(  ico_vertices[ico_indices[i][1]] [0],
+                        ico_vertices[ico_indices[i][1]] [1],
+                        ico_vertices[ico_indices[i][1]] [2]);
+           glVertex3d(  ico_vertices[ico_indices[i][2]] [0],
+                        ico_vertices[ico_indices[i][2]] [1],
+                        ico_vertices[ico_indices[i][2]] [2]);
+        }
+        glEnd();
+
+
 }
 
 void SphereWidget::mousePressEvent(QMouseEvent * event){
