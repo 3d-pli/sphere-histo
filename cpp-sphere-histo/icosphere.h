@@ -5,7 +5,12 @@
 #include <math.h>
 #include <QOpenGLFunctions>
 
+#include <../external-libraries/glm-master/glm/mat3x3.hpp>
+#include <../external-libraries/glm-master/glm/matrix.hpp>
+#include <../external-libraries/glm-master/glm/vec3.hpp>
+
 #include <iostream>
+
 
 
 class Icosphere : protected QOpenGLFunctions
@@ -16,11 +21,12 @@ public:
 //    inline std::vector<std::vector<double> > getVertices() { return vertices; }
 //    inline std::vector<std::vector<double> > getIndices() { return indices; }
 
-    void drawIcosphere(unsigned int numberOfSubdivisions = 0);
+    void drawIcosphere(unsigned int numberOfSubdivisions, std::vector<std::vector<double> > points);  // ACHTUNG NOCH CALL BY VALUE! NOTFALLS ÄNDERN!
 
 private:
     std::vector<std::vector<double> > vertices;
     std::vector<std::vector<double> > indices;
+    size_t pointsOnTriangleBoundary;
 
     void subdivide(double *v1, double *v2, double *v3, long depth);
 
@@ -41,8 +47,15 @@ private:
        v[0] /= d; v[1] /= d; v[2] /= d;
     }
 
+    void triangleColor(unsigned long pointsInTriangle);
 
-
+    /**
+     * @brief pointInTriangleRange
+     * @param point  - a 3D point
+     * @param triangleVertices - 3 Vertices on a 3D sphere with radius 1
+     * @return bool - wether a point lies inside the
+     */
+    bool pointInTriangleRange(const GLdouble point[3], const GLdouble triangleVertices[3][3] );
 
 };
 

@@ -16,13 +16,14 @@ SphereWidget::SphereWidget(QWidget *parent)
     size_t row_size = np_points.shape[0];
     size_t column_size = np_points.shape[1];
     assert(column_size == 3);
-    points = std::vector<QVector3D>(row_size);
+    points = std::vector<std::vector<double> >(row_size);
 
     for(unsigned i = 0; i < row_size; ++i){
-
-        points[i] = (QVector3D(np_points.data<double>()[i],
-                               np_points.data<double>()[i+(1*row_size)],
-                     np_points.data<double>()[i+(2*row_size)]));
+        std::vector<double> point = {np_points.data<double>()[i],
+                                     np_points.data<double>()[i+(1*row_size)],
+                                     np_points.data<double>()[i+(2*row_size)]
+                                    };
+        points[i] = point;
     }
     //    TEST ***
     //        int i = 0;
@@ -71,13 +72,13 @@ void SphereWidget::paintGL() {
     // GIVEN POINTS + MIRRORED POINTS
     glColor3f(0.54, 0.90, 1.15);
     for(auto point : points){
-        glVertex3d(point.x(), point.y(), point.z());
+        glVertex3d(point[0], point[1], point[2]);
     }
 
     // MIRRORED GIVEN POINTS
     glColor3f(0, 0.53, 0.89);
     for(auto point : points){
-        glVertex3d(-point.x(), -point.y(), -point.z());
+        glVertex3d(-point[0], -point[1], -point[2]);
     }
     glEnd();
 
@@ -85,7 +86,7 @@ void SphereWidget::paintGL() {
     // Draw Icosahedron
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glColor3f(0,0,0);
-    ico.drawIcosphere(SPHERE_DEPTH);
+    ico.drawIcosphere(SPHERE_DEPTH, points);
 }
 
 void SphereWidget::mousePressEvent(QMouseEvent * event){

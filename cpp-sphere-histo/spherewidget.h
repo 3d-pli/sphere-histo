@@ -3,8 +3,9 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
-#include <QVector3D>
 #include <QMouseEvent>
+
+#include <GL/glu.h>
 
 
 #include <vector>
@@ -14,7 +15,7 @@
 #include <cnpy.h>
 
 #include "icosphere.h"
-#define SPHERE_DEPTH 5
+#define SPHERE_DEPTH 4
 
 #include <iostream>
 
@@ -40,7 +41,7 @@ protected:
     virtual void wheelEvent(QWheelEvent * event) override;
 
 private:
-    std::vector<QVector3D> points;
+    std::vector<std::vector<double> > points;
 //    std::vector<std::vector<double> > ico_vertices;
 //    std::vector<std::vector<double> > ico_indices;
     double last_x;
