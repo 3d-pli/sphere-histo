@@ -15,7 +15,7 @@
 #include <cnpy.h>
 
 #include "icosphere.h"
-#define SPHERE_DEPTH 0
+#define SPHERE_DEPTH 4
 
 #include <iostream>
 

@@ -31,8 +31,6 @@ private:
     std::vector<std::vector<double> > vertices;
     std::vector<std::vector<double> > indices;
     std::map<size_t, glm::vec3> colorLookupMap;     // Maps number of points in triangle to color as vec4
-    size_t pointsOnTriangleBoundary;
-    std::list<std::vector<double> > undrawnPoints;
 
     void subdivide(double *v1, double *v2, double *v3, long depth, std::list<std::vector<double>> &allRemainingPoints);
 

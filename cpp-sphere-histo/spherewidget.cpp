@@ -82,7 +82,7 @@ void SphereWidget::paintGL() {
 
     glBegin(GL_POINTS);
     // GIVEN POINTS + MIRRORED POINTS
-    glColor3f(0,0,0);
+    glColor3f(0.2,0.2,0.2);
     for(auto point : points){
         glVertex3d(point[0], point[1], point[2]);
     }
