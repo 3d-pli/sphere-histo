@@ -15,7 +15,7 @@
 #include <cnpy.h>
 
 #include "icosphere.h"
-#define SPHERE_DEPTH 4
+#define SPHERE_DEPTH 0
 
 #include <iostream>
 
@@ -26,11 +26,7 @@ class SphereWidget : public QOpenGLWidget, protected QOpenGLFunctions
 
 public:
     SphereWidget(QWidget *parent = 0);
-
     ~SphereWidget(){}
-
-//public slots:
-//    void setIcosphereSubdivisions(unsigned numberOfSubdivisions);
 
 protected:
     virtual void initializeGL() override;
@@ -41,17 +37,13 @@ protected:
     virtual void wheelEvent(QWheelEvent * event) override;
 
 private:
-    std::vector<std::vector<double> > points;
-//    std::vector<std::vector<double> > ico_vertices;
-//    std::vector<std::vector<double> > ico_indices;
+    std::list<std::vector<double> > points;
     double last_x;
     double last_y;
-    double scaleFactor;
+//    double scaleFactor;
     double angle_x;
     double angle_y;
-//    double radius;
-//    const double H_ANGLE;
-//    const double V_ANGLE;
+
     Icosphere ico;
 
 };
