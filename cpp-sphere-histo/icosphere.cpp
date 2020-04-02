@@ -75,7 +75,7 @@ void Icosphere::subdivide(double *v1, double *v2, double *v3, long depth, std::l
 
       // Draw triangle outlines:
       glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-      glColor4f(1, 1, 1, 0.2);
+      glColor4f(0.8784313725490196, 0.9529411764705882, 0.9725490196078431, 0.2);
       double v1l[3] = {v1[0] * 1.001, v1[1] * 1.001, v1[2] * 1.001};
       double v2l[3] = {v2[0] * 1.001, v2[1] * 1.001, v2[2] * 1.001};
       double v3l[3] = {v3[0] * 1.001, v3[1] * 1.001, v3[2] * 1.001};
