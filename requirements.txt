@@ -1,4 +1,0 @@
-numpy
-PySide2
-OpenGL.GL
-OpenGL.GLU

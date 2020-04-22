@@ -24,6 +24,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 QMAKE_CXXFLAGS += -std=c++14
 
+MOC_DIR     = build/moc
+OBJECTS_DIR = build/obj
+UI_DIR      = build/ui
+RCC_DIR     = build/
+
 
 SOURCES += \
         main.cpp \
