@@ -1,5 +1,8 @@
-.idea/*
+*.idea/*
+dev_resources/.idea*
 *make*
+*Makefile*
 external-libraries/*
 *moc*
 *.o
+*build*
