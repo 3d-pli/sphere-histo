@@ -28,11 +28,13 @@ QMAKE_CXXFLAGS += -std=c++14
 SOURCES += \
         main.cpp \
         spherewidget.cpp \
-    icosphere.cpp
+    icosphere.cpp \
+    mainwindow.cpp
 
 HEADERS += \
         spherewidget.h \
-    icosphere.h
+    icosphere.h \
+    mainwindow.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/release/ -lcnpy
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/debug/ -lcnpy
@@ -59,3 +61,6 @@ else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../..
 else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/release/GLU.lib
 else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/debug/GLU.lib
 else:unix: PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/libGLU.a
+
+FORMS += \
+    mainwindow.ui

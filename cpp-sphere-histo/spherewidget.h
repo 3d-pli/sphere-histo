@@ -14,8 +14,13 @@
 
 #include <cnpy.h>
 
+//#include <../external-libraries/glm-master/glm/gtc/type_ptr.hpp>
+//#include <../external-libraries/glm-master/glm/mat4x4.hpp>
+//#include <../external-libraries/glm-master/glm/matrix.hpp>
+//#include <../external-libraries/glm-master/glm/vec3.hpp>
+
 #include "icosphere.h"
-#define SPHERE_DEPTH 4
+//#define SPHERE_DEPTH 4
 
 #include <iostream>
 
@@ -27,6 +32,9 @@ class SphereWidget : public QOpenGLWidget, protected QOpenGLFunctions
 public:
     SphereWidget(QWidget *parent = 0);
     ~SphereWidget(){}
+
+    void setTriangleDepth(int depth);
+    void openFile(std::string filename);
 
 protected:
     virtual void initializeGL() override;
@@ -43,9 +51,11 @@ private:
 //    double scaleFactor;
     double angle_x;
     double angle_y;
-
+    int sphere_depth;
+    double m_fovy;
+    double aspectRatioWidthToHeight;
+//    glm::dmat4 m_projection;
     Icosphere ico;
-
 };
 
 
