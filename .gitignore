@@ -6,3 +6,5 @@ external-libraries/*
 *moc*
 *.o
 *build*
+*cpp-sphere-histo.pro.user
+
