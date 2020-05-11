@@ -59,7 +59,24 @@
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Colormaps</string>
+    </property>
+    <addaction name="actionCividis"/>
+    <addaction name="separator"/>
+    <addaction name="actionInferno"/>
+    <addaction name="separator"/>
+    <addaction name="actionMagma"/>
+    <addaction name="separator"/>
+    <addaction name="actionPlasma"/>
+    <addaction name="separator"/>
+    <addaction name="actionTurbo"/>
+    <addaction name="separator"/>
+    <addaction name="actionviridis"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuSettings"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -78,6 +95,36 @@
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionviridis">
+   <property name="text">
+    <string>Viridis</string>
+   </property>
+  </action>
+  <action name="actionMagma">
+   <property name="text">
+    <string>Magma</string>
+   </property>
+  </action>
+  <action name="actionInferno">
+   <property name="text">
+    <string>Inferno</string>
+   </property>
+  </action>
+  <action name="actionPlasma">
+   <property name="text">
+    <string>Plasma</string>
+   </property>
+  </action>
+  <action name="actionCividis">
+   <property name="text">
+    <string>Cividis</string>
+   </property>
+  </action>
+  <action name="actionTurbo">
+   <property name="text">
+    <string>Turbo</string>
    </property>
   </action>
  </widget>

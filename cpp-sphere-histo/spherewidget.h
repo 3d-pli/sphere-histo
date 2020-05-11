@@ -6,13 +6,13 @@
 #include <QMouseEvent>
 
 #include <GL/glu.h>
-
+#include <cnpy.h>
 
 #include <vector>
 #define _USE_MATH_DEFINES   // for compatibility with older systems
 #include <math.h>
 
-#include <cnpy.h>
+
 
 //#include <../external-libraries/glm-master/glm/gtc/type_ptr.hpp>
 //#include <../external-libraries/glm-master/glm/mat4x4.hpp>
@@ -20,6 +20,7 @@
 //#include <../external-libraries/glm-master/glm/vec3.hpp>
 
 #include "icosphere.h"
+#include "resources/colormaps_matplotlib.h"
 //#define SPHERE_DEPTH 4
 
 #include <iostream>
@@ -35,6 +36,7 @@ public:
 
     void setTriangleDepth(int depth);
     void openFile(std::string filename);
+    void setColorMap(std::string mapName);
 
 protected:
     virtual void initializeGL() override;
@@ -45,16 +47,16 @@ protected:
     virtual void wheelEvent(QWheelEvent * event) override;
 
 private:
-    std::list<std::vector<double> > points;
-    double last_x;
-    double last_y;
-//    double scaleFactor;
-    double angle_x;
-    double angle_y;
+    std::list<QVector3D> points;
+    float last_x;
+    float last_y;
+//    float scaleFactor;
+    float angle_x;
+    float angle_y;
     int sphere_depth;
-    double m_fovy;
-    double aspectRatioWidthToHeight;
-//    glm::dmat4 m_projection;
+    float m_fovy;
+    float aspectRatioWidthToHeight;
+//    glm::mat4 m_projection;
     Icosphere ico;
 };
 

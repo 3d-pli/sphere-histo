@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
+    connect(ui->actionPlasma, SIGNAL(triggered()), this , SLOT(changeColorMap("actionPlasma")));
 }
 
 MainWindow::~MainWindow()
@@ -33,4 +34,8 @@ void MainWindow::openFile()
         return;
 
     ui->sphereWidget->openFile(file.toStdString());
+}
+
+void MainWindow::changeColorMap(std::string mapName){
+    ui->sphereWidget->setColorMap(mapName);
 }
