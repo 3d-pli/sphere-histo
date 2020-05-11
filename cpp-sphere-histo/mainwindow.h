@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "resources/colormaps_matplotlib.h"
 #include <QMainWindow>
 
 namespace Ui {
@@ -18,6 +19,7 @@ public:
 private slots:
     void changeTriangleDepth(int depth);
     void openFile();
+    void changeColorMap(std::string mapName);
 
 private:
     Ui::MainWindow *ui;

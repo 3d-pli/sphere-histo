@@ -38,8 +38,9 @@ SOURCES += \
 
 HEADERS += \
         spherewidget.h \
-    icosphere.h \
-    mainwindow.h
+        icosphere.h \
+        mainwindow.h \
+        resources/colormaps_matplotlib.h
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/release/ -lcnpy
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/debug/ -lcnpy

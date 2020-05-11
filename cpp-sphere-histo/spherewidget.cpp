@@ -22,14 +22,15 @@ SphereWidget::SphereWidget(QWidget *parent)
     assert(column_size == 3);       // TODO: Exception handling!
 
     for(unsigned i = 0; i < row_size; ++i){
-        std::vector<double> point = {np_points.data<double>()[i],
-                                     np_points.data<double>()[i+(1*row_size)],
-                                     np_points.data<double>()[i+(2*row_size)]
+        QVector3D point = {
+                        float(np_points.data<double>()[i]),
+                        float(np_points.data<double>()[i+(1*row_size)]),
+                        float(np_points.data<double>()[i+(2*row_size)])
                                     };
-        std::vector<double> mirroredPoint = {
-                                        - np_points.data<double>()[i],
-                                        - np_points.data<double>()[i+(1*row_size)],
-                                        - np_points.data<double>()[i+(2*row_size)]
+        QVector3D mirroredPoint = {
+                        - float(np_points.data<double>()[i]),
+                        - float(np_points.data<double>()[i+(1*row_size)]),
+                        - float(np_points.data<double>()[i+(2*row_size)])
                                     };
         points.push_back(point);
         points.push_back(mirroredPoint);
@@ -52,7 +53,7 @@ void SphereWidget::initializeGL() {
     glEnable(GL_BLEND);
 
     glViewport(0, 0, QWidget::width(), QWidget::height());
-    aspectRatioWidthToHeight = static_cast<double>(width()) / static_cast<double>(height());
+    aspectRatioWidthToHeight = static_cast<float>(width()) / static_cast<float>(height());
     m_fovy = 20;
     //    gluPerspective(20, aspectRatioWidthToHeight, 1.f, 20);
 //    glMatrixMode(GL_PROJECTION);
@@ -64,7 +65,7 @@ void SphereWidget::initializeGL() {
 }
 void SphereWidget::resizeGL(int w, int h) {
     QOpenGLWidget::resizeGL(w, h);
-    aspectRatioWidthToHeight = double(w) / double(h);
+    aspectRatioWidthToHeight = float(w) / float(h);
 
 //    glMatrixMode(GL_PROJECTION);
 //    glLoadIdentity();
@@ -72,11 +73,11 @@ void SphereWidget::resizeGL(int w, int h) {
 //    gluPerspective(20, aspectRatioWidthToHeight, 1, 20);
 //    gluLookAt(0.5, 0.5 ,10 , 0 ,0 ,0.5 , 0, 1 ,0);
 //    glMatrixMode(GL_MODELVIEW);
-//    m_projection = glm::perspective(m_fovy, static_cast<double>(w) / static_cast<double>(h), 0.01, 20.0);
+//    m_projection = glm::perspective(m_fovy, static_cast<float>(w) / static_cast<float>(h), 0.01, 20.0);
 }
 
 void SphereWidget::paintGL() {
-//    m_projection = glm::translate(glm::perspective(m_fovy, static_cast<double>(width()) / static_cast<double>(height()), 0.01, 10.0), glm::dvec3(0,0,-2));
+//    m_projection = glm::translate(glm::perspective(m_fovy, static_cast<float>(width()) / static_cast<float>(height()), 0.01, 10.0), glm::vec3(0,0,-2));
     glViewport(0, 0, width(), height());
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -103,7 +104,7 @@ void SphereWidget::paintGL() {
     // GIVEN POINTS + MIRRORED POINTS
     glColor3f(0.2,0.2,0.2);
     for(auto point : points){
-        glVertex3d(point[0], point[1], point[2]);
+        glVertex3f(point[0], point[1], point[2]);
     }
     glEnd();
 
@@ -119,8 +120,8 @@ void SphereWidget::mousePressEvent(QMouseEvent * event){
 
 void SphereWidget::mouseMoveEvent(QMouseEvent * event){
     std::cout << event->x() - this->last_x << ", " << event->y() - this->last_y << std::endl; //***
-    double dx = event->x() - this->last_x;
-    double dy = event->y() - this->last_y;
+    float dx = event->x() - this->last_x;
+    float dy = event->y() - this->last_y;
 
     this->angle_x = dx;
     this->angle_y = dy;
@@ -135,7 +136,7 @@ void SphereWidget::wheelEvent(QWheelEvent * event){
 
 //    std::cout << (event->delta()) << std::endl; //***
 //    this->scaleFactor = exp(event->delta() / 960.);
-    double d = event->delta();
+    float d = event->delta();
     m_fovy -= d/200.0;
     std::cout << m_fovy << std::endl;
 
@@ -168,14 +169,15 @@ void SphereWidget::openFile(std::string filename){
 
         points.clear();
         for(unsigned i = 0; i < row_size; ++i){
-            std::vector<double> point = {np_points.data<double>()[i],
-                                         np_points.data<double>()[i+(1*row_size)],
-                                         np_points.data<double>()[i+(2*row_size)]
+            QVector3D point = {
+                            float(np_points.data<double>()[i]),
+                            float(np_points.data<double>()[i+(1*row_size)]),
+                            float(np_points.data<double>()[i+(2*row_size)])
                                         };
-            std::vector<double> mirroredPoint = {
-                                            - np_points.data<double>()[i],
-                                            - np_points.data<double>()[i+(1*row_size)],
-                                            - np_points.data<double>()[i+(2*row_size)]
+            QVector3D mirroredPoint = {
+                            - float(np_points.data<double>()[i]),
+                            - float(np_points.data<double>()[i+(1*row_size)]),
+                            - float(np_points.data<double>()[i+(2*row_size)])
                                         };
             points.push_back(point);
             points.push_back(mirroredPoint);
@@ -188,3 +190,6 @@ void SphereWidget::openFile(std::string filename){
     }
 }
 
+void SphereWidget::setColorMap(std::string colorMap){
+    this->ico.setColorMap(colorMap);
+}

@@ -1,9 +1,10 @@
 #include "icosphere.h"
 
 Icosphere::Icosphere()
+    : colorMap(std::begin(cm::_viridis_data), std::end(cm::_viridis_data))
 {
-    const double X  =.525731112119133606;
-    const double Z  =.850650808352039932;
+    const float X  =.525731112119133606;
+    const float Z  =.850650808352039932;
 
 
     vertices = {
@@ -19,37 +20,49 @@ Icosphere::Icosphere()
         {6,1,10}, {9,0,11}, {9,11,2}, {9,2,5}, {7,2,11}
     };
 
-    colorLookupMap = {
-        {0, glm::vec3(0.27058823529411763, 0.4588235294117647, 0.7058823529411765)},
-        {1, glm::vec3(0.4549019607843137, 0.6784313725490196, 0.8196078431372549)},
-        {10, glm::vec3(0.6705882352941176, 0.8509803921568627, 0.9137254901960784)},
-        {100, glm::vec3(0.8784313725490196, 0.9529411764705882, 0.9725490196078431)},
-        {500, glm::vec3(1.0, 1.0, 0.7490196078431373)},
-        {1000, glm::vec3(0.996078431372549, 0.8784313725490196, 0.5647058823529412)},
-        {5000, glm::vec3(0.9921568627450981, 0.6823529411764706, 0.3803921568627451)},
-        {10000, glm::vec3(0.9568627450980393, 0.42745098039215684, 0.2627450980392157)},
-        {50000, glm::vec3(0.8431372549019608, 0.18823529411764706, 0.15294117647058825)},
-        {100000, glm::vec3(0,0,0)},
+    qActionStringToEnum = {
+        {"actionCividis", cm::colorMapName::Cividis},
+        {"actionInferno", cm::colorMapName::Inferno},
+        {"actionMagma", cm::colorMapName::Magma},
+        {"actionPlasma", cm::colorMapName::Plasma},
+        {"actionTurbo", cm::colorMapName::Turbo},
+        {"actionviridis", cm::colorMapName::Viridis},
     };
+
+//    colorLookupMap = {
+//        {0, glm::vec3(0.27058823529411763, 0.4588235294117647, 0.7058823529411765)},
+//        {1, glm::vec3(0.4549019607843137, 0.6784313725490196, 0.8196078431372549)},
+//        {10, glm::vec3(0.6705882352941176, 0.8509803921568627, 0.9137254901960784)},
+//        {100, glm::vec3(0.8784313725490196, 0.9529411764705882, 0.9725490196078431)},
+//        {500, glm::vec3(1.0, 1.0, 0.7490196078431373)},
+//        {1000, glm::vec3(0.996078431372549, 0.8784313725490196, 0.5647058823529412)},
+//        {5000, glm::vec3(0.9921568627450981, 0.6823529411764706, 0.3803921568627451)},
+//        {10000, glm::vec3(0.9568627450980393, 0.42745098039215684, 0.2627450980392157)},
+//        {50000, glm::vec3(0.8431372549019608, 0.18823529411764706, 0.15294117647058825)},
+//        {100000, glm::vec3(0,0,0)},
+//    };
+    totalPoints = 0;
+
 }
 
-void Icosphere::drawIcosphere(unsigned int numberOfSubdivisions, std::list<std::vector<double> > pointsForHistogram){
+void Icosphere::drawIcosphere(unsigned int numberOfSubdivisions, std::list<QVector3D > pointsForHistogram){
+    totalPoints = pointsForHistogram.size();
 
-    for (std::vector<double> &i : indices){
-        double v1[3] = {vertices[i[0]][0], vertices[i[0]][1], vertices[i[0]][2]};
-        double v2[3] = {vertices[i[1]][0], vertices[i[1]][1], vertices[i[1]][2]};
-        double v3[3] = {vertices[i[2]][0], vertices[i[2]][1], vertices[i[2]][2]};
+    for (std::vector<int> &i : indices){
+        float v1[3] = {vertices[i[0]][0], vertices[i[0]][1], vertices[i[0]][2]};
+        float v2[3] = {vertices[i[1]][0], vertices[i[1]][1], vertices[i[1]][2]};
+        float v3[3] = {vertices[i[2]][0], vertices[i[2]][1], vertices[i[2]][2]};
 
-        glm::dmat3 transformationMatrix = {
+        glm::mat3 transformationMatrix = {
             v1[0], v1[1], v1[2],     // first COLUMN!
             v2[0], v2[1], v2[2],     // second COLUMN!
             v3[0], v3[1], v3[2]     // third COLUMN!
         };
         transformationMatrix = glm::inverse(transformationMatrix);          // transformation matrix inversed in order to change basis to triangle vertices' coordinates
-        std::list<std::vector<double> > pointsForTriangle;
+        std::list<QVector3D> pointsForTriangle;
 
         for(auto i = pointsForHistogram.begin(); i != pointsForHistogram.end(); ){
-            glm::dvec3 point = {i->at(0), i->at(1), i->at(2)};
+            glm::vec3 point = {i->x(), i->y(), i->z()};
             if(pointInFirstQuadrantAfterTransformation(point , transformationMatrix)){
                //std::cout << "(" << i->at(0) << ", " << i->at(1) << ", " << i->at(2) << ")" << std::endl;
                pointsForTriangle.push_back(*i);
@@ -63,7 +76,7 @@ void Icosphere::drawIcosphere(unsigned int numberOfSubdivisions, std::list<std::
     }
 }
 
-void Icosphere::subdivide(double *v1, double *v2, double *v3, long depth, std::list<std::vector<double> > &allRemainingPoints)
+void Icosphere::subdivide(float *v1, float *v2, float *v3, long depth, std::list<QVector3D> &allRemainingPoints)
 // ACHTUNG: GEMEINSAME LISTE DER PUNKTE FUER ALLE DREIECKE, AUS DER BEIM MALEN GELÖSCHT WIRD. Funktioniert nur, solange nicht parallel.
 {
    if (depth == 0) {
@@ -76,18 +89,18 @@ void Icosphere::subdivide(double *v1, double *v2, double *v3, long depth, std::l
       // Draw triangle outlines:
       glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
       glColor4f(0.8784313725490196, 0.9529411764705882, 0.9725490196078431, 0.2);
-      double v1l[3] = {v1[0] * 1.001, v1[1] * 1.001, v1[2] * 1.001};
-      double v2l[3] = {v2[0] * 1.001, v2[1] * 1.001, v2[2] * 1.001};
-      double v3l[3] = {v3[0] * 1.001, v3[1] * 1.001, v3[2] * 1.001};
+      float v1l[3] = {v1[0] * 1.001f, v1[1] * 1.001f, v1[2] * 1.001f};
+      float v2l[3] = {v2[0] * 1.001f, v2[1] * 1.001f, v2[2] * 1.001f};
+      float v3l[3] = {v3[0] * 1.001f, v3[1] * 1.001f, v3[2] * 1.001f};
 
       drawTriangle(v1l, v2l, v3l);
 
       return;
    }
 
-   GLdouble v12[3], v23[3], v31[3];
+   GLfloat v12[3], v23[3], v31[3];
    GLint i;
-   std::list<std::vector<double> > pointsInTriangle;
+   std::list<QVector3D> pointsInTriangle;
 
    for (i = 0; i < 3; i++) {
       v12[i] = v1[i]+v2[i];
@@ -108,10 +121,10 @@ void Icosphere::subdivide(double *v1, double *v2, double *v3, long depth, std::l
        v31[0], v31[1], v31[2]     // third COLUMN!
    };
    transformationMatrix = glm::inverse(transformationMatrix);          // transformation matrix inversed in order to change basis to triangle vertices' coordinates
-   std::list<std::vector<double> > pointsForTriangle;
+   std::list<QVector3D> pointsForTriangle;
 
    for(auto i = allRemainingPoints.begin(); i != allRemainingPoints.end(); ){
-       glm::dvec3 point = {i->at(0), i->at(1), i->at(2)};
+       glm::vec3 point = {i->x(), i->y(), i->z()};
        if(pointInFirstQuadrantAfterTransformation(point , transformationMatrix)){
           //std::cout << "(" << i->at(0) << ", " << i->at(1) << ", " << i->at(2) << ")" << std::endl;
           pointsForTriangle.push_back(*i);
@@ -132,7 +145,7 @@ void Icosphere::subdivide(double *v1, double *v2, double *v3, long depth, std::l
    pointsForTriangle.clear();
 
    for(auto i = allRemainingPoints.begin(); i != allRemainingPoints.end(); ){
-       glm::dvec3 point = {i->at(0), i->at(1), i->at(2)};
+       glm::vec3 point = {i->x(), i->y(), i->z()};
        if(pointInFirstQuadrantAfterTransformation(point , transformationMatrix)){
           //std::cout << "(" << i->at(0) << ", " << i->at(1) << ", " << i->at(2) << ")" << std::endl;
           pointsForTriangle.push_back(*i);
@@ -153,7 +166,7 @@ void Icosphere::subdivide(double *v1, double *v2, double *v3, long depth, std::l
   pointsForTriangle.clear();
 
   for(auto i = allRemainingPoints.begin(); i != allRemainingPoints.end(); ){
-      glm::dvec3 point = {i->at(0), i->at(1), i->at(2)};
+      glm::vec3 point = {i->x(), i->y(), i->z()};
       if(pointInFirstQuadrantAfterTransformation(point , transformationMatrix)){
          //std::cout << "(" << i->at(0) << ", " << i->at(1) << ", " << i->at(2) << ")" << std::endl;
          pointsForTriangle.push_back(*i);
@@ -174,7 +187,7 @@ void Icosphere::subdivide(double *v1, double *v2, double *v3, long depth, std::l
       pointsForTriangle.clear();
 
       for(auto i = allRemainingPoints.begin(); i != allRemainingPoints.end(); ){
-          glm::dvec3 point = {i->at(0), i->at(1), i->at(2)};
+          glm::vec3 point = {i->x(), i->y(), i->z()};
           if(pointInFirstQuadrantAfterTransformation(point , transformationMatrix)){
              //std::cout << "(" << i->at(0) << ", " << i->at(1) << ", " << i->at(2) << ")" << std::endl;
              pointsForTriangle.push_back(*i);
@@ -188,17 +201,22 @@ void Icosphere::subdivide(double *v1, double *v2, double *v3, long depth, std::l
 
 void Icosphere::triangleColor(unsigned long pointsInTriangle){
 
-    for(std::map<size_t, glm::vec3>::iterator it = colorLookupMap.begin(); it != colorLookupMap.end(); ++it){
-        if(std::next(it) == colorLookupMap.end() || (it->first <= pointsInTriangle && std::next(it)->first > pointsInTriangle)){
-            glColor4f(it->second[0], it->second[1], it->second[2], 0.5);
-            break;
-        }
-    }
+    int colorCode = int((float(pointsInTriangle)/totalPoints)*256);
+
+    glColor4f(this->colorMap[colorCode*3], this->colorMap[(colorCode*3)+1], this->colorMap[(colorCode*3)+2], 1);
+
+
+//    for(std::map<size_t, glm::vec3>::iterator it = colorLookupMap.begin(); it != colorLookupMap.end(); ++it){
+//        if(std::next(it) == colorLookupMap.end() || (it->first <= pointsInTriangle && std::next(it)->first > pointsInTriangle)){
+//            glColor4f(it->second[0], it->second[1], it->second[2], 0.5);
+//            break;
+//        }
+//    }
 }
 
-bool Icosphere::pointInFirstQuadrantAfterTransformation(const glm::dvec3 &point, const glm::dmat3 &transformationMatrix){
+bool Icosphere::pointInFirstQuadrantAfterTransformation(const glm::vec3 &point, const glm::mat3 &transformationMatrix){
 
-    glm::dvec3 transformedPoint = transformationMatrix * point;             // point in coordinate system of triangle vertices
+    glm::vec3 transformedPoint = transformationMatrix * point;             // point in coordinate system of triangle vertices
 
     if(transformedPoint[0] >= 0 && transformedPoint[1] >= 0 && transformedPoint[2] >= 0){
         return true;
@@ -206,5 +224,32 @@ bool Icosphere::pointInFirstQuadrantAfterTransformation(const glm::dvec3 &point,
         return false;
     }
 
+}
+
+void Icosphere::setColorMap(std::string colorMap){
+
+    cm::colorMapName colorMapEnum = qActionStringToEnum[colorMap];
+    switch (colorMapEnum) {
+    case cm::colorMapName::Cividis:
+        this->colorMap.assign(std::begin(cm::_cividis_data), std::end(cm::_cividis_data));
+        break;
+    case cm::colorMapName::Inferno:
+        this->colorMap.assign(std::begin(cm::_inferno_data), std::end(cm::_inferno_data));
+        break;
+    case cm::colorMapName::Magma :
+        this->colorMap.assign(std::begin(cm::_magma_data), std::end(cm::_magma_data));
+        break;
+    case cm::colorMapName::Plasma:
+        this->colorMap.assign(std::begin(cm::_plasma_data), std::end(cm::_plasma_data));
+        break;
+    case cm::colorMapName::Turbo:
+        this->colorMap.assign(std::begin(cm::_turbo_data), std::end(cm::_turbo_data));
+        break;
+    case cm::colorMapName::Viridis:
+        this->colorMap.assign(std::begin(cm::_viridis_data), std::end(cm::_viridis_data));
+        break;
+    default:
+        break;
+    }
 }
 
