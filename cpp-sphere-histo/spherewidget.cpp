@@ -3,44 +3,20 @@
 
 SphereWidget::SphereWidget(QWidget *parent)
     : QOpenGLWidget(parent),
+      points(),
       last_x(0),
       last_y(0),
-//      scaleFactor(0),
       angle_x(0),
       angle_y(0),
       sphere_depth(3),
       m_fovy(20),
       aspectRatioWidthToHeight(0),
-      ico(Icosphere())
+      ico(Icosphere()),
+      vbo_points(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer))
 {
 
-
-    // Load data from .npy file to 'points'
-    cnpy::NpyArray np_points = cnpy::npy_load("../test_data/1.npy");
-    size_t row_size = np_points.shape[0];
-    size_t column_size = np_points.shape[1];
-    assert(column_size == 3);       // TODO: Exception handling!
-
-    for(unsigned i = 0; i < row_size; ++i){
-        QVector3D point = {
-                        float(np_points.data<double>()[i]),
-                        float(np_points.data<double>()[i+(1*row_size)]),
-                        float(np_points.data<double>()[i+(2*row_size)])
-                                    };
-        QVector3D mirroredPoint = {
-                        - float(np_points.data<double>()[i]),
-                        - float(np_points.data<double>()[i+(1*row_size)]),
-                        - float(np_points.data<double>()[i+(2*row_size)])
-                                    };
-        points.push_back(point);
-        points.push_back(mirroredPoint);
-    }
-    //    TEST ***
-    //        int i = 0;
-    //        for(auto point : points){
-    //            std::cout << ++i << "(" << point[0] << ", " << point[1] << ", " << point[2] << ")" << std::endl;
-    //        }
-
+    vbo_points.create();
+    loadPointsFromFile("../test_data/1.npy");
 }
 
 void SphereWidget::initializeGL() {
@@ -55,25 +31,10 @@ void SphereWidget::initializeGL() {
     glViewport(0, 0, QWidget::width(), QWidget::height());
     aspectRatioWidthToHeight = static_cast<float>(width()) / static_cast<float>(height());
     m_fovy = 20;
-    //    gluPerspective(20, aspectRatioWidthToHeight, 1.f, 20);
-//    glMatrixMode(GL_PROJECTION);
-//    glLoadIdentity();
-//    gluPerspective(20, width() / height(), 1., 20);
-//    gluLookAt(0.5, 0.5 ,10 , 0 ,0 ,0.5 , 0, 1 ,0);
-//    glMatrixMode(GL_MODELVIEW);
-
 }
 void SphereWidget::resizeGL(int w, int h) {
     QOpenGLWidget::resizeGL(w, h);
     aspectRatioWidthToHeight = float(w) / float(h);
-
-//    glMatrixMode(GL_PROJECTION);
-//    glLoadIdentity();
-//    const float aspectRatioWidthToHeight = static_cast<float>(width()) / static_cast<float>(height());
-//    gluPerspective(20, aspectRatioWidthToHeight, 1, 20);
-//    gluLookAt(0.5, 0.5 ,10 , 0 ,0 ,0.5 , 0, 1 ,0);
-//    glMatrixMode(GL_MODELVIEW);
-//    m_projection = glm::perspective(m_fovy, static_cast<float>(w) / static_cast<float>(h), 0.01, 20.0);
 }
 
 void SphereWidget::paintGL() {
@@ -82,7 +43,7 @@ void SphereWidget::paintGL() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(m_fovy, aspectRatioWidthToHeight, 1., 20);
-    gluLookAt(0.5, 0.5 ,10 , 0 ,0 ,0.5 , 0, 1 ,0);
+    gluLookAt(0.5, 0.5, 10 , 0 ,0 ,0.5 , 0, 1 ,0);
 
 //    glLoadMatrixd(glm::value_ptr(m_projection));
 
@@ -95,17 +56,22 @@ void SphereWidget::paintGL() {
     glRotatef(angle_y, 1, 0, 0);
     angle_x = 0;
     angle_y = 0;
-//    if (scaleFactor){
-//        glScalef(scaleFactor, scaleFactor, scaleFactor);
-//        scaleFactor = 0;
-//    }
 
     glBegin(GL_POINTS);
     // GIVEN POINTS + MIRRORED POINTS
     glColor3f(0.2,0.2,0.2);
-    for(auto point : points){
-        glVertex3f(point[0], point[1], point[2]);
-    }
+    vbo_points.bind();
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+    glDrawElements(GL_POINTS, vbo_points.size(), GL_FLOAT, 0);
+
+    glDisableClientState(GL_VERTEX_ARRAY);
+    vbo_points.release();
+
+//// Bisheriges Zeichnen der Punkte:
+//    for(auto point : points){
+//        glVertex3f(point[0], point[1], point[2]);
+//    }
     glEnd();
 
     // Draw Icosahedron
@@ -132,24 +98,11 @@ void SphereWidget::mouseMoveEvent(QMouseEvent * event){
 }
 
 void SphereWidget::wheelEvent(QWheelEvent * event){
-    //TODO: Fix scrolling and rotations
-
-//    std::cout << (event->delta()) << std::endl; //***
-//    this->scaleFactor = exp(event->delta() / 960.);
     float d = event->delta();
     m_fovy -= d/200.0;
     std::cout << m_fovy << std::endl;
 
     this->update();
-
-//    glMatrixMode(GL_PROJECTION);
-//    glLoadIdentity();
-//    const float aspectRatioWidthToHeight = static_cast<float>(width()) / static_cast<float>(height());
-//    gluPerspective(50* exp(event->delta() / 480.), aspectRatioWidthToHeight, 0.1f, 10);
-//    gluLookAt(0.5, 0.5 ,2 , 0 ,0 ,0.5 , 0, 1 ,0);
-
-//    glMatrixMode(GL_MODELVIEW);
-//    this->update();
 }
 
 void SphereWidget::setTriangleDepth(int depth){
@@ -158,17 +111,25 @@ void SphereWidget::setTriangleDepth(int depth){
 }
 
 void SphereWidget::openFile(std::string filename){
+    loadPointsFromFile(filename);
+    this->update();
+}
+
+void SphereWidget::setColorMap(std::string colorMap){
+    this->ico.setColorMap(colorMap);
+}
+
+void SphereWidget::loadPointsFromFile(std::string filename){
     try{
         cnpy::NpyArray np_points = cnpy::npy_load(filename);
-
-
         size_t row_size = np_points.shape[0];
         size_t column_size = np_points.shape[1];
-
         assert(column_size == 3);       // TODO: Exception handling!
 
+        GLfloat draw_points[row_size * column_size * 2];
         points.clear();
-        for(unsigned i = 0; i < row_size; ++i){
+
+        for(size_t i = 0; i < row_size; ++i){
             QVector3D point = {
                             float(np_points.data<double>()[i]),
                             float(np_points.data<double>()[i+(1*row_size)]),
@@ -179,17 +140,28 @@ void SphereWidget::openFile(std::string filename){
                             - float(np_points.data<double>()[i+(1*row_size)]),
                             - float(np_points.data<double>()[i+(2*row_size)])
                                         };
+            draw_points[i*6] = point.x();
+            draw_points[i*6 + 1] = point.y();
+            draw_points[i*6 + 2] = point.z();
+            draw_points[i*6 + 3] = mirroredPoint.x();
+            draw_points[i*6 + 4] = mirroredPoint.y();
+            draw_points[i*6 + 5] = mirroredPoint.z();
+
+
             points.push_back(point);
             points.push_back(mirroredPoint);
-         }
-        this->update();
+        }
+        vbo_points.bind();
+        vbo_points.setUsagePattern(QOpenGLBuffer::DynamicDraw);
+        vbo_points.allocate(draw_points, row_size*column_size*2);;
+        std::cout << vbo_points.size() << std::endl;
+        vbo_points.release();
+
     } catch(std::runtime_error e){
         std::cerr << e.what() << std::endl;
         points.clear();
         return;
     }
-}
 
-void SphereWidget::setColorMap(std::string colorMap){
-    this->ico.setColorMap(colorMap);
+
 }
