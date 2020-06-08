@@ -33,14 +33,18 @@ RCC_DIR     = build/
 SOURCES += \
         main.cpp \
         spherewidget.cpp \
-    icosphere.cpp \
-    mainwindow.cpp
+        icosphere.cpp \
+        mainwindow.cpp \
+    renderdata.cpp \
+    resources/colormaps_matplotlib.cpp
 
 HEADERS += \
         spherewidget.h \
         icosphere.h \
         mainwindow.h \
-        resources/colormaps_matplotlib.h
+        resources/colormaps_matplotlib.h \
+    renderdata.h
+
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/release/ -lcnpy
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/debug/ -lcnpy

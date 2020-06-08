@@ -20,14 +20,14 @@ Icosphere::Icosphere()
         {6,1,10}, {9,0,11}, {9,11,2}, {9,2,5}, {7,2,11}
     };
 
-    qActionStringToEnum = {
-        {"actionCividis", cm::colorMapName::Cividis},
-        {"actionInferno", cm::colorMapName::Inferno},
-        {"actionMagma", cm::colorMapName::Magma},
-        {"actionPlasma", cm::colorMapName::Plasma},
-        {"actionTurbo", cm::colorMapName::Turbo},
-        {"actionviridis", cm::colorMapName::Viridis},
-    };
+//    qActionStringToEnum = {
+//        {"actionCividis", cm::colorMapName::Cividis},
+//        {"actionInferno", cm::colorMapName::Inferno},
+//        {"actionMagma", cm::colorMapName::Magma},
+//        {"actionPlasma", cm::colorMapName::Plasma},
+//        {"actionTurbo", cm::colorMapName::Turbo},
+//        {"actionviridis", cm::colorMapName::Viridis},
+//    };
 
 //    colorLookupMap = {
 //        {0, glm::vec3(0.27058823529411763, 0.4588235294117647, 0.7058823529411765)},
@@ -44,9 +44,13 @@ Icosphere::Icosphere()
     totalPoints = 0;
 
 }
+void Icosphere::updateIcosphere(unsigned int numberOfSubdivisions, std::list<QVector3D> pointsForHistogram){
+
+}
+
 
 void Icosphere::drawIcosphere(unsigned int numberOfSubdivisions, std::list<QVector3D > pointsForHistogram){
-    totalPoints = pointsForHistogram.size();
+    totalPoints = pointsForHistogram.size();    // Muss gegen Max-Points ausgetauscht werden
 
     for (std::vector<int> &i : indices){
         float v1[3] = {vertices[i[0]][0], vertices[i[0]][1], vertices[i[0]][2]};
@@ -225,31 +229,3 @@ bool Icosphere::pointInFirstQuadrantAfterTransformation(const glm::vec3 &point, 
     }
 
 }
-
-void Icosphere::setColorMap(std::string colorMap){
-
-    cm::colorMapName colorMapEnum = qActionStringToEnum[colorMap];
-    switch (colorMapEnum) {
-    case cm::colorMapName::Cividis:
-        this->colorMap.assign(std::begin(cm::_cividis_data), std::end(cm::_cividis_data));
-        break;
-    case cm::colorMapName::Inferno:
-        this->colorMap.assign(std::begin(cm::_inferno_data), std::end(cm::_inferno_data));
-        break;
-    case cm::colorMapName::Magma :
-        this->colorMap.assign(std::begin(cm::_magma_data), std::end(cm::_magma_data));
-        break;
-    case cm::colorMapName::Plasma:
-        this->colorMap.assign(std::begin(cm::_plasma_data), std::end(cm::_plasma_data));
-        break;
-    case cm::colorMapName::Turbo:
-        this->colorMap.assign(std::begin(cm::_turbo_data), std::end(cm::_turbo_data));
-        break;
-    case cm::colorMapName::Viridis:
-        this->colorMap.assign(std::begin(cm::_viridis_data), std::end(cm::_viridis_data));
-        break;
-    default:
-        break;
-    }
-}
-

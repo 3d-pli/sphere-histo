@@ -8,22 +8,33 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->sphereWidget = ui->sphereWidget;
 
     connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(changeTriangleDepth(int)));
 
     connect(ui->actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
-    connect(ui->actionPlasma, SIGNAL(triggered()), this , SLOT(changeColorMap("actionPlasma")));
+    connect(ui->comboBox, SIGNAL(currentTextChanged(QString)), this , SLOT(changeColorMap(QString)));
+
+//    connect(ui->actionPlasma, SIGNAL(triggered()), this , SLOT(changeColorMap()));
+    // GEHT SO NICHT: QAction hat nur die Signals triggered() oder hovered() ohne Parameter -> Können nur an Slot ohne Parameter übergeben werden
+    // Entweder: Für jede Farbe einen eigenen Slot schreiben -> hässlich
+    // ODER: Eine Combobox irgendwo ins UI einbauen
 }
 
 MainWindow::~MainWindow()
 {
+    delete sphereWidget;
     delete ui;
+}
+
+SphereWidget * MainWindow::getSphereWidget(){
+    return this->sphereWidget;
 }
 
 void MainWindow::changeTriangleDepth(int depth)
 {
-    ui->sphereWidget->setTriangleDepth(depth);
+    RenderData::getInstance()->setSphereDepth(depth);
 }
 
 void MainWindow::openFile()
@@ -32,10 +43,10 @@ void MainWindow::openFile()
 
     if(file.isEmpty())
         return;
-
-    ui->sphereWidget->openFile(file.toStdString());
+    RenderData::getInstance()->loadPointsFromFile(file.toStdString());
+//    ui->sphereWidget->openFile(file.toStdString());
 }
 
-void MainWindow::changeColorMap(std::string mapName){
-    ui->sphereWidget->setColorMap(mapName);
+void MainWindow::changeColorMap(QString mapName){
+    RenderData::getInstance()->setColorMap(mapName);
 }

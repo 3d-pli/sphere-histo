@@ -23,18 +23,14 @@ class Icosphere : protected QOpenGLFunctions
 {
 public:
     Icosphere();
-
-//    inline std::vector<std::vector<float> > getVertices() { return vertices; }
-//    inline std::vector<std::vector<float> > getIndices() { return indices; }
+    void updateIcosphere(unsigned int numberOfSubdivisions, std::list<QVector3D > pointsForHistogram);  // Call by value bei pointsForHistogram um Kopie der Liste zu erstellen, aus der Punkte nach Einbezug ins Histogramm gelöscht werden können
 
     void drawIcosphere(unsigned int numberOfSubdivisions, std::list<QVector3D > pointsForHistogram);
-    // Call by value bei pointsForHistogram um Kopie der Liste zu erstellen, aus der Punkte nach Einbezug ins Histogramm gelöscht werden können
-    void setColorMap(std::string colorMap);
 
 private:
     std::vector<QVector3D> vertices;
     std::vector<std::vector<int> > indices;
-    std::unordered_map<std::string, cm::colorMapName> qActionStringToEnum;
+    std::unordered_map<std::string, cm::ColorMapName> qActionStringToEnum;
 //    std::map<size_t, glm::vec3> colorLookupMap;     // Maps number of points in triangle to color as vec4
     size_t totalPoints;
     std::vector<float> colorMap;
