@@ -15,84 +15,67 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
+    <item row="4" column="1">
+     <widget class="QSlider" name="horizontalSlider">
+      <property name="maximum">
+       <number>8</number>
+      </property>
+      <property name="singleStep">
+       <number>1</number>
+      </property>
+      <property name="value">
+       <number>3</number>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="tickPosition">
+       <enum>QSlider::TicksBelow</enum>
+      </property>
+      <property name="tickInterval">
+       <number>1</number>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QComboBox" name="comboBox">
+      <property name="currentText">
+       <string>Cividis</string>
+      </property>
       <item>
-       <widget class="SphereWidget" name="sphereWidget" native="true">
-        <widget class="QWidget" name="horizontalLayoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>230</y>
-           <width>380</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QSlider" name="horizontalSlider">
-            <property name="maximum">
-             <number>8</number>
-            </property>
-            <property name="singleStep">
-             <number>1</number>
-            </property>
-            <property name="value">
-             <number>3</number>
-            </property>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="tickPosition">
-             <enum>QSlider::TicksBelow</enum>
-            </property>
-            <property name="tickInterval">
-             <number>1</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="comboBox">
-            <property name="currentText">
-             <string>Viridis</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>Cividis</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Inferno</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Magma</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Plasma</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Turbo</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Viridis</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </widget>
+       <property name="text">
+        <string>Cividis</string>
+       </property>
       </item>
-     </layout>
+      <item>
+       <property name="text">
+        <string>Inferno</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Magma</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Plasma</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Turbo</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Viridis</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="3">
+     <widget class="SphereWidget" name="sphereWidget" native="true"/>
     </item>
    </layout>
   </widget>

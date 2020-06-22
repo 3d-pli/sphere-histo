@@ -2,7 +2,7 @@
 RenderData* RenderData::_instance = 0;
 
 
-std::vector<float> RenderData::getRenderPoints(void){
+std::vector<float> RenderData::getPointsAsVector(void){
     std::vector<float> renderPoints;
     for (auto point : points){
         renderPoints.push_back(point.x());
@@ -21,9 +21,12 @@ RenderData* RenderData::getInstance()
 }
 
 RenderData::RenderData() :
+    ico(),
     points(),
     vertices(),
+    sphereBorderVertices(),
     sphereDepth(3),
+    maxCalculatedDepth(0),
     colorMap(cm::_viridis_data)
 {
 
@@ -32,6 +35,14 @@ RenderData::RenderData() :
 const float * RenderData::getColorMap() const
 {
     return colorMap;
+}
+
+const std::vector<float> &RenderData::getTriangleVerticesAtCurrentDepth()
+{
+    if(maxCalculatedDepth < sphereDepth){
+        ico.calculateDepthData(maxCalculatedDepth, sphereDepth);
+    }
+    return vertices[sphereDepth].getVertices();
 }
 
 /*
@@ -71,15 +82,6 @@ void RenderData::loadPointsFromFile(std::string filename){
             points.push_back(point);
             points.push_back(mirroredPoint);
         }
-
-
-
-//        vbo_points.setUsagePattern(QOpenGLBuffer::DynamicDraw);
-////        Q_ASSERT(vbo_points.create());
-//        Q_ASSERT(vbo_points.bind());
-//        vbo_points.allocate(sizeof(draw_points));
-//        vbo_points.write(0, draw_points, sizeof(draw_points));
-//        vbo_points.release();
     } catch(std::string str){
         std::cerr << str << std::endl;
     } catch(std::runtime_error e){
@@ -97,6 +99,7 @@ unsigned short RenderData::getSphereDepth() const
 void RenderData::setSphereDepth(unsigned short value)
 {
     sphereDepth = value;
+
 }
 
 

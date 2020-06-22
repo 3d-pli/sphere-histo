@@ -12,9 +12,10 @@
 // External libraries
 #include <cnpy.h>
 
-// Internal classes
+// Internal
+#include "icosphere.h"
 #include "resources/colormaps_matplotlib.h"
-
+#include "spheredepthdata.h"
 
 /*!
  * Singleton to store data of the
@@ -27,32 +28,39 @@
 */
 class RenderData
 {
-public:
-    inline std::vector<float> getRenderPoints(void);
-    inline std::list<QVector3D> getPoints(){ return points; }        // return by value because of deletions in subdivision routine
-
-    static RenderData * getInstance();
-
-
-    void loadPointsFromFile(std::string filename);
-
-
-    unsigned short getSphereDepth() const;
-    void setSphereDepth(unsigned short value);
-
-    const float * getColorMap() const;
-    void setColorMap(QString colorMapName);
-
-
 private:
     static RenderData * _instance;
+    Icosphere ico;
+    std::list<QVector3D> points;
+    std::vector<SphereDepthData> vertices; // vertices per depth
+    std::vector<std::vector<float> > sphereBorderVertices; // vertices per depth in order to draw triangle borders
+    // TODO
+    unsigned short sphereDepth;
+    unsigned short maxCalculatedDepth;
+    const float * colorMap;
 
     RenderData();
     RenderData(const RenderData&) = delete;
-    std::list<QVector3D> points;
-    std::vector<std::vector<float> > vertices; // vertices per depth
-    unsigned short sphereDepth;
-    const float * colorMap;
+
+public:
+
+    static RenderData * getInstance();
+
+    // GETTER
+    unsigned short getSphereDepth() const;
+    const float * getColorMap() const;
+    std::vector<float> getPointsAsVector(void);                     //
+    inline std::list<QVector3D> getPoints(){ return points; }        // return by value because of deletions in subdivision routine
+    const std::vector<float>& getTriangleVerticesAtCurrentDepth();
+
+    // SETTER
+    void setSphereDepth(unsigned short value);
+    void setColorMap(QString colorMapName);
+
+    void loadPointsFromFile(std::string filename);
+
+    friend class Icosphere;
+
 
 
 };

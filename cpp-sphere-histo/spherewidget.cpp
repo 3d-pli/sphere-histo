@@ -8,12 +8,13 @@ SphereWidget::SphereWidget(QWidget *parent)
       m_lastPosition(QPointF(0,0)),
       m_position(QVector3D(0, 0, 0)),
       m_rotation(QVector3D(0, 0, 0)),
-      sphere_depth(3),
+//      sphere_depth(3),
       m_fovy(20),
       aspectRatioWidthToHeight(0),
       ico(Icosphere()),
       vbo_points(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer))
 {
+//    RenderData::getInstance()->setSphereDepth(sphere_depth);
 //    loadPointsFromFile("../test_data/1.npy");
 }
 
@@ -110,27 +111,28 @@ void SphereWidget::wheelEvent(QWheelEvent * event){
     this->update();
 }
 
-void SphereWidget::setTriangleDepth(int depth){
-    this->sphere_depth = depth;
-    this->update();
-}
 
-//void SphereWidget::openFile(std::string filename){
-//    loadPointsFromFile(filename);
-//    this->update();
-//}
-
-void SphereWidget::setPoints(std::list<QVector3D>& points){
-    this->points = points;
-    // TODO: VBO erstellen/füllen, sobald Datenstruktur für points feststeht
-}
-
-void SphereWidget::updatePoints(std::vector<float> points){
+void SphereWidget::updatePoints(){
     // TODO: Test
+    std::vector<float> points = renderData->getPointsAsVector();
     Q_ASSERT(vbo_points.bind());
     vbo_points.allocate(points.data(), points.size()*sizeof(float));
+//    vbo_points.write(0, points.data(), points.size());
     vbo_points.release();
     this->update();
+}
+
+void SphereWidget::updateSphereVertices()
+{
+    // TODO: VBO mit aktuellen Vertices der Icosphere fuellen
+    ;
+
+}
+
+void SphereWidget::updateTriangleColor()
+{
+    // TODO: Farben in VBO generieren abhaengig von aktueller Colormap und Punkten pro Triangle
+    // - koennte als Funktionalitaet auch in der Icosphere liegen und hier nur updaten?
 };
 
 

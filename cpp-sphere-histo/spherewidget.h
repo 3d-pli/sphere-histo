@@ -36,10 +36,9 @@ public:
         delete renderData;
     }
 
-    void setTriangleDepth(int depth);
-//    void openFile(std::string filename);
-    void setPoints(std::list<QVector3D>& points);
-    void updatePoints(std::vector<float> points);
+    void updatePoints();
+    void updateSphereVertices();
+    void updateTriangleColor();
 
 protected:
     virtual void initializeGL() override;
@@ -57,7 +56,7 @@ private:
     QVector3D m_position;
     QVector3D m_rotation;
 
-    int sphere_depth;
+//    int sphere_depth;
     float m_fovy;
     float aspectRatioWidthToHeight;
 

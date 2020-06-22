@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
     connect(ui->comboBox, SIGNAL(currentTextChanged(QString)), this , SLOT(changeColorMap(QString)));
 
+    RenderData::getInstance()->setSphereDepth(3);
+
 //    connect(ui->actionPlasma, SIGNAL(triggered()), this , SLOT(changeColorMap()));
     // GEHT SO NICHT: QAction hat nur die Signals triggered() oder hovered() ohne Parameter -> Können nur an Slot ohne Parameter übergeben werden
     // Entweder: Für jede Farbe einen eigenen Slot schreiben -> hässlich
@@ -44,7 +46,7 @@ void MainWindow::openFile()
     if(file.isEmpty())
         return;
     RenderData::getInstance()->loadPointsFromFile(file.toStdString());
-//    ui->sphereWidget->openFile(file.toStdString());
+    ui->sphereWidget->updatePoints();
 }
 
 void MainWindow::changeColorMap(QString mapName){

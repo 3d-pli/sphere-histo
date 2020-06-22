@@ -1,7 +1,9 @@
 #include "icosphere.h"
+// To avoid circular dependencies
+#include "renderdata.h"
 
 Icosphere::Icosphere()
-    : colorMap(std::begin(cm::_viridis_data), std::end(cm::_viridis_data))
+     /*:colorMap(std::begin(cm::_viridis_data), std::end(cm::_viridis_data))*/
 {
     const float X  =.525731112119133606;
     const float Z  =.850650808352039932;
@@ -19,15 +21,6 @@ Icosphere::Icosphere()
         {7,10,3}, {7,6,10}, {7,11,6}, {11,0,6}, {0,1,6},
         {6,1,10}, {9,0,11}, {9,11,2}, {9,2,5}, {7,2,11}
     };
-
-//    qActionStringToEnum = {
-//        {"actionCividis", cm::colorMapName::Cividis},
-//        {"actionInferno", cm::colorMapName::Inferno},
-//        {"actionMagma", cm::colorMapName::Magma},
-//        {"actionPlasma", cm::colorMapName::Plasma},
-//        {"actionTurbo", cm::colorMapName::Turbo},
-//        {"actionviridis", cm::colorMapName::Viridis},
-//    };
 
 //    colorLookupMap = {
 //        {0, glm::vec3(0.27058823529411763, 0.4588235294117647, 0.7058823529411765)},
@@ -58,9 +51,9 @@ void Icosphere::drawIcosphere(unsigned int numberOfSubdivisions, std::list<QVect
         float v3[3] = {vertices[i[2]][0], vertices[i[2]][1], vertices[i[2]][2]};
 
         glm::mat3 transformationMatrix = {
-            v1[0], v1[1], v1[2],     // first COLUMN!
-            v2[0], v2[1], v2[2],     // second COLUMN!
-            v3[0], v3[1], v3[2]     // third COLUMN!
+            v1[0], v1[1], v1[2],     // first COLUMN
+            v2[0], v2[1], v2[2],     // second COLUMN
+            v3[0], v3[1], v3[2]     // third COLUMN
         };
         transformationMatrix = glm::inverse(transformationMatrix);          // transformation matrix inversed in order to change basis to triangle vertices' coordinates
         std::list<QVector3D> pointsForTriangle;
@@ -78,6 +71,11 @@ void Icosphere::drawIcosphere(unsigned int numberOfSubdivisions, std::list<QVect
 
         subdivide(v1, v2, v3, numberOfSubdivisions, pointsForTriangle);
     }
+}
+
+void Icosphere::calculateDepthData(unsigned short maxCalculatedDepth, unsigned short sphereDepth)
+{
+
 }
 
 void Icosphere::subdivide(float *v1, float *v2, float *v3, long depth, std::list<QVector3D> &allRemainingPoints)
@@ -207,7 +205,9 @@ void Icosphere::triangleColor(unsigned long pointsInTriangle){
 
     int colorCode = int((float(pointsInTriangle)/totalPoints)*256);
 
-    glColor4f(this->colorMap[colorCode*3], this->colorMap[(colorCode*3)+1], this->colorMap[(colorCode*3)+2], 1);
+//    glColor4f(RenderData::getInstance()->getColorMap[colorCode*3],
+//            RenderData::getInstance()->getColorMap[(colorCode*3)+1],
+//            RenderData::getInstance()->getColorMap[(colorCode*3)+2], 1);
 
 
 //    for(std::map<size_t, glm::vec3>::iterator it = colorLookupMap.begin(); it != colorLookupMap.end(); ++it){

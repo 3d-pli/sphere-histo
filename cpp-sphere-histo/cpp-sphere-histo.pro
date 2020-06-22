@@ -36,14 +36,16 @@ SOURCES += \
         icosphere.cpp \
         mainwindow.cpp \
     renderdata.cpp \
-    resources/colormaps_matplotlib.cpp
+    resources/colormaps_matplotlib.cpp \
+    spheredepthdata.cpp
 
 HEADERS += \
         spherewidget.h \
         icosphere.h \
         mainwindow.h \
         resources/colormaps_matplotlib.h \
-    renderdata.h
+    renderdata.h \
+    spheredepthdata.h
 
 
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/release/ -lcnpy
