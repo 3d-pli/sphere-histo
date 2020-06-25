@@ -50,7 +50,7 @@ protected:
 
 private:
     RenderData * renderData;
-    std::list<QVector3D> points;
+//    std::list<QVector3D> points;
 
     QPointF m_lastPosition;
     QVector3D m_position;
@@ -62,6 +62,7 @@ private:
 
     Icosphere ico;
     QOpenGLBuffer vbo_points;
+    QOpenGLBuffer vbo_sphereVertices;
 
 //    void loadPointsFromFile(std::string filename);
 };

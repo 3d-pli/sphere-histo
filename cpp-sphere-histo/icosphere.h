@@ -28,12 +28,14 @@ class Icosphere : protected QOpenGLFunctions
 {
 public:
     Icosphere();
-    void calculateDepthData(unsigned short maxCalculatedDepth, unsigned short sphereDepth);
+    SphereDepthData getIcosahedron();
+    std::vector<SphereDepthData> calculateDepthData(short maxCalculatedDepth, unsigned short sphereDepth);
 
     // Obsolete
-    void updateIcosphere(unsigned int numberOfSubdivisions, std::list<QVector3D > pointsForHistogram);  // Call by value bei pointsForHistogram um Kopie der Liste zu erstellen, aus der Punkte nach Einbezug ins Histogramm gelöscht werden können
-    // Obsolete
-    void drawIcosphere(unsigned int numberOfSubdivisions, std::list<QVector3D > pointsForHistogram);
+//    void drawIcosphere(unsigned int numberOfSubdivisions, std::list<QVector3D > pointsForHistogram);
+
+    void filterPointsForTriangle(std::list<QVector3D> pointList, float v2, std::list<QVector3D> tmp_points, float v1, float v3);
+
 
 private:
     std::vector<QVector3D> vertices;
@@ -43,7 +45,7 @@ private:
     size_t totalPoints;
 //    std::vector<float> colorMap;
 
-    void subdivide(float *v1, float *v2, float *v3, long depth, std::list<QVector3D> &allRemainingPoints);
+//    void subdivide(float *v1, float *v2, float *v3, long depth, std::list<QVector3D> &allRemainingPoints);
 
     inline void drawTriangle(float * v1, float * v2, float * v3){
         glBegin(GL_TRIANGLES);
@@ -64,6 +66,9 @@ private:
 
     void triangleColor(unsigned long pointsInTriangle);
 
+
+    glm::mat3 getTransformationMatrix(float v1[3], float v2[3], float v3[3]);
+
     /**
      * @brief pointInTriangleRange
      * @param point  - a 3D point
@@ -71,7 +76,7 @@ private:
      * @return bool - wether a point lies inside the
      */
     bool pointInFirstQuadrantAfterTransformation(const glm::vec3 &point, const glm::mat3 &transformationMatrix);
-
+    SphereDepthData calculateSubdivision(SphereDepthData lastSphere);
 };
 
 #endif // ICOSPHERE_H

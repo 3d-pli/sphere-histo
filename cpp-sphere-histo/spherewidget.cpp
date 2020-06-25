@@ -4,7 +4,7 @@
 SphereWidget::SphereWidget(QWidget *parent)
     : QOpenGLWidget(parent),
       renderData(RenderData::getInstance()),
-      points(),
+//      points(),
       m_lastPosition(QPointF(0,0)),
       m_position(QVector3D(0, 0, 0)),
       m_rotation(QVector3D(0, 0, 0)),
@@ -12,7 +12,8 @@ SphereWidget::SphereWidget(QWidget *parent)
       m_fovy(20),
       aspectRatioWidthToHeight(0),
       ico(Icosphere()),
-      vbo_points(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer))
+      vbo_points(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer)),
+      vbo_sphereVertices(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer))
 {
 //    RenderData::getInstance()->setSphereDepth(sphere_depth);
 //    loadPointsFromFile("../test_data/1.npy");
@@ -24,6 +25,8 @@ void SphereWidget::initializeGL() {
     aspectRatioWidthToHeight = static_cast<float>(width()) / static_cast<float>(height());
 
     vbo_points.create();
+    vbo_sphereVertices.create();
+    // TODO: hier sphereVertices das erste Mal fuellen!
 }
 void SphereWidget::resizeGL(int w, int h) {
     QOpenGLWidget::resizeGL(w, h);
@@ -74,10 +77,13 @@ void SphereWidget::paintGL() {
 //    }
 
     // render icosphere from icosahedron
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    if(!points.empty())
-        // TODO: Diesen Fehler in Icosphere abfangen
-            ico.drawIcosphere(renderData->getSphereDepth(), points);
+//    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+//    glBegin(GL_TRIANGLES);
+////    if(!points.empty())
+//        // TODO: Diesen Fehler in Icosphere abfangen
+//            ico.drawIcosphere(renderData->getSphereDepth(), renderData->getPoints());
+//    glEnd();
 }
 
 void SphereWidget::mousePressEvent(QMouseEvent * event){
@@ -125,7 +131,11 @@ void SphereWidget::updatePoints(){
 void SphereWidget::updateSphereVertices()
 {
     // TODO: VBO mit aktuellen Vertices der Icosphere fuellen
-    ;
+    std::vector<float> vertices = renderData->getTriangleVerticesAtCurrentDepth();
+//    Q_ASSERT(vbo_sphereVertices.bind());
+//    vbo_sphereVertices.allocate(vertices.data(), vertices.size()*sizeof(float));
+//    vbo_sphereVertices.release();
+    this->update();
 
 }
 

@@ -3,6 +3,7 @@
 
 // STL
 #include <vector>
+#include <algorithm>
 
 // Qt
 #include <QVector3D>
@@ -16,12 +17,13 @@
 class SphereDepthData
 {
 public:
-    SphereDepthData();      // probably unnecessary
+    SphereDepthData()=default;      // probably unnecessary
     SphereDepthData(unsigned short depth, std::vector<float> vertices, std::vector<std::list<QVector3D> > pointsPerTriangle);
-    ~SphereDepthData(){}
+//    ~SphereDepthData(){}
 
     // Getters
-    std::vector<float> getVertices();
+    std::vector<float> getVertices() const;
+    size_t getMaxPointsPerTriangle();
 
     // Setters
     void setVertices(std::vector<float> value);
@@ -32,12 +34,17 @@ public:
 
     friend class icosphere;
 
+    std::vector<std::list<QVector3D> > getPointsPerTriangle() const;
+    void setPointsPerTriangle(const std::vector<std::list<QVector3D> > &value);
+
+    unsigned short getDepth() const;
+
 private:
     unsigned short depth;      // probably unnecessary
     std::vector<float> vertices;
     std::vector<std::list<QVector3D> > pointsPerTriangle;
-//    std::vector<float> colors;       // probably better to calculate color in render class in order to easily switch between colormaps
     size_t maxPointsPerTriangle;
+//    std::vector<float> colors;       // probably better to calculate color in render class in order to easily switch between colormaps
 };
 
 #endif // SPHEREDEPTHDATA_H

@@ -34,9 +34,7 @@ private:
     std::list<QVector3D> points;
     std::vector<SphereDepthData> vertices; // vertices per depth
     std::vector<std::vector<float> > sphereBorderVertices; // vertices per depth in order to draw triangle borders
-    // TODO
-    unsigned short sphereDepth;
-    unsigned short maxCalculatedDepth;
+    unsigned short currentSphereDepth;
     const float * colorMap;
 
     RenderData();
@@ -51,7 +49,8 @@ public:
     const float * getColorMap() const;
     std::vector<float> getPointsAsVector(void);                     //
     inline std::list<QVector3D> getPoints(){ return points; }        // return by value because of deletions in subdivision routine
-    const std::vector<float>& getTriangleVerticesAtCurrentDepth();
+    const std::vector<float> getTriangleVerticesAtCurrentDepth();
+    SphereDepthData getSphereDepthData(const short& depth);
 
     // SETTER
     void setSphereDepth(unsigned short value);
@@ -63,5 +62,6 @@ public:
 
 
 
+    short getMaxCalculatedDepth() const;
 };
 #endif // VERTEX_DATA_H

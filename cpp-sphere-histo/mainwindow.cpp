@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->comboBox, SIGNAL(currentTextChanged(QString)), this , SLOT(changeColorMap(QString)));
 
     RenderData::getInstance()->setSphereDepth(3);
+    RenderData::getInstance()->setColorMap("Viridis");
+    this->sphereWidget->updateSphereVertices();
 
 //    connect(ui->actionPlasma, SIGNAL(triggered()), this , SLOT(changeColorMap()));
     // GEHT SO NICHT: QAction hat nur die Signals triggered() oder hovered() ohne Parameter -> Können nur an Slot ohne Parameter übergeben werden
@@ -45,7 +47,8 @@ void MainWindow::openFile()
 
     if(file.isEmpty())
         return;
-    RenderData::getInstance()->loadPointsFromFile(file.toStdString());
+    std::string filename = file.toStdString();
+    RenderData::getInstance()->loadPointsFromFile(filename);
     ui->sphereWidget->updatePoints();
 }
 
