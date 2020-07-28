@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     RenderData::getInstance()->setSphereDepth(3);
     RenderData::getInstance()->setColorMap("Viridis");
-    this->sphereWidget->updateSphereVertices();
+//    this->sphereWidget->updateSphereVertices();
 
 //    connect(ui->actionPlasma, SIGNAL(triggered()), this , SLOT(changeColorMap()));
     // GEHT SO NICHT: QAction hat nur die Signals triggered() oder hovered() ohne Parameter -> Können nur an Slot ohne Parameter übergeben werden
@@ -39,6 +39,7 @@ SphereWidget * MainWindow::getSphereWidget(){
 void MainWindow::changeTriangleDepth(int depth)
 {
     RenderData::getInstance()->setSphereDepth(depth);
+    ui->sphereWidget->updateSphereVertices();
 }
 
 void MainWindow::openFile()

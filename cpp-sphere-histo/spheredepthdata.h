@@ -18,7 +18,7 @@ class SphereDepthData
 {
 public:
     SphereDepthData()=default;      // probably unnecessary
-    SphereDepthData(unsigned short depth, std::vector<float> vertices, std::vector<std::list<QVector3D> > pointsPerTriangle);
+    SphereDepthData(short depth, std::vector<float> vertices, std::vector<std::list<QVector3D> > pointsPerTriangle);
 //    ~SphereDepthData(){}
 
     // Getters
@@ -37,10 +37,12 @@ public:
     std::vector<std::list<QVector3D> > getPointsPerTriangle() const;
     void setPointsPerTriangle(const std::vector<std::list<QVector3D> > &value);
 
-    unsigned short getDepth() const;
+    short getDepth() const;
+
+    friend class RenderData;
 
 private:
-    unsigned short depth;      // probably unnecessary
+    short depth;      // probably unnecessary
     std::vector<float> vertices;
     std::vector<std::list<QVector3D> > pointsPerTriangle;
     size_t maxPointsPerTriangle;

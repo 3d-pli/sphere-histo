@@ -4,19 +4,15 @@
 SphereWidget::SphereWidget(QWidget *parent)
     : QOpenGLWidget(parent),
       renderData(RenderData::getInstance()),
-//      points(),
       m_lastPosition(QPointF(0,0)),
       m_position(QVector3D(0, 0, 0)),
       m_rotation(QVector3D(0, 0, 0)),
-//      sphere_depth(3),
       m_fovy(20),
       aspectRatioWidthToHeight(0),
-      ico(Icosphere()),
       vbo_points(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer)),
       vbo_sphereVertices(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer))
 {
-//    RenderData::getInstance()->setSphereDepth(sphere_depth);
-//    loadPointsFromFile("../test_data/1.npy");
+    ;
 }
 
 void SphereWidget::initializeGL() {
@@ -25,7 +21,12 @@ void SphereWidget::initializeGL() {
     aspectRatioWidthToHeight = static_cast<float>(width()) / static_cast<float>(height());
 
     vbo_points.create();
-    vbo_sphereVertices.create();
+    vbo_points.release();
+    Q_ASSERT(vbo_sphereVertices.create());
+    vbo_sphereVertices.release();
+    Q_ASSERT(vbo_sphereVertices.isCreated());
+    std::cout << "LALALALA" << std::endl;
+    updateSphereVertices();
     // TODO: hier sphereVertices das erste Mal fuellen!
 }
 void SphereWidget::resizeGL(int w, int h) {
@@ -70,6 +71,15 @@ void SphereWidget::paintGL() {
     // release buffer
     glDisableClientState(GL_VERTEX_ARRAY);
     vbo_points.release();
+
+    vbo_sphereVertices.bind();
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+    glEnable(GL_DEPTH_TEST);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glDrawArrays(GL_TRIANGLES, 0, vbo_sphereVertices.size());
+    glDisableClientState(GL_VERTEX_ARRAY);
+    vbo_sphereVertices.release();
 
 //// Bisheriges Zeichnen der Punkte:
 //    for(auto point : points){
@@ -123,8 +133,8 @@ void SphereWidget::updatePoints(){
     std::vector<float> points = renderData->getPointsAsVector();
     Q_ASSERT(vbo_points.bind());
     vbo_points.allocate(points.data(), points.size()*sizeof(float));
-//    vbo_points.write(0, points.data(), points.size());
     vbo_points.release();
+//    vbo_points.write(0, points.data(), points.size());
     this->update();
 }
 
@@ -132,9 +142,10 @@ void SphereWidget::updateSphereVertices()
 {
     // TODO: VBO mit aktuellen Vertices der Icosphere fuellen
     std::vector<float> vertices = renderData->getTriangleVerticesAtCurrentDepth();
-//    Q_ASSERT(vbo_sphereVertices.bind());
-//    vbo_sphereVertices.allocate(vertices.data(), vertices.size()*sizeof(float));
-//    vbo_sphereVertices.release();
+    Q_ASSERT(vbo_sphereVertices.isCreated());
+    Q_ASSERT(vbo_sphereVertices.bind());
+    vbo_sphereVertices.allocate(vertices.data(), vertices.size()*sizeof(float));
+    vbo_sphereVertices.release();
     this->update();
 
 }
@@ -143,51 +154,6 @@ void SphereWidget::updateTriangleColor()
 {
     // TODO: Farben in VBO generieren abhaengig von aktueller Colormap und Punkten pro Triangle
     // - koennte als Funktionalitaet auch in der Icosphere liegen und hier nur updaten?
-};
+}
 
-
-//void SphereWidget::loadPointsFromFile(std::string filename){
-//    try{
-//        cnpy::NpyArray np_points = cnpy::npy_load(filename);
-//        size_t row_size = np_points.shape[0];
-//        size_t column_size = np_points.shape[1];
-//        assert(column_size == 3);       // TODO: Exception handling!
-
-//        GLfloat draw_points[row_size * column_size * 2];
-//        points.clear();
-
-//        for(size_t i = 0; i < row_size; ++i){
-//            QVector3D point = {
-//                            float(np_points.data<double>()[i]),
-//                            float(np_points.data<double>()[i+(1*row_size)]),
-//                            float(np_points.data<double>()[i+(2*row_size)])
-//                                        };
-//            QVector3D mirroredPoint = {
-//                            - float(np_points.data<double>()[i]),
-//                            - float(np_points.data<double>()[i+(1*row_size)]),
-//                            - float(np_points.data<double>()[i+(2*row_size)])
-//                                        };
-//            draw_points[i*6] = point.x();
-//            draw_points[i*6 + 1] = point.y();
-//            draw_points[i*6 + 2] = point.z();
-//            draw_points[i*6 + 3] = mirroredPoint.x();
-//            draw_points[i*6 + 4] = mirroredPoint.y();
-//            draw_points[i*6 + 5] = mirroredPoint.z();
-
-
-//            points.push_back(point);
-//            points.push_back(mirroredPoint);
-//        }
-//        vbo_points.setUsagePattern(QOpenGLBuffer::DynamicDraw);
-////        Q_ASSERT(vbo_points.create());
-//        Q_ASSERT(vbo_points.bind());
-//        vbo_points.allocate(sizeof(draw_points));
 //        vbo_points.write(0, draw_points, sizeof(draw_points));
-//        vbo_points.release();
-
-//    } catch(std::runtime_error e){
-//        std::cerr << e.what() << std::endl;
-//        points.clear();
-//        return;
-//    }
-//}

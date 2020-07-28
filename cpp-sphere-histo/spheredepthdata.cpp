@@ -8,7 +8,7 @@
 //{
 //}
 
-SphereDepthData::SphereDepthData(unsigned short depth, std::vector<float> vertices, std::vector<std::list<QVector3D> > pointsPerTriangle)
+SphereDepthData::SphereDepthData(short depth, std::vector<float> vertices, std::vector<std::list<QVector3D> > pointsPerTriangle)
     : depth(depth),
       vertices(vertices),
       pointsPerTriangle(pointsPerTriangle)
@@ -46,7 +46,7 @@ void SphereDepthData::setPointsPerTriangle(const std::vector<std::list<QVector3D
     pointsPerTriangle = value;
 }
 
-unsigned short SphereDepthData::getDepth() const
+short SphereDepthData::getDepth() const
 {
     return depth;
 }

@@ -50,21 +50,16 @@ protected:
 
 private:
     RenderData * renderData;
-//    std::list<QVector3D> points;
 
     QPointF m_lastPosition;
     QVector3D m_position;
     QVector3D m_rotation;
 
-//    int sphere_depth;
     float m_fovy;
     float aspectRatioWidthToHeight;
 
-    Icosphere ico;
     QOpenGLBuffer vbo_points;
     QOpenGLBuffer vbo_sphereVertices;
-
-//    void loadPointsFromFile(std::string filename);
 };
 
 
