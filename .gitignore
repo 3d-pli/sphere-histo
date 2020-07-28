@@ -6,3 +6,4 @@ external-libraries/*
 *moc*
 *.o
 *build*
+DoxyDoc/*
