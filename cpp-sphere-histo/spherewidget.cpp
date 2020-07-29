@@ -10,7 +10,8 @@ SphereWidget::SphereWidget(QWidget *parent)
       m_fovy(20),
       aspectRatioWidthToHeight(0),
       vbo_points(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer)),
-      vbo_sphereVertices(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer))
+      vbo_sphereVertices(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer)),
+      vbo_vertexColors(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer))
 {
     ;
 }
@@ -25,9 +26,10 @@ void SphereWidget::initializeGL() {
     Q_ASSERT(vbo_sphereVertices.create());
     vbo_sphereVertices.release();
     Q_ASSERT(vbo_sphereVertices.isCreated());
-    std::cout << "LALALALA" << std::endl;
+    vbo_vertexColors.create();
+    vbo_vertexColors.release();
+
     updateSphereVertices();
-    // TODO: hier sphereVertices das erste Mal fuellen!
 }
 void SphereWidget::resizeGL(int w, int h) {
     QOpenGLWidget::resizeGL(w, h);
@@ -72,7 +74,9 @@ void SphereWidget::paintGL() {
     glDisableClientState(GL_VERTEX_ARRAY);
     vbo_points.release();
 
+    // draw icosphere
     vbo_sphereVertices.bind();
+    glColor4f(0.8,0.8,0.8, 0.6);
     glVertexPointer(3, GL_FLOAT, 0, 0);
     glEnable(GL_DEPTH_TEST);
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -142,7 +146,6 @@ void SphereWidget::updateSphereVertices()
 {
     // TODO: VBO mit aktuellen Vertices der Icosphere fuellen
     std::vector<float> vertices = renderData->getTriangleVerticesAtCurrentDepth();
-    Q_ASSERT(vbo_sphereVertices.isCreated());
     Q_ASSERT(vbo_sphereVertices.bind());
     vbo_sphereVertices.allocate(vertices.data(), vertices.size()*sizeof(float));
     vbo_sphereVertices.release();
@@ -152,6 +155,13 @@ void SphereWidget::updateSphereVertices()
 
 void SphereWidget::updateTriangleColor()
 {
+    std::vector<float> colors4f = renderData->getColorsForTriangles();
+    Q_ASSERT(vbo_vertexColors.bind());
+    vbo_vertexColors.allocate(colors4f.data(), colors4f.size() * sizeof(float));
+    vbo_vertexColors.release();
+
+    this->update();
+
     // TODO: Farben in VBO generieren abhaengig von aktueller Colormap und Punkten pro Triangle
     // - koennte als Funktionalitaet auch in der Icosphere liegen und hier nur updaten?
 }

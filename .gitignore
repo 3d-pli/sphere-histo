@@ -7,3 +7,5 @@ external-libraries/*
 *.o
 *build*
 DoxyDoc/*
+cpp-sphere-histo/cpp-sphere-histo.pro.user
+

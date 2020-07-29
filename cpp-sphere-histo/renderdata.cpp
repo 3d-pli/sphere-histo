@@ -45,39 +45,43 @@ const std::vector<float> RenderData::getTriangleVerticesAtCurrentDepth()
 }
 
 
-/*
+/*!
  * Loads data points from given .npy-file containing a double precision Nx3-Numpy-array, passes them to Spherewidget in a render-friendly form and notifies
  * the Icosphere to re-calculate the respective colors
  */
 void RenderData::loadPointsFromFile(std::string filename){
     try{
+        // Load npy array from file
         cnpy::NpyArray np_points = cnpy::npy_load(filename);
+
+        // check number of rows and columns
         size_t row_size = np_points.shape[0];
         size_t column_size = np_points.shape[1];
         if(column_size != 3){
             // TODO: Maybe throw a "real" exception
             throw "Invalid input file";
         }
-        points.clear();
-//        std::vector<float> renderPoints(row_size*column_size*2);
-        for(size_t i = 0; i < row_size; ++i){
 
+
+        double * pointData = np_points.data<double>();
+
+        // clear previous data from point list
+        points.clear();
+
+        // iterate over rows and save both the respective point and its mirrored version into points list
+        for(size_t i = 0; i < row_size * column_size; i += column_size){
+
+            // TODO: make data type depend on word size of np_points (4 -> float, 8 -> double) - mabye use a template?
             QVector3D point = {
-                            float(np_points.data<double>()[i]),
-                            float(np_points.data<double>()[i+(1*row_size)]),
-                            float(np_points.data<double>()[i+(2*row_size)])
+                            static_cast<float>(pointData[i]),
+                            static_cast<float>(pointData[i+1]),
+                            static_cast<float>(pointData[i+2])
                                         };
             QVector3D mirroredPoint = {
-                            - float(np_points.data<double>()[i]),
-                            - float(np_points.data<double>()[i+(1*row_size)]),
-                            - float(np_points.data<double>()[i+(2*row_size)])
+                            - static_cast<float>(pointData[i]),
+                            - static_cast<float>(pointData[i+1]),
+                            - static_cast<float>(pointData[i+2])
                                         };
-//            renderPoints.push_back(point.x());
-//            renderPoints.push_back(point.y());
-//            renderPoints.push_back(point.z());
-//            renderPoints.push_back(mirroredPoint.x());
-//            renderPoints.push_back(mirroredPoint.y());
-//            renderPoints.push_back(mirroredPoint.z());
 
             points.push_back(point);
             points.push_back(mirroredPoint);
@@ -141,8 +145,6 @@ void RenderData::generateIcosahedronAtDepthZero(){
     std::vector<float> verticesForDepthZero;                    // Icosahedron consists of 20 triangles in 3D space, final size: 20 * 3 * 3
     std::vector<std::list<QVector3D> > pointsPerTriangle;       // Points per each triangle, final size: 20
 
-    std::list<QVector3D> tmp_points;                            // Temporary point list for current triangle
-
     // Copy points from currently opened .npy file for deleting points during the process
     std::list<QVector3D> pointList (points);
 
@@ -154,27 +156,11 @@ void RenderData::generateIcosahedronAtDepthZero(){
         float v2[3] = {startVertices[i[1]][0], startVertices[i[1]][1], startVertices[i[1]][2]};
         float v3[3] = {startVertices[i[2]][0], startVertices[i[2]][1], startVertices[i[2]][2]};
 
-        // Turn triangle vertices to transformation matrix for point coverage evaluation
-        glm::mat3 transformationMatrix = getTransformationMatrix(v1, v2, v3);
-
         // Filter out points of current triangle from all points
-        for(auto p = pointList.begin(); p != pointList.end(); ++p){
-            glm::vec3 point = {p->x(), p->y(), p->z()};
-            if(pointInFirstQuadrantAfterTransformation(point , transformationMatrix)){
-               tmp_points.push_back(*p);
-               p = pointList.erase(p);
-            }
-        }
+        pointsPerTriangle.push_back(filterPointsForTriangle(pointList, v1, v2, v3));
 
         // Save vertex data for current triangle
-        verticesForDepthZero.insert(verticesForDepthZero.end(), std::begin(v1), std::end(v1));
-        verticesForDepthZero.insert(verticesForDepthZero.end(), std::begin(v2), std::end(v2));
-        verticesForDepthZero.insert(verticesForDepthZero.end(), std::begin(v3), std::end(v3));
-
-        // Save points for current triangle and clear tmp_points for next iteration
-        pointsPerTriangle.push_back(tmp_points);
-        tmp_points.clear();
-
+        insertTriangleIntoVerticesVector(verticesForDepthZero, v1, v2, v3);
     }
     // Save data for current depth into respective SphereDepthData in the vertices array
     Q_ASSERT(spheres.empty());
@@ -266,8 +252,9 @@ void RenderData::insertTriangleIntoVerticesVector(std::vector<float>& vertVec, f
 void RenderData::setColorMap(QString colorMapName){
      std::cout << colorMapName.toStdString() << std::endl;
 
-    cm::ColorMapName colorMapEnum = cm::qStringToColorEnum.at(colorMapName.toStdString());
-    switch (colorMapEnum) {
+    cm::ColorMapName colorMapEnumValue = cm::qStringToColorEnum.at(colorMapName.toStdString());
+
+    switch (colorMapEnumValue) {
     case cm::ColorMapName::Cividis:
         this->colorMap = cm::_cividis_data;
         break;
@@ -289,6 +276,11 @@ void RenderData::setColorMap(QString colorMapName){
     default:
         break;
     }
+}
+
+std::vector<float> RenderData::getColorsForTriangles(){
+    // TODO!!!
+    return std::vector<float>();
 }
 
 bool RenderData::pointInFirstQuadrantAfterTransformation(const glm::vec3 &point, const glm::mat3 &transformationMatrix){

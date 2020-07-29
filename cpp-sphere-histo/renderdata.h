@@ -72,14 +72,16 @@ public:
     std::vector<float> getPointsAsVector(void);                     //
     inline std::list<QVector3D> getPoints(){ return points; }        // return by value because of deletions in subdivision routine
     const std::vector<float> getTriangleVerticesAtCurrentDepth();
+    std::vector<float> getColorsForTriangles();      // []
 
     // SETTER
     void setSphereDepth(short depth);      // [X]
     void setColorMap(QString colorMapName);
 
-    void loadPointsFromFile(std::string filename);      //[]
+    void loadPointsFromFile(std::string filename);      // [X]
 
     friend class Icosphere;
+
 
 };
 #endif // VERTEX_DATA_H
