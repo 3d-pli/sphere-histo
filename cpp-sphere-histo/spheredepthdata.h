@@ -46,7 +46,8 @@ private:
     std::vector<float> vertices;
     std::vector<std::list<QVector3D> > pointsPerTriangle;
     size_t maxPointsPerTriangle;
-//    std::vector<float> colors;       // probably better to calculate color in render class in order to easily switch between colormaps
+    //    std::vector<float> colors;       // probably better to calculate color in render class in order to easily switch between colormaps
+    void updateMaxPointsPerTriangle();
 };
 
 #endif // SPHEREDEPTHDATA_H

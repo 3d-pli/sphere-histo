@@ -35,13 +35,23 @@ const float * RenderData::getColorMap() const
     return colorMap;
 }
 
-const std::vector<float> RenderData::getTriangleVerticesAtCurrentDepth()
+const std::vector<float> RenderData::getTriangleVerticesAndColorsAtCurrentDepth()
 {
     if(static_cast<int>(spheres.size()) - 1 < currentSphereDepth){
         setSphereDepth(currentSphereDepth);
     }   // MEH - eher rausnehmen und Fehlerbehandlung anstossen
 
-    return spheres[currentSphereDepth].getVertices();
+    SphereDepthData & currentSphere = spheres[currentSphereDepth];
+
+    std::vector<float> vertsAndColors;
+    vertsAndColors.reserve(currentSphere.vertices.size() + currentSphere.pointsPerTriangle.size() * 4);
+
+    vertsAndColors.insert(vertsAndColors.end(), currentSphere.vertices.begin(), currentSphere.vertices.end());
+
+    std::vector<float> colors = getColorsForTriangles();
+    vertsAndColors.insert(vertsAndColors.end(), colors.begin(), colors.end());
+
+    return vertsAndColors;
 }
 
 
@@ -278,9 +288,28 @@ void RenderData::setColorMap(QString colorMapName){
     }
 }
 
-std::vector<float> RenderData::getColorsForTriangles(){
+std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */){
     // TODO!!!
-    return std::vector<float>();
+    SphereDepthData & currentSphere = spheres.at(currentSphereDepth);
+    std::vector<std::list<QVector3D> > & pointsPerTriangle = currentSphere.pointsPerTriangle;
+    std::vector<float> colorVector;
+    colorVector.reserve(pointsPerTriangle.size() * 4);
+
+    size_t maxOfPointsPerTriangle = currentSphere.getMaxPointsPerTriangle();
+    int colorIndex;
+
+    for(std::list<QVector3D>& trianglePoints : pointsPerTriangle){
+        if(maxOfPointsPerTriangle == 0){
+            colorIndex = 0;
+        } else {
+            colorIndex = int((trianglePoints.size() / double(maxOfPointsPerTriangle)) * 256) * 3;  // (current triangles' points / max points per one triangle) * colorMaps' row count * colorMaps' column count
+        }
+        colorVector.push_back(colorMap[colorIndex]);
+        colorVector.push_back(colorMap[colorIndex + 1]);
+        colorVector.push_back(colorMap[colorIndex + 2]);
+        colorVector.push_back(alpha);
+    }
+    return colorVector;
 }
 
 bool RenderData::pointInFirstQuadrantAfterTransformation(const glm::vec3 &point, const glm::mat3 &transformationMatrix){

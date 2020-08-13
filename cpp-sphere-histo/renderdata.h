@@ -71,8 +71,8 @@ public:
     const float * getColorMap() const;
     std::vector<float> getPointsAsVector(void);                     //
     inline std::list<QVector3D> getPoints(){ return points; }        // return by value because of deletions in subdivision routine
-    const std::vector<float> getTriangleVerticesAtCurrentDepth();
-    std::vector<float> getColorsForTriangles();      // []
+    const std::vector<float> getTriangleVerticesAndColorsAtCurrentDepth();
+    std::vector<float> getColorsForTriangles(float alpha = 1);      // []
 
     // SETTER
     void setSphereDepth(short depth);      // [X]

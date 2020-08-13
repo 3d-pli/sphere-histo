@@ -76,10 +76,14 @@ void SphereWidget::paintGL() {
 
     // draw icosphere
     vbo_sphereVertices.bind();
-    glColor4f(0.8,0.8,0.8, 0.6);
+    glPointSize(1);
+//    glColor4f(0.8,0.8,0.8, 0.6);
     glVertexPointer(3, GL_FLOAT, 0, 0);
+
     glEnable(GL_DEPTH_TEST);
     glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
+
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glDrawArrays(GL_TRIANGLES, 0, vbo_sphereVertices.size());
     glDisableClientState(GL_VERTEX_ARRAY);
@@ -145,7 +149,7 @@ void SphereWidget::updatePoints(){
 void SphereWidget::updateSphereVertices()
 {
     // TODO: VBO mit aktuellen Vertices der Icosphere fuellen
-    std::vector<float> vertices = renderData->getTriangleVerticesAtCurrentDepth();
+    std::vector<float> vertices = renderData->getTriangleVerticesAndColorsAtCurrentDepth();
     Q_ASSERT(vbo_sphereVertices.bind());
     vbo_sphereVertices.allocate(vertices.data(), vertices.size()*sizeof(float));
     vbo_sphereVertices.release();
@@ -155,12 +159,13 @@ void SphereWidget::updateSphereVertices()
 
 void SphereWidget::updateTriangleColor()
 {
-    std::vector<float> colors4f = renderData->getColorsForTriangles();
-    Q_ASSERT(vbo_vertexColors.bind());
-    vbo_vertexColors.allocate(colors4f.data(), colors4f.size() * sizeof(float));
-    vbo_vertexColors.release();
+//    std::vector<float> colors4f = renderData->getColorsForTriangles();
+//    Q_ASSERT(vbo_vertexColors.bind());
+//    vbo_vertexColors.allocate(colors4f.data(), colors4f.size() * sizeof(float));
+//    vbo_vertexColors.release();
 
-    this->update();
+//    this->update();
+    updateSphereVertices();
 
     // TODO: Farben in VBO generieren abhaengig von aktueller Colormap und Punkten pro Triangle
     // - koennte als Funktionalitaet auch in der Icosphere liegen und hier nur updaten?
