@@ -51,8 +51,10 @@ void MainWindow::openFile()
     std::string filename = file.toStdString();
     RenderData::getInstance()->loadPointsFromFile(filename);
     ui->sphereWidget->updatePoints();
+    ui->sphereWidget->updateTriangleColor();
 }
 
 void MainWindow::changeColorMap(QString mapName){
     RenderData::getInstance()->setColorMap(mapName);
+    ui->sphereWidget->updateTriangleColor();
 }

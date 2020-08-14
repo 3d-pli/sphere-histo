@@ -15,6 +15,7 @@ std::vector<float> SphereDepthData::getVertices() const
 
 size_t SphereDepthData::getMaxPointsPerTriangle()
 {
+    updateMaxPointsPerTriangle();
     return maxPointsPerTriangle;
 }
 

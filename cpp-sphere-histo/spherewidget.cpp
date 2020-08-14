@@ -30,6 +30,7 @@ void SphereWidget::initializeGL() {
     vbo_vertexColors.release();
 
     updateSphereVertices();
+    updateTriangleColor();
 }
 void SphereWidget::resizeGL(int w, int h) {
     QOpenGLWidget::resizeGL(w, h);
@@ -75,19 +76,24 @@ void SphereWidget::paintGL() {
     vbo_points.release();
 
     // draw icosphere
+    vbo_vertexColors.bind();
+    glColorPointer(4, GL_FLOAT, 0, 0);
+
     vbo_sphereVertices.bind();
     glPointSize(1);
 //    glColor4f(0.8,0.8,0.8, 0.6);
     glVertexPointer(3, GL_FLOAT, 0, 0);
 
+
+
     glEnable(GL_DEPTH_TEST);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
 
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glDrawArrays(GL_TRIANGLES, 0, vbo_sphereVertices.size());
     glDisableClientState(GL_VERTEX_ARRAY);
-    vbo_sphereVertices.release();
+
 
 //// Bisheriges Zeichnen der Punkte:
 //    for(auto point : points){
@@ -149,26 +155,24 @@ void SphereWidget::updatePoints(){
 void SphereWidget::updateSphereVertices()
 {
     // TODO: VBO mit aktuellen Vertices der Icosphere fuellen
-    std::vector<float> vertices = renderData->getTriangleVerticesAndColorsAtCurrentDepth();
+    std::vector<float> vertices = renderData->getVerticesAtCurrentDepth();
     Q_ASSERT(vbo_sphereVertices.bind());
     vbo_sphereVertices.allocate(vertices.data(), vertices.size()*sizeof(float));
     vbo_sphereVertices.release();
+    this->updateTriangleColor();
     this->update();
 
 }
 
 void SphereWidget::updateTriangleColor()
 {
-//    std::vector<float> colors4f = renderData->getColorsForTriangles();
-//    Q_ASSERT(vbo_vertexColors.bind());
-//    vbo_vertexColors.allocate(colors4f.data(), colors4f.size() * sizeof(float));
-//    vbo_vertexColors.release();
+    std::vector<float> colors4f = renderData->getColorsForTriangles();
+    Q_ASSERT(vbo_vertexColors.bind());
+    vbo_vertexColors.allocate(colors4f.data(), colors4f.size() * sizeof(float));
+    vbo_vertexColors.release();
 
-//    this->update();
-    updateSphereVertices();
+    this->update();
 
     // TODO: Farben in VBO generieren abhaengig von aktueller Colormap und Punkten pro Triangle
     // - koennte als Funktionalitaet auch in der Icosphere liegen und hier nur updaten?
 }
-
-//        vbo_points.write(0, draw_points, sizeof(draw_points));

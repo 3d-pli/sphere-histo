@@ -4,6 +4,7 @@ RenderData* RenderData::_instance = 0;
 
 std::vector<float> RenderData::getPointsAsVector(void){
     std::vector<float> renderPoints;
+    renderPoints.reserve(points.size()*3);
     for (auto point : points){
         renderPoints.push_back(point.x());
         renderPoints.push_back(point.y());
@@ -54,6 +55,9 @@ const std::vector<float> RenderData::getTriangleVerticesAndColorsAtCurrentDepth(
     return vertsAndColors;
 }
 
+std::vector<float> RenderData::getVerticesAtCurrentDepth(){
+    return spheres[currentSphereDepth].getVertices();
+}
 
 /*!
  * Loads data points from given .npy-file containing a double precision Nx3-Numpy-array, passes them to Spherewidget in a render-friendly form and notifies
@@ -289,7 +293,8 @@ void RenderData::setColorMap(QString colorMapName){
 }
 
 std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */){
-    // TODO!!!
+    // TODO: Find out why only colors for Icosahedron are calculated
+
     SphereDepthData & currentSphere = spheres.at(currentSphereDepth);
     std::vector<std::list<QVector3D> > & pointsPerTriangle = currentSphere.pointsPerTriangle;
     std::vector<float> colorVector;
@@ -304,10 +309,13 @@ std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */){
         } else {
             colorIndex = int((trianglePoints.size() / double(maxOfPointsPerTriangle)) * 256) * 3;  // (current triangles' points / max points per one triangle) * colorMaps' row count * colorMaps' column count
         }
-        colorVector.push_back(colorMap[colorIndex]);
-        colorVector.push_back(colorMap[colorIndex + 1]);
-        colorVector.push_back(colorMap[colorIndex + 2]);
-        colorVector.push_back(alpha);
+        for(short i = 0; i < 3; ++i){
+            colorVector.push_back(colorMap[colorIndex]);
+            colorVector.push_back(colorMap[colorIndex + 1]);
+            colorVector.push_back(colorMap[colorIndex + 2]);
+            colorVector.push_back(alpha);
+        }
+
     }
     return colorVector;
 }
