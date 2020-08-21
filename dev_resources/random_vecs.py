@@ -26,14 +26,23 @@ def random_vectors(size, phi, sigma_phi, alpha, sigma_alpha):
     
     vectors = np.empty((size, 3))
 
-    vectors[:, 0] = np.cos(alpha_samples) * np.cos( phi_samples )
-    vectors[:, 1] = np.sin(alpha_samples) * np.sin( phi_samples )
-    vectors[:, 2] = np.sin(alpha_samples)
+    vectors[:, 0] = np.sin(alpha_samples) * np.cos(phi_samples)
+    vectors[:, 1] = np.sin(alpha_samples) * np.sin(phi_samples)
+    vectors[:, 2] = np.cos(alpha_samples)
     return vectors
 
+# vecs = random_vectors(3000, 0.1, 1, 1, 0.01)
+# print(vecs)
+# np.save('../test_data/test3', vecs)
 
-vecs = random_vectors(50000, 0.2, 0.2, 0, 0.2)
-np.save('../test_data/test2', vecs)
+
+vecs2 = [[1, 0, 0], [0, 1, 0], [0, 0, 1], [1, 1, 1],  [1, -1, -1]]
+print(vecs2)
+npvecs2 = np.array(vecs2, dtype=np.double)
+print(npvecs2)
+np.save('../test_data/punkteTest', npvecs2)
+
+
 # fig = plt.figure()
 # ax = fig.add_subplot(1,1,1,projection = '3d')
 # ax.scatter(vecs[:, 0], vecs[:, 1], vecs[:, 2])

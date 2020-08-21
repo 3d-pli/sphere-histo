@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="namespacecm" kind="namespace" language="C++">
+    <compoundname>cm</compoundname>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespacecm_1aabaf84796e8a93bd6adca4c5bdea5311" prot="public" static="no">
+        <name>ColorMapName</name>
+        <enumvalue id="namespacecm_1aabaf84796e8a93bd6adca4c5bdea5311a64c2ad47aeb457c258518a5318ed071d" prot="public">
+          <name>Cividis</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacecm_1aabaf84796e8a93bd6adca4c5bdea5311a8bb279f735c1d9c831e935cca2613b58" prot="public">
+          <name>Inferno</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacecm_1aabaf84796e8a93bd6adca4c5bdea5311a1b62e99f86d45e754e5e79d9fa9dfcde" prot="public">
+          <name>Magma</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacecm_1aabaf84796e8a93bd6adca4c5bdea5311ab20a4217acaf4316739c6a5f6679ef60" prot="public">
+          <name>Plasma</name>
+          <initializer>= 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacecm_1aabaf84796e8a93bd6adca4c5bdea5311a6f53bfe04e78da893ba0c4f35ba6847e" prot="public">
+          <name>Turbo</name>
+          <initializer>= 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespacecm_1aabaf84796e8a93bd6adca4c5bdea5311a951ee92ee5e947e1e7e1cb6376523c1a" prot="public">
+          <name>Viridis</name>
+          <initializer>= 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="resources/colormaps_matplotlib.h" line="6" column="1" bodyfile="resources/colormaps_matplotlib.h" bodystart="6" bodyend="6"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacecm_1a15083c75e20e3cb25b34ac29a4d66413" prot="public" static="no" mutable="no">
+        <type>const std::unordered_map&lt; std::string, <ref refid="namespacecm_1aabaf84796e8a93bd6adca4c5bdea5311" kindref="member">ColorMapName</ref> &gt;</type>
+        <definition>const std::unordered_map&lt;std::string, ColorMapName&gt; cm::qStringToColorEnum</definition>
+        <argsstring></argsstring>
+        <name>qStringToColorEnum</name>
+        <initializer>= {
+    {&quot;Cividis&quot;, cm::ColorMapName::Cividis},
+    {&quot;Inferno&quot;, cm::ColorMapName::Inferno},
+    {&quot;Magma&quot;, cm::ColorMapName::Magma},
+    {&quot;Plasma&quot;, cm::ColorMapName::Plasma},
+    {&quot;Turbo&quot;, cm::ColorMapName::Turbo},
+    {&quot;Viridis&quot;, cm::ColorMapName::Viridis},
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="resources/colormaps_matplotlib.h" line="8" column="1" bodyfile="resources/colormaps_matplotlib.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacecm_1a6c7ebc740c952f5ae2569bbc4d6b0ba3" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float cm::_magma_data[3 *256]</definition>
+        <argsstring>[3 *256]</argsstring>
+        <name>_magma_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="resources/colormaps_matplotlib.h" line="16" column="1" bodyfile="resources/colormaps_matplotlib.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacecm_1abd85098a9455ec3b6a1367e717904d81" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float cm::_inferno_data[3 *256]</definition>
+        <argsstring>[3 *256]</argsstring>
+        <name>_inferno_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="resources/colormaps_matplotlib.h" line="273" column="1" bodyfile="resources/colormaps_matplotlib.h" bodystart="273" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacecm_1a5e6bdf45c99146f14941db900036b42c" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float cm::_plasma_data[3 *256]</definition>
+        <argsstring>[3 *256]</argsstring>
+        <name>_plasma_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="resources/colormaps_matplotlib.h" line="530" column="1" bodyfile="resources/colormaps_matplotlib.h" bodystart="530" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacecm_1af931122787ac6cf5d5c8d834adcb3fc8" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float cm::_viridis_data[3 *256]</definition>
+        <argsstring>[3 *256]</argsstring>
+        <name>_viridis_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="resources/colormaps_matplotlib.h" line="787" column="1" bodyfile="resources/colormaps_matplotlib.h" bodystart="787" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacecm_1a9aebd281c6d694ef79eb8f989866ff6d" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float cm::_cividis_data[3 *256]</definition>
+        <argsstring>[3 *256]</argsstring>
+        <name>_cividis_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="resources/colormaps_matplotlib.h" line="1044" column="1" bodyfile="resources/colormaps_matplotlib.h" bodystart="1044" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespacecm_1a1394411b557deb7b6f8c58a9c39ff4a3" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float cm::_turbo_data[3 *256]</definition>
+        <argsstring>[3 *256]</argsstring>
+        <name>_turbo_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="resources/colormaps_matplotlib.h" line="1301" column="1" bodyfile="resources/colormaps_matplotlib.h" bodystart="1301" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="resources/colormaps_matplotlib.h" line="5" column="1"/>
+  </compounddef>
+</doxygen>

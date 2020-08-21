@@ -8,22 +8,27 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->sphereWidget = ui->sphereWidget;
 
     connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(changeTriangleDepth(int)));
 
     connect(ui->actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
-    connect(ui->actionPlasma, SIGNAL(triggered()), this , SLOT(changeColorMap("actionPlasma")));
+    connect(ui->comboBox, SIGNAL(currentTextChanged(QString)), this , SLOT(changeColorMap(QString)));
+
+    RenderData::getInstance()->setColorMap("Viridis");
 }
 
 MainWindow::~MainWindow()
 {
+    delete sphereWidget;
     delete ui;
 }
 
 void MainWindow::changeTriangleDepth(int depth)
 {
-    ui->sphereWidget->setTriangleDepth(depth);
+    RenderData::getInstance()->setSphereDepth(depth);
+    ui->sphereWidget->updateSphereVertices();
 }
 
 void MainWindow::openFile()
@@ -32,10 +37,13 @@ void MainWindow::openFile()
 
     if(file.isEmpty())
         return;
-
-    ui->sphereWidget->openFile(file.toStdString());
+    std::string filename = file.toStdString();
+    RenderData::getInstance()->loadPointsFromFile(filename);
+    ui->sphereWidget->updatePoints();
+    ui->sphereWidget->updateTriangleColor();
 }
 
-void MainWindow::changeColorMap(std::string mapName){
-    ui->sphereWidget->setColorMap(mapName);
+void MainWindow::changeColorMap(QString mapName){
+    RenderData::getInstance()->setColorMap(mapName);
+    ui->sphereWidget->updateTriangleColor();
 }

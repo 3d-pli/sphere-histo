@@ -1,0 +1,75 @@
+\hypertarget{class_render_data}{}\section{Render\+Data Class Reference}
+\label{class_render_data}\index{Render\+Data@{Render\+Data}}
+
+
+{\ttfamily \#include $<$renderdata.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_render_data_aa07295cc6e370997b02e68c917ff05de}\label{class_render_data_aa07295cc6e370997b02e68c917ff05de}} 
+short {\bfseries get\+Current\+Sphere\+Depth} () const
+\item 
+\mbox{\Hypertarget{class_render_data_aabd6bd86800c7fc53788ef92ccf1ceb8}\label{class_render_data_aabd6bd86800c7fc53788ef92ccf1ceb8}} 
+const float $\ast$ {\bfseries get\+Color\+Map} () const
+\item 
+\mbox{\Hypertarget{class_render_data_a9683c1cf21e861efaf1f7c1b7aaa2cf9}\label{class_render_data_a9683c1cf21e861efaf1f7c1b7aaa2cf9}} 
+std\+::vector$<$ float $>$ {\bfseries get\+Points\+As\+Vector} (void)
+\item 
+\mbox{\Hypertarget{class_render_data_ac3ddb0af8cf9a0f2fb4d69815cf76b9d}\label{class_render_data_ac3ddb0af8cf9a0f2fb4d69815cf76b9d}} 
+std\+::list$<$ Q\+Vector3D $>$ {\bfseries get\+Points} ()
+\item 
+\mbox{\Hypertarget{class_render_data_a9896a3ed194123ccf5cca42012d4b5e5}\label{class_render_data_a9896a3ed194123ccf5cca42012d4b5e5}} 
+const std\+::vector$<$ float $>$ {\bfseries get\+Triangle\+Vertices\+And\+Colors\+At\+Current\+Depth} ()
+\item 
+\mbox{\Hypertarget{class_render_data_a58fe3351334cd518b930dfe0a0aa8732}\label{class_render_data_a58fe3351334cd518b930dfe0a0aa8732}} 
+std\+::vector$<$ float $>$ {\bfseries get\+Colors\+For\+Triangles} (float alpha=1)
+\item 
+\mbox{\Hypertarget{class_render_data_a8cd691fd6f3cfbd22a1b84daffd2dba2}\label{class_render_data_a8cd691fd6f3cfbd22a1b84daffd2dba2}} 
+std\+::vector$<$ float $>$ {\bfseries get\+Vertices\+At\+Current\+Depth} ()
+\item 
+\mbox{\Hypertarget{class_render_data_a8d5f7285d29dc9ca0f93fcf2b5826283}\label{class_render_data_a8d5f7285d29dc9ca0f93fcf2b5826283}} 
+void {\bfseries set\+Sphere\+Depth} (short depth)
+\item 
+\mbox{\Hypertarget{class_render_data_adb1961bf93370d67c9efb416fde8fefb}\label{class_render_data_adb1961bf93370d67c9efb416fde8fefb}} 
+void {\bfseries set\+Color\+Map} (Q\+String color\+Map\+Name)
+\item 
+void \hyperlink{class_render_data_ac161f29f7d6ae6fd3912e8af7bdccdfd}{load\+Points\+From\+File} (std\+::string filename)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_render_data_a1fffc72f3dd17ab052d4fb2f025ef5a0}\label{class_render_data_a1fffc72f3dd17ab052d4fb2f025ef5a0}} 
+static \hyperlink{class_render_data}{Render\+Data} $\ast$ {\bfseries get\+Instance} ()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_render_data_aae9e6e2f2e7f9a8cde35b65facc0750b}\label{class_render_data_aae9e6e2f2e7f9a8cde35b65facc0750b}} 
+class {\bfseries Icosphere}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Singleton to calculate and store data of the
+\begin{DoxyItemize}
+\item points currently loaded
+\item icosphere in various depths
+\item current rendering depth
+\item currently used colormap
+\item color of the icosphere triangles according to the respective point count 
+\end{DoxyItemize}
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_render_data_ac161f29f7d6ae6fd3912e8af7bdccdfd}\label{class_render_data_ac161f29f7d6ae6fd3912e8af7bdccdfd}} 
+\index{Render\+Data@{Render\+Data}!load\+Points\+From\+File@{load\+Points\+From\+File}}
+\index{load\+Points\+From\+File@{load\+Points\+From\+File}!Render\+Data@{Render\+Data}}
+\subsubsection{\texorpdfstring{load\+Points\+From\+File()}{loadPointsFromFile()}}
+{\footnotesize\ttfamily void Render\+Data\+::load\+Points\+From\+File (\begin{DoxyParamCaption}\item[{std\+::string}]{filename }\end{DoxyParamCaption})}
+
+Loads data points from given .npy-\/file containing a double precision Nx3-\/\+Numpy-\/array, passes them to Spherewidget in a render-\/friendly form and notifies the Icosphere to re-\/calculate the respective colors 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+renderdata.\+h\item 
+renderdata.\+cpp\end{DoxyCompactItemize}

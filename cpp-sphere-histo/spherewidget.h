@@ -1,42 +1,42 @@
 #ifndef SPHEREWIDGET_H
 #define SPHEREWIDGET_H
 
+// Qt
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <QMouseEvent>
+#include <QOpenGLBuffer>
 
-#include <GL/glu.h>
-#include <cnpy.h>
-
+// STL
 #include <vector>
 #define _USE_MATH_DEFINES   // for compatibility with older systems
 #include <math.h>
 
+// OpenGL
+#include <GL/glu.h>
 
+// Internal classes
+#include "renderdata.h"
 
-//#include <../external-libraries/glm-master/glm/gtc/type_ptr.hpp>
-//#include <../external-libraries/glm-master/glm/mat4x4.hpp>
-//#include <../external-libraries/glm-master/glm/matrix.hpp>
-//#include <../external-libraries/glm-master/glm/vec3.hpp>
-
-#include "icosphere.h"
-#include "resources/colormaps_matplotlib.h"
-//#define SPHERE_DEPTH 4
-
+// FOR DEBUGGING ONLY
 #include <iostream>
 
-
+/*!
+ * A custom OpenGLWidget to render the scene from data collected inside the RenderData singleton.
+*/
 class SphereWidget : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
 
 public:
     SphereWidget(QWidget *parent = 0);
-    ~SphereWidget(){}
+    inline ~SphereWidget(){
+        delete renderData;
+    }
 
-    void setTriangleDepth(int depth);
-    void openFile(std::string filename);
-    void setColorMap(std::string mapName);
+    void updatePoints();
+    void updateSphereVertices();
+    void updateTriangleColor();
 
 protected:
     virtual void initializeGL() override;
@@ -47,17 +47,18 @@ protected:
     virtual void wheelEvent(QWheelEvent * event) override;
 
 private:
-    std::list<QVector3D> points;
-    float last_x;
-    float last_y;
-//    float scaleFactor;
-    float angle_x;
-    float angle_y;
-    int sphere_depth;
+    RenderData * renderData;
+
+    QPointF m_lastPosition;
+    QVector3D m_position;
+    QVector3D m_rotation;
+
     float m_fovy;
     float aspectRatioWidthToHeight;
-//    glm::mat4 m_projection;
-    Icosphere ico;
+
+    QOpenGLBuffer vbo_points;
+    QOpenGLBuffer vbo_sphereVertices;
+    QOpenGLBuffer vbo_vertexColors;
 };
 
 

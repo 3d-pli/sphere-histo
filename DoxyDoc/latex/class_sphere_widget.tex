@@ -1,0 +1,71 @@
+\hypertarget{class_sphere_widget}{}\section{Sphere\+Widget Class Reference}
+\label{class_sphere_widget}\index{Sphere\+Widget@{Sphere\+Widget}}
+
+
+{\ttfamily \#include $<$spherewidget.\+h$>$}
+
+
+
+Inheritance diagram for Sphere\+Widget\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_sphere_widget__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Sphere\+Widget\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=292pt]{class_sphere_widget__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sphere_widget_a6ee7b3a4b58e5d62fb1c901aafdd1790}\label{class_sphere_widget_a6ee7b3a4b58e5d62fb1c901aafdd1790}} 
+{\bfseries Sphere\+Widget} (Q\+Widget $\ast$parent=0)
+\item 
+\mbox{\Hypertarget{class_sphere_widget_a692ca1c1e7556f6abd7b5f6a49a2557c}\label{class_sphere_widget_a692ca1c1e7556f6abd7b5f6a49a2557c}} 
+void {\bfseries update\+Points} ()
+\item 
+\mbox{\Hypertarget{class_sphere_widget_a7d132800fb4d6b7b925c253679bb6445}\label{class_sphere_widget_a7d132800fb4d6b7b925c253679bb6445}} 
+void {\bfseries update\+Sphere\+Vertices} ()
+\item 
+\mbox{\Hypertarget{class_sphere_widget_a871c5252a7a218c5d405be5dfc3dbfa1}\label{class_sphere_widget_a871c5252a7a218c5d405be5dfc3dbfa1}} 
+void {\bfseries update\+Triangle\+Color} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sphere_widget_a323d335cf261b7156da1a59aaf28c40c}\label{class_sphere_widget_a323d335cf261b7156da1a59aaf28c40c}} 
+virtual void {\bfseries initialize\+GL} () override
+\item 
+\mbox{\Hypertarget{class_sphere_widget_aaf11c928f52c91d7f60317922df7ca73}\label{class_sphere_widget_aaf11c928f52c91d7f60317922df7ca73}} 
+virtual void {\bfseries resize\+GL} (int w, int h) override
+\item 
+\mbox{\Hypertarget{class_sphere_widget_a122b798a2eb0c251f53671009abdf8c8}\label{class_sphere_widget_a122b798a2eb0c251f53671009abdf8c8}} 
+virtual void {\bfseries paint\+GL} () override
+\item 
+\mbox{\Hypertarget{class_sphere_widget_ac658d6e1cdc99280ecff045f92fe1ba3}\label{class_sphere_widget_ac658d6e1cdc99280ecff045f92fe1ba3}} 
+virtual void {\bfseries mouse\+Press\+Event} (Q\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{class_sphere_widget_aef63eed14a55be78015576296dce516e}\label{class_sphere_widget_aef63eed14a55be78015576296dce516e}} 
+virtual void {\bfseries mouse\+Move\+Event} (Q\+Mouse\+Event $\ast$event) override
+\item 
+\mbox{\Hypertarget{class_sphere_widget_aaecd84d746763a4bd6f46a6d55a36d84}\label{class_sphere_widget_aaecd84d746763a4bd6f46a6d55a36d84}} 
+virtual void {\bfseries wheel\+Event} (Q\+Wheel\+Event $\ast$event) override
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A custom Open\+G\+L\+Widget to render the scene from data collected inside the \hyperlink{class_render_data}{Render\+Data} singleton. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+spherewidget.\+h\item 
+spherewidget.\+cpp\end{DoxyCompactItemize}

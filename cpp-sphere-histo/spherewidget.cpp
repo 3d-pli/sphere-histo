@@ -3,193 +3,162 @@
 
 SphereWidget::SphereWidget(QWidget *parent)
     : QOpenGLWidget(parent),
-      last_x(0),
-      last_y(0),
-//      scaleFactor(0),
-      angle_x(0),
-      angle_y(0),
-      sphere_depth(3),
+      renderData(RenderData::getInstance()),
+      m_lastPosition(QPointF(0,0)),
+      m_position(QVector3D(0, 0, 0)),
+      m_rotation(QVector3D(0, 0, 0)),
       m_fovy(20),
       aspectRatioWidthToHeight(0),
-      ico(Icosphere())
+      vbo_points(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer)),
+      vbo_sphereVertices(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer)),
+      vbo_vertexColors(QOpenGLBuffer(QOpenGLBuffer::VertexBuffer))
 {
-
-
-    // Load data from .npy file to 'points'
-    cnpy::NpyArray np_points = cnpy::npy_load("../test_data/1.npy");
-    size_t row_size = np_points.shape[0];
-    size_t column_size = np_points.shape[1];
-    assert(column_size == 3);       // TODO: Exception handling!
-
-    for(unsigned i = 0; i < row_size; ++i){
-        QVector3D point = {
-                        float(np_points.data<double>()[i]),
-                        float(np_points.data<double>()[i+(1*row_size)]),
-                        float(np_points.data<double>()[i+(2*row_size)])
-                                    };
-        QVector3D mirroredPoint = {
-                        - float(np_points.data<double>()[i]),
-                        - float(np_points.data<double>()[i+(1*row_size)]),
-                        - float(np_points.data<double>()[i+(2*row_size)])
-                                    };
-        points.push_back(point);
-        points.push_back(mirroredPoint);
-    }
-    //    TEST ***
-    //        int i = 0;
-    //        for(auto point : points){
-    //            std::cout << ++i << "(" << point[0] << ", " << point[1] << ", " << point[2] << ")" << std::endl;
-    //        }
-
+    ;
 }
 
 void SphereWidget::initializeGL() {
     initializeOpenGLFunctions();
-    glClearColor(1.0, 1.0, 1.0, 1.0);                         // background color
-    glClearDepth(1.0);                                      // standard value 1.0
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);     // actually do the clearing
-    glDepthFunc(GL_LESS);                                   // standard value GL_LESS (neue Fragmente werden angezeigt, wenn sie geringeren Tiefenwert haben)
-//    glShadeModel(GL_SMOOTH);                                // setzt Farbverlauf zwischen verschiedenfarbigen Punkten (sonst: GL_FLAT)
-    glEnable(GL_BLEND);
 
-    glViewport(0, 0, QWidget::width(), QWidget::height());
     aspectRatioWidthToHeight = static_cast<float>(width()) / static_cast<float>(height());
-    m_fovy = 20;
-    //    gluPerspective(20, aspectRatioWidthToHeight, 1.f, 20);
-//    glMatrixMode(GL_PROJECTION);
-//    glLoadIdentity();
-//    gluPerspective(20, width() / height(), 1., 20);
-//    gluLookAt(0.5, 0.5 ,10 , 0 ,0 ,0.5 , 0, 1 ,0);
-//    glMatrixMode(GL_MODELVIEW);
 
+    vbo_points.create();
+    vbo_points.release();
+    Q_ASSERT(vbo_sphereVertices.create());
+    vbo_sphereVertices.release();
+    Q_ASSERT(vbo_sphereVertices.isCreated());
+    vbo_vertexColors.create();
+    vbo_vertexColors.release();
+
+    updateSphereVertices();
+    updateTriangleColor();
 }
 void SphereWidget::resizeGL(int w, int h) {
     QOpenGLWidget::resizeGL(w, h);
     aspectRatioWidthToHeight = float(w) / float(h);
-
-//    glMatrixMode(GL_PROJECTION);
-//    glLoadIdentity();
-//    const float aspectRatioWidthToHeight = static_cast<float>(width()) / static_cast<float>(height());
-//    gluPerspective(20, aspectRatioWidthToHeight, 1, 20);
-//    gluLookAt(0.5, 0.5 ,10 , 0 ,0 ,0.5 , 0, 1 ,0);
-//    glMatrixMode(GL_MODELVIEW);
-//    m_projection = glm::perspective(m_fovy, static_cast<float>(w) / static_cast<float>(h), 0.01, 20.0);
 }
 
 void SphereWidget::paintGL() {
-//    m_projection = glm::translate(glm::perspective(m_fovy, static_cast<float>(width()) / static_cast<float>(height()), 0.01, 10.0), glm::vec3(0,0,-2));
+    // clear screen
+    glClearColor(1.0, 1.0, 1.0, 1.0);                         // background color
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);     // actually do the clearing
+
+    // update projection matrix
     glViewport(0, 0, width(), height());
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluPerspective(m_fovy, aspectRatioWidthToHeight, 1., 20);
-    gluLookAt(0.5, 0.5 ,10 , 0 ,0 ,0.5 , 0, 1 ,0);
+    gluLookAt(0.5, 0.5, 10 , 0 ,0 ,0.5 , 0, 1 ,0);
 
-//    glLoadMatrixd(glm::value_ptr(m_projection));
-
-
+    // update view matrix (according to mouse interaction)
     glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glTranslatef(m_position.x(), m_position.y(), 0);
+    glRotatef(m_rotation.x(), 0.0f, 1.0f, 0.0f);
+    glRotatef(m_rotation.y(), 1.0f, 0.0f, 0.0f);
 
-    // REACTION TO MOUSE INTERACTION
-    glEnable(GL_DEPTH_TEST);
-    glRotatef(angle_x, 0, 1, 0);
-    glRotatef(angle_y, 1, 0, 0);
-    angle_x = 0;
-    angle_y = 0;
-//    if (scaleFactor){
-//        glScalef(scaleFactor, scaleFactor, scaleFactor);
-//        scaleFactor = 0;
-//    }
-
-    glBegin(GL_POINTS);
-    // GIVEN POINTS + MIRRORED POINTS
+    // set color and point size
     glColor3f(0.2,0.2,0.2);
-    for(auto point : points){
-        glVertex3f(point[0], point[1], point[2]);
-    }
-    glEnd();
+    glPointSize(2);
 
-    // Draw Icosahedron
+    // bind point buffer
+    vbo_points.bind();
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+
+    // enable states
+    glEnable(GL_DEPTH_TEST);
+    glEnableClientState(GL_VERTEX_ARRAY);
+
+    // render points
+    glDrawArrays(GL_POINTS, 0, vbo_points.size());
+
+    // release buffer
+    glDisableClientState(GL_VERTEX_ARRAY);
+    vbo_points.release();
+
+    // draw icosphere
+    vbo_vertexColors.bind();
+    glColorPointer(4, GL_FLOAT, 0, 0);
+
+    vbo_sphereVertices.bind();
+    glPointSize(1);
+//    glColor4f(0.8,0.8,0.8, 0.6);
+    glVertexPointer(3, GL_FLOAT, 0, 0);
+
+
+
+    glEnable(GL_DEPTH_TEST);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
+
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    ico.drawIcosphere(sphere_depth, points);
+    glDrawArrays(GL_TRIANGLES, 0, vbo_sphereVertices.size());
+    glDisableClientState(GL_VERTEX_ARRAY);
+
 }
 
 void SphereWidget::mousePressEvent(QMouseEvent * event){
-    this->last_x = event->x();
-    this->last_y = event->y();
+    m_lastPosition = event->pos();
 }
 
 void SphereWidget::mouseMoveEvent(QMouseEvent * event){
-    std::cout << event->x() - this->last_x << ", " << event->y() - this->last_y << std::endl; //***
-    float dx = event->x() - this->last_x;
-    float dy = event->y() - this->last_y;
+//    std::cout << event->x() - m_lastPosition.x() << ", " << event->y() - m_lastPosition.y() << std::endl; //***
+    float dx = event->x() - m_lastPosition.x();
+    float dy = event->y() - m_lastPosition.y();
 
-    this->angle_x = dx;
-    this->angle_y = dy;
+    m_lastPosition = event->pos();
 
-    this->last_x = event->x();
-    this->last_y = event->y();
+    if (event->buttons() & Qt::LeftButton)
+        {
+            m_rotation.setX(m_rotation.x()+dx);
+            m_rotation.setY(m_rotation.y()+dy);
+        }
+        else if(event->buttons() & Qt::RightButton)
+        {
+            m_position.setX(m_position.x() + dx/100.0);
+            m_position.setY(m_position.y() - dy/100.0);
+        }
+
     this->update();
 }
 
 void SphereWidget::wheelEvent(QWheelEvent * event){
-    //TODO: Fix scrolling and rotations
-
-//    std::cout << (event->delta()) << std::endl; //***
-//    this->scaleFactor = exp(event->delta() / 960.);
     float d = event->delta();
     m_fovy -= d/200.0;
-    std::cout << m_fovy << std::endl;
-
-    this->update();
-
-//    glMatrixMode(GL_PROJECTION);
-//    glLoadIdentity();
-//    const float aspectRatioWidthToHeight = static_cast<float>(width()) / static_cast<float>(height());
-//    gluPerspective(50* exp(event->delta() / 480.), aspectRatioWidthToHeight, 0.1f, 10);
-//    gluLookAt(0.5, 0.5 ,2 , 0 ,0 ,0.5 , 0, 1 ,0);
-
-//    glMatrixMode(GL_MODELVIEW);
-//    this->update();
-}
-
-void SphereWidget::setTriangleDepth(int depth){
-    this->sphere_depth = depth;
     this->update();
 }
 
-void SphereWidget::openFile(std::string filename){
-    try{
-        cnpy::NpyArray np_points = cnpy::npy_load(filename);
 
-
-        size_t row_size = np_points.shape[0];
-        size_t column_size = np_points.shape[1];
-
-        assert(column_size == 3);       // TODO: Exception handling!
-
-        points.clear();
-        for(unsigned i = 0; i < row_size; ++i){
-            QVector3D point = {
-                            float(np_points.data<double>()[i]),
-                            float(np_points.data<double>()[i+(1*row_size)]),
-                            float(np_points.data<double>()[i+(2*row_size)])
-                                        };
-            QVector3D mirroredPoint = {
-                            - float(np_points.data<double>()[i]),
-                            - float(np_points.data<double>()[i+(1*row_size)]),
-                            - float(np_points.data<double>()[i+(2*row_size)])
-                                        };
-            points.push_back(point);
-            points.push_back(mirroredPoint);
-         }
-        this->update();
-    } catch(std::runtime_error e){
-        std::cerr << e.what() << std::endl;
-        points.clear();
-        return;
-    }
+void SphereWidget::updatePoints(){
+    // TODO: Test
+    std::vector<float> points = renderData->getPointsAsVector();
+    Q_ASSERT(vbo_points.bind());
+    vbo_points.allocate(points.data(), points.size()*sizeof(float));
+    vbo_points.release();
+//    vbo_points.write(0, points.data(), points.size());
+    this->update();
 }
 
-void SphereWidget::setColorMap(std::string colorMap){
-    this->ico.setColorMap(colorMap);
+void SphereWidget::updateSphereVertices()
+{
+    // TODO: VBO mit aktuellen Vertices der Icosphere fuellen
+    std::vector<float> vertices = renderData->getVerticesAtCurrentDepth();
+    Q_ASSERT(vbo_sphereVertices.bind());
+    vbo_sphereVertices.allocate(vertices.data(), vertices.size()*sizeof(float));
+    vbo_sphereVertices.release();
+    this->updateTriangleColor();
+    this->update();
+
+}
+
+void SphereWidget::updateTriangleColor()
+{
+    std::vector<float> colors4f = renderData->getColorsForTriangles();
+    Q_ASSERT(vbo_vertexColors.bind());
+    vbo_vertexColors.allocate(colors4f.data(), colors4f.size() * sizeof(float));
+    vbo_vertexColors.release();
+
+    this->update();
+
+    // TODO: Farben in VBO generieren abhaengig von aktueller Colormap und Punkten pro Triangle
+    // - koennte als Funktionalitaet auch in der Icosphere liegen und hier nur updaten?
 }
