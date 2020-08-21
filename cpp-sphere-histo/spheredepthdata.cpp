@@ -3,7 +3,8 @@
 SphereDepthData::SphereDepthData(short depth, std::vector<float> vertices, std::vector<std::list<QVector3D> > pointsPerTriangle)
     : depth(depth),
       vertices(vertices),
-      pointsPerTriangle(pointsPerTriangle)
+      pointsPerTriangle(pointsPerTriangle),
+      maxPointsPerTriangle(0)
 {
     updateMaxPointsPerTriangle();
 }
@@ -22,6 +23,7 @@ size_t SphereDepthData::getMaxPointsPerTriangle()
 void SphereDepthData::setVertices(std::vector<float> value)
 {
     vertices = value;
+    updateMaxPointsPerTriangle();
 }
 
 std::vector<std::list<QVector3D> > SphereDepthData::getPointsPerTriangle() const

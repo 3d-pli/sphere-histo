@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_sphere_widget" kind="class" language="C++" prot="public">
+    <compoundname>SphereWidget</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">QOpenGLWidget</basecompoundref>
+    <basecompoundref prot="protected" virt="non-virtual">QOpenGLFunctions</basecompoundref>
+    <includes refid="spherewidget_8h" local="no">spherewidget.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_sphere_widget_1a3b76a33d6cd44b6932cd5abfd87aa437" prot="private" static="no" mutable="no">
+        <type><ref refid="class_render_data" kindref="compound">RenderData</ref> *</type>
+        <definition>RenderData* SphereWidget::renderData</definition>
+        <argsstring></argsstring>
+        <name>renderData</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="52" column="1" bodyfile="spherewidget.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sphere_widget_1a9c74179ab1176fd399908f8c02fb2074" prot="private" static="no" mutable="no">
+        <type>QPointF</type>
+        <definition>QPointF SphereWidget::m_lastPosition</definition>
+        <argsstring></argsstring>
+        <name>m_lastPosition</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="55" column="1" bodyfile="spherewidget.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sphere_widget_1a7521b0a71d5dd0d8787e041406caf5b7" prot="private" static="no" mutable="no">
+        <type>QVector3D</type>
+        <definition>QVector3D SphereWidget::m_position</definition>
+        <argsstring></argsstring>
+        <name>m_position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="56" column="1" bodyfile="spherewidget.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sphere_widget_1a1f7581e37c8a223893db2127b8e272d7" prot="private" static="no" mutable="no">
+        <type>QVector3D</type>
+        <definition>QVector3D SphereWidget::m_rotation</definition>
+        <argsstring></argsstring>
+        <name>m_rotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="57" column="1" bodyfile="spherewidget.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sphere_widget_1a8bd9a3973094ca2bbb1481a0e8451087" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SphereWidget::m_fovy</definition>
+        <argsstring></argsstring>
+        <name>m_fovy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="60" column="1" bodyfile="spherewidget.h" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sphere_widget_1a66eaf7bcee8035c24b53c420c93c02e8" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SphereWidget::aspectRatioWidthToHeight</definition>
+        <argsstring></argsstring>
+        <name>aspectRatioWidthToHeight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="61" column="1" bodyfile="spherewidget.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sphere_widget_1a572d9206b4319063378287be106ee221" prot="private" static="no" mutable="no">
+        <type><ref refid="class_icosphere" kindref="compound">Icosphere</ref></type>
+        <definition>Icosphere SphereWidget::ico</definition>
+        <argsstring></argsstring>
+        <name>ico</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="63" column="1" bodyfile="spherewidget.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sphere_widget_1aba9b46a78fb5eff80d02063d4152a9d6" prot="private" static="no" mutable="no">
+        <type>QOpenGLBuffer</type>
+        <definition>QOpenGLBuffer SphereWidget::vbo_points</definition>
+        <argsstring></argsstring>
+        <name>vbo_points</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="64" column="1" bodyfile="spherewidget.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_sphere_widget_1a8c162cb7ab54e55f24ccc2c3eb8bad23" prot="private" static="no" mutable="no">
+        <type>QOpenGLBuffer</type>
+        <definition>QOpenGLBuffer SphereWidget::vbo_sphereVertices</definition>
+        <argsstring></argsstring>
+        <name>vbo_sphereVertices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="65" column="1" bodyfile="spherewidget.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_sphere_widget_1a6ee7b3a4b58e5d62fb1c901aafdd1790" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>SphereWidget::SphereWidget</definition>
+        <argsstring>(QWidget *parent=0)</argsstring>
+        <name>SphereWidget</name>
+        <param>
+          <type>QWidget *</type>
+          <declname>parent</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="34" column="1" bodyfile="spherewidget.cpp" bodystart="4" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sphere_widget_1a1766e5d68f4c57f52d6b1ee40cc0326c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SphereWidget::~SphereWidget</definition>
+        <argsstring>()</argsstring>
+        <name>~SphereWidget</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="35" column="1" bodyfile="spherewidget.h" bodystart="35" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sphere_widget_1a692ca1c1e7556f6abd7b5f6a49a2557c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphereWidget::updatePoints</definition>
+        <argsstring>()</argsstring>
+        <name>updatePoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="39" column="1" bodyfile="spherewidget.cpp" bodystart="121" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sphere_widget_1a7d132800fb4d6b7b925c253679bb6445" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphereWidget::updateSphereVertices</definition>
+        <argsstring>()</argsstring>
+        <name>updateSphereVertices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="40" column="1" bodyfile="spherewidget.cpp" bodystart="131" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sphere_widget_1a871c5252a7a218c5d405be5dfc3dbfa1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SphereWidget::updateTriangleColor</definition>
+        <argsstring>()</argsstring>
+        <name>updateTriangleColor</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="41" column="1" bodyfile="spherewidget.cpp" bodystart="142" bodyend="146"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_sphere_widget_1a323d335cf261b7156da1a59aaf28c40c" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void SphereWidget::initializeGL</definition>
+        <argsstring>() override</argsstring>
+        <name>initializeGL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="44" column="1" bodyfile="spherewidget.cpp" bodystart="22" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sphere_widget_1aaf11c928f52c91d7f60317922df7ca73" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void SphereWidget::resizeGL</definition>
+        <argsstring>(int w, int h) override</argsstring>
+        <name>resizeGL</name>
+        <param>
+          <type>int</type>
+          <declname>w</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="45" column="1" bodyfile="spherewidget.cpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sphere_widget_1a122b798a2eb0c251f53671009abdf8c8" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void SphereWidget::paintGL</definition>
+        <argsstring>() override</argsstring>
+        <name>paintGL</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="46" column="1" bodyfile="spherewidget.cpp" bodystart="36" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sphere_widget_1ac658d6e1cdc99280ecff045f92fe1ba3" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void SphereWidget::mousePressEvent</definition>
+        <argsstring>(QMouseEvent *event) override</argsstring>
+        <name>mousePressEvent</name>
+        <param>
+          <type>QMouseEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="47" column="1" bodyfile="spherewidget.cpp" bodystart="89" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sphere_widget_1aef63eed14a55be78015576296dce516e" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void SphereWidget::mouseMoveEvent</definition>
+        <argsstring>(QMouseEvent *event) override</argsstring>
+        <name>mouseMoveEvent</name>
+        <param>
+          <type>QMouseEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="48" column="1" bodyfile="spherewidget.cpp" bodystart="93" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="class_sphere_widget_1aaecd84d746763a4bd6f46a6d55a36d84" prot="protected" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void SphereWidget::wheelEvent</definition>
+        <argsstring>(QWheelEvent *event) override</argsstring>
+        <name>wheelEvent</name>
+        <param>
+          <type>QWheelEvent *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="spherewidget.h" line="49" column="1" bodyfile="spherewidget.cpp" bodystart="114" bodyend="118"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A custom OpenGLWidget to render the scene from data collected inside the <ref refid="class_render_data" kindref="compound">RenderData</ref> singleton. </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="12">
+        <label>SphereWidget</label>
+        <link refid="class_sphere_widget"/>
+        <childnode refid="13" relation="public-inheritance">
+        </childnode>
+        <childnode refid="14" relation="protected-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>QOpenGLWidget</label>
+      </node>
+      <node id="14">
+        <label>QOpenGLFunctions</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="15">
+        <label>SphereWidget</label>
+        <link refid="class_sphere_widget"/>
+        <childnode refid="16" relation="public-inheritance">
+        </childnode>
+        <childnode refid="17" relation="protected-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>QOpenGLWidget</label>
+      </node>
+      <node id="17">
+        <label>QOpenGLFunctions</label>
+      </node>
+    </collaborationgraph>
+    <location file="spherewidget.h" line="30" column="1" bodyfile="spherewidget.h" bodystart="29" bodyend="68"/>
+    <listofallmembers>
+      <member refid="class_sphere_widget_1a66eaf7bcee8035c24b53c420c93c02e8" prot="private" virt="non-virtual"><scope>SphereWidget</scope><name>aspectRatioWidthToHeight</name></member>
+      <member refid="class_sphere_widget_1a572d9206b4319063378287be106ee221" prot="private" virt="non-virtual"><scope>SphereWidget</scope><name>ico</name></member>
+      <member refid="class_sphere_widget_1a323d335cf261b7156da1a59aaf28c40c" prot="protected" virt="virtual"><scope>SphereWidget</scope><name>initializeGL</name></member>
+      <member refid="class_sphere_widget_1a8bd9a3973094ca2bbb1481a0e8451087" prot="private" virt="non-virtual"><scope>SphereWidget</scope><name>m_fovy</name></member>
+      <member refid="class_sphere_widget_1a9c74179ab1176fd399908f8c02fb2074" prot="private" virt="non-virtual"><scope>SphereWidget</scope><name>m_lastPosition</name></member>
+      <member refid="class_sphere_widget_1a7521b0a71d5dd0d8787e041406caf5b7" prot="private" virt="non-virtual"><scope>SphereWidget</scope><name>m_position</name></member>
+      <member refid="class_sphere_widget_1a1f7581e37c8a223893db2127b8e272d7" prot="private" virt="non-virtual"><scope>SphereWidget</scope><name>m_rotation</name></member>
+      <member refid="class_sphere_widget_1aef63eed14a55be78015576296dce516e" prot="protected" virt="virtual"><scope>SphereWidget</scope><name>mouseMoveEvent</name></member>
+      <member refid="class_sphere_widget_1ac658d6e1cdc99280ecff045f92fe1ba3" prot="protected" virt="virtual"><scope>SphereWidget</scope><name>mousePressEvent</name></member>
+      <member refid="class_sphere_widget_1a122b798a2eb0c251f53671009abdf8c8" prot="protected" virt="virtual"><scope>SphereWidget</scope><name>paintGL</name></member>
+      <member refid="class_sphere_widget_1a3b76a33d6cd44b6932cd5abfd87aa437" prot="private" virt="non-virtual"><scope>SphereWidget</scope><name>renderData</name></member>
+      <member refid="class_sphere_widget_1aaf11c928f52c91d7f60317922df7ca73" prot="protected" virt="virtual"><scope>SphereWidget</scope><name>resizeGL</name></member>
+      <member refid="class_sphere_widget_1a6ee7b3a4b58e5d62fb1c901aafdd1790" prot="public" virt="non-virtual"><scope>SphereWidget</scope><name>SphereWidget</name></member>
+      <member refid="class_sphere_widget_1a692ca1c1e7556f6abd7b5f6a49a2557c" prot="public" virt="non-virtual"><scope>SphereWidget</scope><name>updatePoints</name></member>
+      <member refid="class_sphere_widget_1a7d132800fb4d6b7b925c253679bb6445" prot="public" virt="non-virtual"><scope>SphereWidget</scope><name>updateSphereVertices</name></member>
+      <member refid="class_sphere_widget_1a871c5252a7a218c5d405be5dfc3dbfa1" prot="public" virt="non-virtual"><scope>SphereWidget</scope><name>updateTriangleColor</name></member>
+      <member refid="class_sphere_widget_1aba9b46a78fb5eff80d02063d4152a9d6" prot="private" virt="non-virtual"><scope>SphereWidget</scope><name>vbo_points</name></member>
+      <member refid="class_sphere_widget_1a8c162cb7ab54e55f24ccc2c3eb8bad23" prot="private" virt="non-virtual"><scope>SphereWidget</scope><name>vbo_sphereVertices</name></member>
+      <member refid="class_sphere_widget_1aaecd84d746763a4bd6f46a6d55a36d84" prot="protected" virt="virtual"><scope>SphereWidget</scope><name>wheelEvent</name></member>
+      <member refid="class_sphere_widget_1a1766e5d68f4c57f52d6b1ee40cc0326c" prot="public" virt="non-virtual"><scope>SphereWidget</scope><name>~SphereWidget</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

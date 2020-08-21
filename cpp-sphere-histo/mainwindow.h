@@ -23,8 +23,6 @@ public slots:
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    SphereWidget * getSphereWidget();
-
 
 private:
     Ui::MainWindow *ui;

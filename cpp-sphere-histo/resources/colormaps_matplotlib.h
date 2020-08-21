@@ -3,8 +3,13 @@
 #include <unordered_map>
 
 namespace cm {
+
+/*!
+ * \enum cm::ColorMapName
+ * Describes all available color maps
+*/
 enum class ColorMapName {Cividis = 0, Inferno = 1, Magma = 2, Plasma = 3, Turbo = 4, Viridis = 5};
-//extern std::unordered_map<std::string, ColorMapName> qStringToColorEnum;
+
 const std::unordered_map<std::string, ColorMapName> qStringToColorEnum = {
     {"Cividis", cm::ColorMapName::Cividis},
     {"Inferno", cm::ColorMapName::Inferno},

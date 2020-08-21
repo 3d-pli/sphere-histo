@@ -94,20 +94,6 @@ void SphereWidget::paintGL() {
     glDrawArrays(GL_TRIANGLES, 0, vbo_sphereVertices.size());
     glDisableClientState(GL_VERTEX_ARRAY);
 
-
-//// Bisheriges Zeichnen der Punkte:
-//    for(auto point : points){
-//        glVertex3f(point[0], point[1], point[2]);
-//    }
-
-    // render icosphere from icosahedron
-//    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-//    glBegin(GL_TRIANGLES);
-////    if(!points.empty())
-//        // TODO: Diesen Fehler in Icosphere abfangen
-//            ico.drawIcosphere(renderData->getSphereDepth(), renderData->getPoints());
-//    glEnd();
 }
 
 void SphereWidget::mousePressEvent(QMouseEvent * event){

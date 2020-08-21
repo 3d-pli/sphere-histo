@@ -1,8 +1,44 @@
 #include "renderdata.h"
-RenderData* RenderData::_instance = 0;
+RenderData * RenderData::_instance = 0;
 
 
-std::vector<float> RenderData::getPointsAsVector(void){
+RenderData* RenderData::getInstance()
+{
+    if(!_instance){
+        _instance = new RenderData();
+    }
+    return _instance;
+}
+
+
+std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */)  {
+
+    SphereDepthData & currentSphere = spheres.at(currentSphereDepth);
+    std::vector<std::list<QVector3D> > & pointsPerTriangle = currentSphere.pointsPerTriangle;
+    std::vector<float> colorVector;
+    colorVector.reserve(pointsPerTriangle.size() * 4);
+
+    size_t maxOfPointsPerTriangle = currentSphere.getMaxPointsPerTriangle();
+    int colorIndex;
+
+    for(std::list<QVector3D>& trianglePoints : pointsPerTriangle){
+        if(maxOfPointsPerTriangle == 0){
+            colorIndex = 0;
+        } else {
+            colorIndex = int((trianglePoints.size() / double(maxOfPointsPerTriangle)) * 256) * 3;  // (current triangles' points / max points per one triangle) * colorMaps' row count * colorMaps' column count
+        }
+        for(short i = 0; i < 3; ++i){
+            colorVector.push_back(colorMap[colorIndex]);
+            colorVector.push_back(colorMap[colorIndex + 1]);
+            colorVector.push_back(colorMap[colorIndex + 2]);
+            colorVector.push_back(alpha);
+        }
+
+    }
+    return colorVector;
+}
+
+std::vector<float> RenderData::getPointsAsVector() const {
     std::vector<float> renderPoints;
     renderPoints.reserve(points.size()*3);
     for (auto point : points){
@@ -13,50 +49,61 @@ std::vector<float> RenderData::getPointsAsVector(void){
     return renderPoints;
 }
 
-RenderData* RenderData::getInstance()
-{
-    if(!_instance){
-        _instance = new RenderData();
-    }
-    return _instance;
-}
-
-RenderData::RenderData() :
-    points(),
-    spheres(),
-    sphereBorderVertices(),
-    currentSphereDepth(-1),
-    colorMap(cm::_viridis_data)
-{
-    setSphereDepth(3);
-}
-
-const float * RenderData::getColorMap() const
-{
-    return colorMap;
-}
-
-const std::vector<float> RenderData::getTriangleVerticesAndColorsAtCurrentDepth()
-{
-    if(static_cast<int>(spheres.size()) - 1 < currentSphereDepth){
-        setSphereDepth(currentSphereDepth);
-    }   // MEH - eher rausnehmen und Fehlerbehandlung anstossen
-
-    SphereDepthData & currentSphere = spheres[currentSphereDepth];
-
-    std::vector<float> vertsAndColors;
-    vertsAndColors.reserve(currentSphere.vertices.size() + currentSphere.pointsPerTriangle.size() * 4);
-
-    vertsAndColors.insert(vertsAndColors.end(), currentSphere.vertices.begin(), currentSphere.vertices.end());
-
-    std::vector<float> colors = getColorsForTriangles();
-    vertsAndColors.insert(vertsAndColors.end(), colors.begin(), colors.end());
-
-    return vertsAndColors;
-}
-
-std::vector<float> RenderData::getVerticesAtCurrentDepth(){
+std::vector<float> RenderData::getVerticesAtCurrentDepth() const {
     return spheres[currentSphereDepth].getVertices();
+}
+
+
+void RenderData::setSphereDepth(short depth)
+{
+    //
+    if(depth > 10){
+        depth = 10;
+    }
+
+    int maxCalculatedDepth = spheres.size() - 1;
+
+    if(depth > maxCalculatedDepth){
+        if(spheres.empty()){
+            generateIcosahedronAtDepthZero();
+            maxCalculatedDepth = 0;
+        }
+        for(int i = 0; i < depth - maxCalculatedDepth; ++i){
+            calculateNextSubdivision();
+        }
+    }
+    currentSphereDepth = depth;
+    return;
+
+}
+
+void RenderData::setColorMap(QString colorMapName){
+     std::cout << colorMapName.toStdString() << std::endl;
+
+    cm::ColorMapName colorMapEnumValue = cm::qStringToColorEnum.at(colorMapName.toStdString());
+
+    switch (colorMapEnumValue) {
+    case cm::ColorMapName::Cividis:
+        this->colorMap = cm::_cividis_data;
+        break;
+    case cm::ColorMapName::Inferno:
+        this->colorMap = cm::_inferno_data;
+        break;
+    case cm::ColorMapName::Magma :
+        this->colorMap = cm::_magma_data;
+        break;
+    case cm::ColorMapName::Plasma:
+        this->colorMap = cm::_plasma_data;
+        break;
+    case cm::ColorMapName::Turbo:
+        this->colorMap = cm::_turbo_data;
+        break;
+    case cm::ColorMapName::Viridis:
+        this->colorMap = cm::_viridis_data;
+        break;
+    default:
+        break;
+    }
 }
 
 /*!
@@ -112,33 +159,17 @@ void RenderData::loadPointsFromFile(std::string filename){
 }
 
 
-short RenderData::getCurrentSphereDepth() const
+
+RenderData::RenderData() :
+    points(),
+    spheres(),
+    sphereBorderVertices(),
+    currentSphereDepth(-1),
+    colorMap(cm::_viridis_data)
 {
-    return currentSphereDepth;
+    setSphereDepth(3);
 }
 
-void RenderData::setSphereDepth(short depth)
-{
-    //
-    if(depth > 10){
-        depth = 10;
-    }
-
-    int maxCalculatedDepth = spheres.size() - 1;
-
-    if(depth > maxCalculatedDepth){
-        if(spheres.empty()){
-            generateIcosahedronAtDepthZero();
-            maxCalculatedDepth = 0;
-        }
-        for(int i = 0; i < depth - maxCalculatedDepth; ++i){
-            calculateNextSubdivision();
-        }
-    }
-    currentSphereDepth = depth;
-    return;
-
-}
 
 void RenderData::generateIcosahedronAtDepthZero(){
     const float X  =.525731112119133606;
@@ -216,11 +247,6 @@ void RenderData::calculateNextSubdivision(){
 
         // Containers for calculation:
         std::list<QVector3D> biggerTrianglesPointList(lastSphere.pointsPerTriangle.at(i));
-        std::list<QVector3D> tmp_smallerTrianglesPointList;    // Temporary point list for current triangle
-
-//        currentSphere.vertices.insert(currentSphere.vertices.end(), std::begin(v1), std::end(v1));
-//        currentSphere.vertices.insert(currentSphere.vertices.end(), std::begin(v12), std::end(v12));
-//        currentSphere.vertices.insert(currentSphere.vertices.end(), std::begin(v31), std::end(v31));
 
         // Triangle 1 (v1, v12, v31)
         insertTriangleIntoVerticesVector(currentSphere.vertices, v1, v12, v31);
@@ -240,6 +266,8 @@ void RenderData::calculateNextSubdivision(){
     }
 }
 
+
+
 std::list<QVector3D> RenderData::filterPointsForTriangle(std::list<QVector3D> &pointList, float *v1, float *v2, float *v3){
     std::list<QVector3D> pointsInTriangle;
     glm::mat3 transformationMatrix = getTransformationMatrix(v1, v2, v3);
@@ -254,6 +282,16 @@ std::list<QVector3D> RenderData::filterPointsForTriangle(std::list<QVector3D> &p
     return pointsInTriangle;
 }
 
+glm::mat3 RenderData::getTransformationMatrix(float * v1, float * v2, float * v3){
+    glm::mat3 transformationMatrix = {
+        v1[0], v1[1], v1[2],        // first COLUMN
+        v2[0], v2[1], v2[2],        // second COLUMN
+        v3[0], v3[1], v3[2]         // third COLUMN
+    };
+    transformationMatrix = glm::inverse(transformationMatrix);          // transformation matrix inversed in order to change basis to triangle vertices' coordinates
+    return transformationMatrix;
+}
+
 void RenderData::insertTriangleIntoVerticesVector(std::vector<float>& vertVec, float * vec1, float * vec2, float * vec3){
     float v1[3] = {vec1[0], vec1[1], vec1[2]};
     float v2[3] = {vec2[0], vec2[1], vec2[2]};
@@ -261,63 +299,6 @@ void RenderData::insertTriangleIntoVerticesVector(std::vector<float>& vertVec, f
     vertVec.insert(vertVec.end(), std::begin(v1), std::end(v1));
     vertVec.insert(vertVec.end(), std::begin(v2), std::end(v2));
     vertVec.insert(vertVec.end(), std::begin(v3), std::end(v3));
-}
-
-void RenderData::setColorMap(QString colorMapName){
-     std::cout << colorMapName.toStdString() << std::endl;
-
-    cm::ColorMapName colorMapEnumValue = cm::qStringToColorEnum.at(colorMapName.toStdString());
-
-    switch (colorMapEnumValue) {
-    case cm::ColorMapName::Cividis:
-        this->colorMap = cm::_cividis_data;
-        break;
-    case cm::ColorMapName::Inferno:
-        this->colorMap = cm::_inferno_data;
-        break;
-    case cm::ColorMapName::Magma :
-        this->colorMap = cm::_magma_data;
-        break;
-    case cm::ColorMapName::Plasma:
-        this->colorMap = cm::_plasma_data;
-        break;
-    case cm::ColorMapName::Turbo:
-        this->colorMap = cm::_turbo_data;
-        break;
-    case cm::ColorMapName::Viridis:
-        this->colorMap = cm::_viridis_data;
-        break;
-    default:
-        break;
-    }
-}
-
-std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */){
-    // TODO: Find out why only colors for Icosahedron are calculated
-
-    SphereDepthData & currentSphere = spheres.at(currentSphereDepth);
-    std::vector<std::list<QVector3D> > & pointsPerTriangle = currentSphere.pointsPerTriangle;
-    std::vector<float> colorVector;
-    colorVector.reserve(pointsPerTriangle.size() * 4);
-
-    size_t maxOfPointsPerTriangle = currentSphere.getMaxPointsPerTriangle();
-    int colorIndex;
-
-    for(std::list<QVector3D>& trianglePoints : pointsPerTriangle){
-        if(maxOfPointsPerTriangle == 0){
-            colorIndex = 0;
-        } else {
-            colorIndex = int((trianglePoints.size() / double(maxOfPointsPerTriangle)) * 256) * 3;  // (current triangles' points / max points per one triangle) * colorMaps' row count * colorMaps' column count
-        }
-        for(short i = 0; i < 3; ++i){
-            colorVector.push_back(colorMap[colorIndex]);
-            colorVector.push_back(colorMap[colorIndex + 1]);
-            colorVector.push_back(colorMap[colorIndex + 2]);
-            colorVector.push_back(alpha);
-        }
-
-    }
-    return colorVector;
 }
 
 bool RenderData::pointInFirstQuadrantAfterTransformation(const glm::vec3 &point, const glm::mat3 &transformationMatrix){
@@ -332,12 +313,3 @@ bool RenderData::pointInFirstQuadrantAfterTransformation(const glm::vec3 &point,
 
 }
 
-glm::mat3 RenderData::getTransformationMatrix(float * v1, float * v2, float * v3){
-    glm::mat3 transformationMatrix = {
-        v1[0], v1[1], v1[2],        // first COLUMN
-        v2[0], v2[1], v2[2],        // second COLUMN
-        v3[0], v3[1], v3[2]         // third COLUMN
-    };
-    transformationMatrix = glm::inverse(transformationMatrix);          // transformation matrix inversed in order to change basis to triangle vertices' coordinates
-    return transformationMatrix;
-}

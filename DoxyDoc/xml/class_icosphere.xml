@@ -1,0 +1,317 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.13">
+  <compounddef id="class_icosphere" kind="class" language="C++" prot="public">
+    <compoundname>Icosphere</compoundname>
+    <basecompoundref prot="protected" virt="non-virtual">QOpenGLFunctions</basecompoundref>
+    <includes refid="icosphere_8h" local="no">icosphere.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_icosphere_1a16644795a8738206629219251d0005a3" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; QVector3D &gt;</type>
+        <definition>std::vector&lt;QVector3D&gt; Icosphere::vertices</definition>
+        <argsstring></argsstring>
+        <name>vertices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="41" column="1" bodyfile="icosphere.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_icosphere_1a42daf1d2a6a3eda61092f4ad328403e4" prot="private" static="no" mutable="no">
+        <type>std::vector&lt; std::vector&lt; int &gt; &gt;</type>
+        <definition>std::vector&lt;std::vector&lt;int&gt; &gt; Icosphere::indices</definition>
+        <argsstring></argsstring>
+        <name>indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="42" column="1" bodyfile="icosphere.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_icosphere_1ae4ff1ccc5a3e43f5c5062dcf913d813f" prot="private" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t Icosphere::totalPoints</definition>
+        <argsstring></argsstring>
+        <name>totalPoints</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="45" column="1" bodyfile="icosphere.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_icosphere_1a5fdbc49b812b3862df13c86f42b6eef5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Icosphere::Icosphere</definition>
+        <argsstring>()</argsstring>
+        <name>Icosphere</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="30" column="1" bodyfile="icosphere.cpp" bodystart="5" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_icosphere_1a504e5ebc64937cda33a2dd4a755c0ace" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_sphere_depth_data" kindref="compound">SphereDepthData</ref></type>
+        <definition>SphereDepthData Icosphere::getIcosahedron</definition>
+        <argsstring>()</argsstring>
+        <name>getIcosahedron</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="31" column="1" bodyfile="icosphere.cpp" bodystart="73" bodyend="117"/>
+      </memberdef>
+      <memberdef kind="function" id="class_icosphere_1a0ab61f28cd6d528af88ce6174325a9c7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::vector&lt; <ref refid="class_sphere_depth_data" kindref="compound">SphereDepthData</ref> &gt;</type>
+        <definition>std::vector&lt; SphereDepthData &gt; Icosphere::calculateDepthData</definition>
+        <argsstring>(short maxCalculatedDepth, unsigned short sphereDepth)</argsstring>
+        <name>calculateDepthData</name>
+        <param>
+          <type>short</type>
+          <declname>maxCalculatedDepth</declname>
+        </param>
+        <param>
+          <type>unsigned short</type>
+          <declname>sphereDepth</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="32" column="1" bodyfile="icosphere.cpp" bodystart="119" bodyend="182"/>
+      </memberdef>
+      <memberdef kind="function" id="class_icosphere_1a228f0751b6ea858f322470b0045c6d8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Icosphere::filterPointsForTriangle</definition>
+        <argsstring>(std::list&lt; QVector3D &gt; pointList, float v2, std::list&lt; QVector3D &gt; tmp_points, float v1, float v3)</argsstring>
+        <name>filterPointsForTriangle</name>
+        <param>
+          <type>std::list&lt; QVector3D &gt;</type>
+          <declname>pointList</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>v2</declname>
+        </param>
+        <param>
+          <type>std::list&lt; QVector3D &gt;</type>
+          <declname>tmp_points</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>v1</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>v3</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="37" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_icosphere_1ac28f7dcf1ebc56b9b396ce4c83666770" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Icosphere::drawTriangle</definition>
+        <argsstring>(float *v1, float *v2, float *v3)</argsstring>
+        <name>drawTriangle</name>
+        <param>
+          <type>float *</type>
+          <declname>v1</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>v2</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>v3</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="50" column="1" bodyfile="icosphere.h" bodystart="50" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="class_icosphere_1a7f3209cd4eeea8f68c9fe62bd91dd76f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Icosphere::normalize</definition>
+        <argsstring>(float v[3])</argsstring>
+        <name>normalize</name>
+        <param>
+          <type>float</type>
+          <declname>v</declname>
+          <array>[3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="58" column="1" bodyfile="icosphere.h" bodystart="58" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_icosphere_1a5c8adaf2f9854b7a92ed13171f364019" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void Icosphere::triangleColor</definition>
+        <argsstring>(unsigned long pointsInTriangle)</argsstring>
+        <name>triangleColor</name>
+        <param>
+          <type>unsigned long</type>
+          <declname>pointsInTriangle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="67" column="1" bodyfile="icosphere.cpp" bodystart="424" bodyend="439"/>
+      </memberdef>
+      <memberdef kind="function" id="class_icosphere_1a3ee15897349abf10c02dad23a3e9e6a8" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>glm::mat3</type>
+        <definition>glm::mat3 Icosphere::getTransformationMatrix</definition>
+        <argsstring>(float v1[3], float v2[3], float v3[3])</argsstring>
+        <name>getTransformationMatrix</name>
+        <param>
+          <type>float</type>
+          <declname>v1</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>v2</declname>
+          <array>[3]</array>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>v3</declname>
+          <array>[3]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="70" column="1" bodyfile="icosphere.cpp" bodystart="453" bodyend="461"/>
+      </memberdef>
+      <memberdef kind="function" id="class_icosphere_1a3ada891a6afae1505bee1f2d07cbad04" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Icosphere::pointInFirstQuadrantAfterTransformation</definition>
+        <argsstring>(const glm::vec3 &amp;point, const glm::mat3 &amp;transformationMatrix)</argsstring>
+        <name>pointInFirstQuadrantAfterTransformation</name>
+        <param>
+          <type>const glm::vec3 &amp;</type>
+          <declname>point</declname>
+        </param>
+        <param>
+          <type>const glm::mat3 &amp;</type>
+          <declname>transformationMatrix</declname>
+        </param>
+        <briefdescription>
+<para>pointInTriangleRange </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>point</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- a 3D point </para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>triangleVertices</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>- 3 Vertices on a 3D sphere with radius 1 </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>bool - wether a point lies inside the </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="78" column="1" bodyfile="icosphere.cpp" bodystart="441" bodyend="451"/>
+      </memberdef>
+      <memberdef kind="function" id="class_icosphere_1acb067dddbea5e4b840f37033e49cd77c" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="class_sphere_depth_data" kindref="compound">SphereDepthData</ref></type>
+        <definition>SphereDepthData Icosphere::calculateSubdivision</definition>
+        <argsstring>(SphereDepthData lastSphere)</argsstring>
+        <name>calculateSubdivision</name>
+        <param>
+          <type><ref refid="class_sphere_depth_data" kindref="compound">SphereDepthData</ref></type>
+          <declname>lastSphere</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="icosphere.h" line="79" column="1" bodyfile="icosphere.cpp" bodystart="184" bodyend="299"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>QOpenGLFunctions</label>
+      </node>
+      <node id="0">
+        <label>Icosphere</label>
+        <link refid="class_icosphere"/>
+        <childnode refid="1" relation="protected-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>QOpenGLFunctions</label>
+      </node>
+      <node id="2">
+        <label>Icosphere</label>
+        <link refid="class_icosphere"/>
+        <childnode refid="3" relation="protected-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="icosphere.h" line="28" column="1" bodyfile="icosphere.h" bodystart="27" bodyend="80"/>
+    <listofallmembers>
+      <member refid="class_icosphere_1a0ab61f28cd6d528af88ce6174325a9c7" prot="public" virt="non-virtual"><scope>Icosphere</scope><name>calculateDepthData</name></member>
+      <member refid="class_icosphere_1acb067dddbea5e4b840f37033e49cd77c" prot="private" virt="non-virtual"><scope>Icosphere</scope><name>calculateSubdivision</name></member>
+      <member refid="class_icosphere_1ac28f7dcf1ebc56b9b396ce4c83666770" prot="private" virt="non-virtual"><scope>Icosphere</scope><name>drawTriangle</name></member>
+      <member refid="class_icosphere_1a228f0751b6ea858f322470b0045c6d8c" prot="public" virt="non-virtual"><scope>Icosphere</scope><name>filterPointsForTriangle</name></member>
+      <member refid="class_icosphere_1a504e5ebc64937cda33a2dd4a755c0ace" prot="public" virt="non-virtual"><scope>Icosphere</scope><name>getIcosahedron</name></member>
+      <member refid="class_icosphere_1a3ee15897349abf10c02dad23a3e9e6a8" prot="private" virt="non-virtual"><scope>Icosphere</scope><name>getTransformationMatrix</name></member>
+      <member refid="class_icosphere_1a5fdbc49b812b3862df13c86f42b6eef5" prot="public" virt="non-virtual"><scope>Icosphere</scope><name>Icosphere</name></member>
+      <member refid="class_icosphere_1a42daf1d2a6a3eda61092f4ad328403e4" prot="private" virt="non-virtual"><scope>Icosphere</scope><name>indices</name></member>
+      <member refid="class_icosphere_1a7f3209cd4eeea8f68c9fe62bd91dd76f" prot="private" virt="non-virtual"><scope>Icosphere</scope><name>normalize</name></member>
+      <member refid="class_icosphere_1a3ada891a6afae1505bee1f2d07cbad04" prot="private" virt="non-virtual"><scope>Icosphere</scope><name>pointInFirstQuadrantAfterTransformation</name></member>
+      <member refid="class_icosphere_1ae4ff1ccc5a3e43f5c5062dcf913d813f" prot="private" virt="non-virtual"><scope>Icosphere</scope><name>totalPoints</name></member>
+      <member refid="class_icosphere_1a5c8adaf2f9854b7a92ed13171f364019" prot="private" virt="non-virtual"><scope>Icosphere</scope><name>triangleColor</name></member>
+      <member refid="class_icosphere_1a16644795a8738206629219251d0005a3" prot="private" virt="non-virtual"><scope>Icosphere</scope><name>vertices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

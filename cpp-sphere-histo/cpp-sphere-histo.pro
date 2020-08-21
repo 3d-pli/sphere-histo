@@ -33,7 +33,6 @@ RCC_DIR     = build/
 SOURCES += \
         main.cpp \
         spherewidget.cpp \
-        icosphere.cpp \
         mainwindow.cpp \
     renderdata.cpp \
     resources/colormaps_matplotlib.cpp \
@@ -41,7 +40,6 @@ SOURCES += \
 
 HEADERS += \
         spherewidget.h \
-        icosphere.h \
         mainwindow.h \
         resources/colormaps_matplotlib.h \
     renderdata.h \

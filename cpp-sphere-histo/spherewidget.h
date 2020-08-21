@@ -16,8 +16,6 @@
 #include <GL/glu.h>
 
 // Internal classes
-#include "icosphere.h"
-#include "resources/colormaps_matplotlib.h"
 #include "renderdata.h"
 
 // FOR DEBUGGING ONLY
