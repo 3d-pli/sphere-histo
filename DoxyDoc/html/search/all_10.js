@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['ui',['Ui',['../dc/df0/namespace_ui.html',1,'Ui'],['../d9/dc6/class_main_window.html#a35466a70ed47252a0191168126a352a5',1,'MainWindow::ui()']]],
-  ['updatemaxpointspertriangle',['updateMaxPointsPerTriangle',['../dc/d7c/struct_sphere_depth_data.html#a4cf92f63341fd72e6659dcd1501eb2ac',1,'SphereDepthData']]],
-  ['updatepoints',['updatePoints',['../df/dda/class_sphere_widget.html#a692ca1c1e7556f6abd7b5f6a49a2557c',1,'SphereWidget']]],
-  ['updatespherevertices',['updateSphereVertices',['../df/dda/class_sphere_widget.html#a7d132800fb4d6b7b925c253679bb6445',1,'SphereWidget']]],
-  ['updatetrianglecolor',['updateTriangleColor',['../df/dda/class_sphere_widget.html#a871c5252a7a218c5d405be5dfc3dbfa1',1,'SphereWidget']]]
+  ['vbo_5fpoints',['vbo_points',['../class_sphere_widget.html#aba9b46a78fb5eff80d02063d4152a9d6',1,'SphereWidget']]],
+  ['vbo_5fspherevertices',['vbo_sphereVertices',['../class_sphere_widget.html#a8c162cb7ab54e55f24ccc2c3eb8bad23',1,'SphereWidget']]],
+  ['vbo_5fvertexcolors',['vbo_vertexColors',['../class_sphere_widget.html#a0fda2683474fcdc448cd73fb6329da8b',1,'SphereWidget']]],
+  ['vertices',['vertices',['../struct_sphere_depth_data.html#a139a9131aa15308e012fc8190de2011d',1,'SphereDepthData']]],
+  ['viridis',['Viridis',['../namespacecm.html#aabaf84796e8a93bd6adca4c5bdea5311a951ee92ee5e947e1e7e1cb6376523c1a',1,'cm']]]
 ];

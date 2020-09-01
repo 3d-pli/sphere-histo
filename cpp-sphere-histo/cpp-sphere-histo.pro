@@ -35,7 +35,6 @@ SOURCES += \
         spherewidget.cpp \
         mainwindow.cpp \
     renderdata.cpp \
-    resources/colormaps_matplotlib.cpp \
     spheredepthdata.cpp
 
 HEADERS += \

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['wheelevent',['wheelEvent',['../df/dda/class_sphere_widget.html#aaecd84d746763a4bd6f46a6d55a36d84',1,'SphereWidget']]]
+  ['_7emainwindow',['~MainWindow',['../class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]],
+  ['_7espherewidget',['~SphereWidget',['../class_sphere_widget.html#a1766e5d68f4c57f52d6b1ee40cc0326c',1,'SphereWidget']]]
 ];

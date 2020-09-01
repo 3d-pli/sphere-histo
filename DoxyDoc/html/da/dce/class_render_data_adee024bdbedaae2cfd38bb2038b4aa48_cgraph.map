@@ -1,0 +1,6 @@
+<map id="RenderData::generateIcosahedronAtDepthZero" name="RenderData::generateIcosahedronAtDepthZero">
+<area shape="rect" id="node2" href="$da/dce/class_render_data.html#af74f8858b9e0dedb914f24390e140a04" title="RenderData::filterPoints\lForTriangle" alt="" coords="283,37,445,79"/>
+<area shape="rect" id="node5" href="$da/dce/class_render_data.html#a4fca77ce81a628de0ddaeb7d75a4c371" title="RenderData::insertTriangle\lIntoVerticesVector" alt="" coords="275,103,453,144"/>
+<area shape="rect" id="node3" href="$da/dce/class_render_data.html#afbc604f853739d0198c9da5097987fa7" title="RenderData::getTransformation\lMatrix" alt="" coords="501,5,707,47"/>
+<area shape="rect" id="node4" href="$da/dce/class_render_data.html#a7b32e615d46ac5ffbd3d14de0da2c406" title="RenderData::pointInFirst\lQuadrantAfterTransformation" alt="" coords="509,71,699,112"/>
+</map>

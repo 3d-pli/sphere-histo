@@ -20,6 +20,9 @@
 #include "resources/colormaps_matplotlib.h"
 #include "spheredepthdata.h"
 
+// MACROS
+#define MIRROR_POINTS true
+
 /*!
  * \class RenderData
  * \brief Singleton that stores and calculates all logical application data
@@ -43,7 +46,7 @@ public:
 
     // GETTERS
 
-    /*! \returns color values per point in vertices vector in format rgba
+    /*! \returns color values in rgba format per point in vertices vector
      *  \param alpha: (optional) alpha value for transparancy - not yet implemented
     */
     std::vector<float> getColorsForTriangles(float alpha = 1);
@@ -57,7 +60,7 @@ public:
 
     // SETTERS
 
-    /*! Sets current sphere depth and if necessary calculates new sphere depth data.
+    /*! Sets current sphere depth and calculates new sphere depth data if necessary.
      *  Maximum depth is 10 - all values above will be evaluated as 10.
      *  \param depth: sphere depth, representing the number of triangle subdivisions starting from an icosahedron at depth 0 */
     void setSphereDepth(short depth);

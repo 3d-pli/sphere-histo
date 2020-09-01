@@ -4,13 +4,16 @@
 
 namespace cm {
 
+// CONVENIENCE TOOLS FOR COLORMAP RETRIEVAL
+
 /*!
  * \enum cm::ColorMapName
  * Describes all available color maps
 */
 enum class ColorMapName {Cividis = 0, Inferno = 1, Magma = 2, Plasma = 3, Turbo = 4, Viridis = 5};
 
-const std::unordered_map<std::string, ColorMapName> qStringToColorEnum = {
+/*! For conveniently retrieving colormap enum values from their string representation */
+const std::unordered_map<std::string, ColorMapName> stringToColorEnum = {
     {"Cividis", cm::ColorMapName::Cividis},
     {"Inferno", cm::ColorMapName::Inferno},
     {"Magma", cm::ColorMapName::Magma},
@@ -18,6 +21,10 @@ const std::unordered_map<std::string, ColorMapName> qStringToColorEnum = {
     {"Turbo", cm::ColorMapName::Turbo},
     {"Viridis", cm::ColorMapName::Viridis},
 };
+
+
+// COLORMAPS
+
 const float _magma_data[3*256] = {0.001462f, 0.000466f, 0.013866f,
                    0.002258f, 0.001295f, 0.018331f,
                    0.003279f, 0.002305f, 0.023708f,

@@ -5,13 +5,23 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Kugelhisto: SphereWidget Class Reference</title>
+<title>Spherical Histogram: SphereWidget Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -20,10 +30,26 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_smaller.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Kugelhisto
+   <div id="projectname">Spherical Histogram
    </div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -33,15 +59,21 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
+$(document).ready(function(){initNavTree('class_sphere_widget.html','');});
 </script>
-<div id="main-nav"></div>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -56,11 +88,11 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_sphere_widget-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SphereWidget Class Reference</div>  </div>
@@ -71,66 +103,580 @@ $(function() {
 <div class="dynheader">
 Inheritance diagram for SphereWidget:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_sphere_widget__inherit__graph.png" border="0" usemap="#_sphere_widget_inherit__map" alt="Inheritance graph"/></div>
-<map name="_sphere_widget_inherit__map" id="_sphere_widget_inherit__map">
-</map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_sphere_widget__inherit__graph.svg" width="294" height="478"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <div class="dynheader">
 Collaboration diagram for SphereWidget:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_sphere_widget__coll__graph.png" border="0" usemap="#_sphere_widget_coll__map" alt="Collaboration graph"/></div>
-<map name="_sphere_widget_coll__map" id="_sphere_widget_coll__map">
-</map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="class_sphere_widget__coll__graph.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6ee7b3a4b58e5d62fb1c901aafdd1790"><td class="memItemLeft" align="right" valign="top"><a id="a6ee7b3a4b58e5d62fb1c901aafdd1790"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SphereWidget</b> (QWidget *parent=0)</td></tr>
+<tr class="memitem:a6ee7b3a4b58e5d62fb1c901aafdd1790"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a6ee7b3a4b58e5d62fb1c901aafdd1790">SphereWidget</a> (QWidget *parent=0)</td></tr>
 <tr class="separator:a6ee7b3a4b58e5d62fb1c901aafdd1790"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a692ca1c1e7556f6abd7b5f6a49a2557c"><td class="memItemLeft" align="right" valign="top"><a id="a692ca1c1e7556f6abd7b5f6a49a2557c"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updatePoints</b> ()</td></tr>
+<tr class="memitem:a1766e5d68f4c57f52d6b1ee40cc0326c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a1766e5d68f4c57f52d6b1ee40cc0326c">~SphereWidget</a> ()</td></tr>
+<tr class="separator:a1766e5d68f4c57f52d6b1ee40cc0326c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a692ca1c1e7556f6abd7b5f6a49a2557c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a692ca1c1e7556f6abd7b5f6a49a2557c">updatePoints</a> ()</td></tr>
 <tr class="separator:a692ca1c1e7556f6abd7b5f6a49a2557c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d132800fb4d6b7b925c253679bb6445"><td class="memItemLeft" align="right" valign="top"><a id="a7d132800fb4d6b7b925c253679bb6445"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateSphereVertices</b> ()</td></tr>
+<tr class="memitem:a7d132800fb4d6b7b925c253679bb6445"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a7d132800fb4d6b7b925c253679bb6445">updateSphereVertices</a> ()</td></tr>
 <tr class="separator:a7d132800fb4d6b7b925c253679bb6445"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a871c5252a7a218c5d405be5dfc3dbfa1"><td class="memItemLeft" align="right" valign="top"><a id="a871c5252a7a218c5d405be5dfc3dbfa1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>updateTriangleColor</b> ()</td></tr>
+<tr class="memitem:a871c5252a7a218c5d405be5dfc3dbfa1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a871c5252a7a218c5d405be5dfc3dbfa1">updateTriangleColor</a> ()</td></tr>
 <tr class="separator:a871c5252a7a218c5d405be5dfc3dbfa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a323d335cf261b7156da1a59aaf28c40c"><td class="memItemLeft" align="right" valign="top"><a id="a323d335cf261b7156da1a59aaf28c40c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>initializeGL</b> () override</td></tr>
+<tr class="memitem:a323d335cf261b7156da1a59aaf28c40c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a323d335cf261b7156da1a59aaf28c40c">initializeGL</a> () override</td></tr>
 <tr class="separator:a323d335cf261b7156da1a59aaf28c40c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf11c928f52c91d7f60317922df7ca73"><td class="memItemLeft" align="right" valign="top"><a id="aaf11c928f52c91d7f60317922df7ca73"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>resizeGL</b> (int w, int h) override</td></tr>
+<tr class="memitem:aaf11c928f52c91d7f60317922df7ca73"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#aaf11c928f52c91d7f60317922df7ca73">resizeGL</a> (int w, int h) override</td></tr>
 <tr class="separator:aaf11c928f52c91d7f60317922df7ca73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a122b798a2eb0c251f53671009abdf8c8"><td class="memItemLeft" align="right" valign="top"><a id="a122b798a2eb0c251f53671009abdf8c8"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>paintGL</b> () override</td></tr>
+<tr class="memitem:a122b798a2eb0c251f53671009abdf8c8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a122b798a2eb0c251f53671009abdf8c8">paintGL</a> () override</td></tr>
 <tr class="separator:a122b798a2eb0c251f53671009abdf8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac658d6e1cdc99280ecff045f92fe1ba3"><td class="memItemLeft" align="right" valign="top"><a id="ac658d6e1cdc99280ecff045f92fe1ba3"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>mousePressEvent</b> (QMouseEvent *event) override</td></tr>
+<tr class="memitem:ac658d6e1cdc99280ecff045f92fe1ba3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#ac658d6e1cdc99280ecff045f92fe1ba3">mousePressEvent</a> (QMouseEvent *event) override</td></tr>
 <tr class="separator:ac658d6e1cdc99280ecff045f92fe1ba3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef63eed14a55be78015576296dce516e"><td class="memItemLeft" align="right" valign="top"><a id="aef63eed14a55be78015576296dce516e"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>mouseMoveEvent</b> (QMouseEvent *event) override</td></tr>
+<tr class="memitem:aef63eed14a55be78015576296dce516e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#aef63eed14a55be78015576296dce516e">mouseMoveEvent</a> (QMouseEvent *event) override</td></tr>
 <tr class="separator:aef63eed14a55be78015576296dce516e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaecd84d746763a4bd6f46a6d55a36d84"><td class="memItemLeft" align="right" valign="top"><a id="aaecd84d746763a4bd6f46a6d55a36d84"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>wheelEvent</b> (QWheelEvent *event) override</td></tr>
+<tr class="memitem:aaecd84d746763a4bd6f46a6d55a36d84"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#aaecd84d746763a4bd6f46a6d55a36d84">wheelEvent</a> (QWheelEvent *event) override</td></tr>
 <tr class="separator:aaecd84d746763a4bd6f46a6d55a36d84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a3b76a33d6cd44b6932cd5abfd87aa437"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_render_data.html">RenderData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a3b76a33d6cd44b6932cd5abfd87aa437">renderData</a></td></tr>
+<tr class="separator:a3b76a33d6cd44b6932cd5abfd87aa437"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c74179ab1176fd399908f8c02fb2074"><td class="memItemLeft" align="right" valign="top">QPointF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a9c74179ab1176fd399908f8c02fb2074">m_lastPosition</a></td></tr>
+<tr class="separator:a9c74179ab1176fd399908f8c02fb2074"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7521b0a71d5dd0d8787e041406caf5b7"><td class="memItemLeft" align="right" valign="top">QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a7521b0a71d5dd0d8787e041406caf5b7">m_position</a></td></tr>
+<tr class="separator:a7521b0a71d5dd0d8787e041406caf5b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f7581e37c8a223893db2127b8e272d7"><td class="memItemLeft" align="right" valign="top">QVector3D&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a1f7581e37c8a223893db2127b8e272d7">m_rotation</a></td></tr>
+<tr class="separator:a1f7581e37c8a223893db2127b8e272d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bd9a3973094ca2bbb1481a0e8451087"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a8bd9a3973094ca2bbb1481a0e8451087">m_fovy</a></td></tr>
+<tr class="separator:a8bd9a3973094ca2bbb1481a0e8451087"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66eaf7bcee8035c24b53c420c93c02e8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a66eaf7bcee8035c24b53c420c93c02e8">aspectRatioWidthToHeight</a></td></tr>
+<tr class="separator:a66eaf7bcee8035c24b53c420c93c02e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba9b46a78fb5eff80d02063d4152a9d6"><td class="memItemLeft" align="right" valign="top">QOpenGLBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#aba9b46a78fb5eff80d02063d4152a9d6">vbo_points</a></td></tr>
+<tr class="separator:aba9b46a78fb5eff80d02063d4152a9d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c162cb7ab54e55f24ccc2c3eb8bad23"><td class="memItemLeft" align="right" valign="top">QOpenGLBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a8c162cb7ab54e55f24ccc2c3eb8bad23">vbo_sphereVertices</a></td></tr>
+<tr class="separator:a8c162cb7ab54e55f24ccc2c3eb8bad23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fda2683474fcdc448cd73fb6329da8b"><td class="memItemLeft" align="right" valign="top">QOpenGLBuffer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphere_widget.html#a0fda2683474fcdc448cd73fb6329da8b">vbo_vertexColors</a></td></tr>
+<tr class="separator:a0fda2683474fcdc448cd73fb6329da8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A custom OpenGLWidget to render the scene from data collected inside the <a class="el" href="class_render_data.html">RenderData</a> singleton. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+<div class="textblock"><p>A custom OpenGLWidget to render the scene from data collected inside the <a class="el" href="class_render_data.html" title="Singleton that stores and calculates all logical application data. ">RenderData</a> singleton. </p>
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00027">27</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a6ee7b3a4b58e5d62fb1c901aafdd1790"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ee7b3a4b58e5d62fb1c901aafdd1790">&#9670;&nbsp;</a></span>SphereWidget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SphereWidget::SphereWidget </td>
+          <td>(</td>
+          <td class="paramtype">QWidget *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8cpp_source.html#l00004">4</a> of file <a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a1766e5d68f4c57f52d6b1ee40cc0326c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1766e5d68f4c57f52d6b1ee40cc0326c">&#9670;&nbsp;</a></span>~SphereWidget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SphereWidget::~SphereWidget </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00033">33</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a323d335cf261b7156da1a59aaf28c40c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a323d335cf261b7156da1a59aaf28c40c">&#9670;&nbsp;</a></span>initializeGL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SphereWidget::initializeGL </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8cpp_source.html#l00019">19</a> of file <a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aef63eed14a55be78015576296dce516e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef63eed14a55be78015576296dce516e">&#9670;&nbsp;</a></span>mouseMoveEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SphereWidget::mouseMoveEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8cpp_source.html#l00103">103</a> of file <a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ac658d6e1cdc99280ecff045f92fe1ba3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac658d6e1cdc99280ecff045f92fe1ba3">&#9670;&nbsp;</a></span>mousePressEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SphereWidget::mousePressEvent </td>
+          <td>(</td>
+          <td class="paramtype">QMouseEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8cpp_source.html#l00099">99</a> of file <a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a122b798a2eb0c251f53671009abdf8c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a122b798a2eb0c251f53671009abdf8c8">&#9670;&nbsp;</a></span>paintGL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SphereWidget::paintGL </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8cpp_source.html#l00040">40</a> of file <a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aaf11c928f52c91d7f60317922df7ca73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf11c928f52c91d7f60317922df7ca73">&#9670;&nbsp;</a></span>resizeGL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SphereWidget::resizeGL </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8cpp_source.html#l00035">35</a> of file <a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a692ca1c1e7556f6abd7b5f6a49a2557c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a692ca1c1e7556f6abd7b5f6a49a2557c">&#9670;&nbsp;</a></span>updatePoints()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SphereWidget::updatePoints </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8cpp_source.html#l00131">131</a> of file <a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a7d132800fb4d6b7b925c253679bb6445"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d132800fb4d6b7b925c253679bb6445">&#9670;&nbsp;</a></span>updateSphereVertices()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SphereWidget::updateSphereVertices </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8cpp_source.html#l00141">141</a> of file <a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a871c5252a7a218c5d405be5dfc3dbfa1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a871c5252a7a218c5d405be5dfc3dbfa1">&#9670;&nbsp;</a></span>updateTriangleColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SphereWidget::updateTriangleColor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8cpp_source.html#l00153">153</a> of file <a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aaecd84d746763a4bd6f46a6d55a36d84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaecd84d746763a4bd6f46a6d55a36d84">&#9670;&nbsp;</a></span>wheelEvent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SphereWidget::wheelEvent </td>
+          <td>(</td>
+          <td class="paramtype">QWheelEvent *&#160;</td>
+          <td class="paramname"><em>event</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8cpp_source.html#l00124">124</a> of file <a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a66eaf7bcee8035c24b53c420c93c02e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66eaf7bcee8035c24b53c420c93c02e8">&#9670;&nbsp;</a></span>aspectRatioWidthToHeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SphereWidget::aspectRatioWidthToHeight</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00057">57</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+
+</div>
+</div>
+<a id="a8bd9a3973094ca2bbb1481a0e8451087"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bd9a3973094ca2bbb1481a0e8451087">&#9670;&nbsp;</a></span>m_fovy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SphereWidget::m_fovy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00056">56</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+
+</div>
+</div>
+<a id="a9c74179ab1176fd399908f8c02fb2074"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c74179ab1176fd399908f8c02fb2074">&#9670;&nbsp;</a></span>m_lastPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QPointF SphereWidget::m_lastPosition</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00052">52</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+
+</div>
+</div>
+<a id="a7521b0a71d5dd0d8787e041406caf5b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7521b0a71d5dd0d8787e041406caf5b7">&#9670;&nbsp;</a></span>m_position</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D SphereWidget::m_position</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00053">53</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+
+</div>
+</div>
+<a id="a1f7581e37c8a223893db2127b8e272d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f7581e37c8a223893db2127b8e272d7">&#9670;&nbsp;</a></span>m_rotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QVector3D SphereWidget::m_rotation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00054">54</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+
+</div>
+</div>
+<a id="a3b76a33d6cd44b6932cd5abfd87aa437"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b76a33d6cd44b6932cd5abfd87aa437">&#9670;&nbsp;</a></span>renderData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_render_data.html">RenderData</a>* SphereWidget::renderData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00050">50</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+
+</div>
+</div>
+<a id="aba9b46a78fb5eff80d02063d4152a9d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba9b46a78fb5eff80d02063d4152a9d6">&#9670;&nbsp;</a></span>vbo_points</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLBuffer SphereWidget::vbo_points</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00059">59</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+
+</div>
+</div>
+<a id="a8c162cb7ab54e55f24ccc2c3eb8bad23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c162cb7ab54e55f24ccc2c3eb8bad23">&#9670;&nbsp;</a></span>vbo_sphereVertices</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLBuffer SphereWidget::vbo_sphereVertices</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00060">60</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+
+</div>
+</div>
+<a id="a0fda2683474fcdc448cd73fb6329da8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fda2683474fcdc448cd73fb6329da8b">&#9670;&nbsp;</a></span>vbo_vertexColors</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">QOpenGLBuffer SphereWidget::vbo_vertexColors</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="spherewidget_8h_source.html#l00061">61</a> of file <a class="el" href="spherewidget_8h_source.html">spherewidget.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="spherewidget_8h_source.html">spherewidget.h</a></li>
-<li>spherewidget.cpp</li>
+<li><a class="el" href="spherewidget_8cpp_source.html">spherewidget.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_sphere_widget.html">SphereWidget</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

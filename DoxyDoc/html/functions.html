@@ -5,13 +5,23 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Spherical histogramm: Class Members</title>
+<title>Spherical Histogram: Class Members</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -20,10 +30,26 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_smaller.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Spherical histogramm
+   <div id="projectname">Spherical Histogram
    </div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -33,16 +59,21 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
-<script type="text/javascript">
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
-</script>
-<div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -62,264 +93,267 @@ $(function() {
 
 <h3><a id="index__"></a>- _ -</h3><ul>
 <li>_instance
-: <a class="el" href="da/dce/class_render_data.html#a133da67a805762c95284248a7ea1526c">RenderData</a>
+: <a class="el" href="class_render_data.html#a133da67a805762c95284248a7ea1526c">RenderData</a>
 </li>
 </ul>
 
 
 <h3><a id="index_a"></a>- a -</h3><ul>
 <li>aspectRatioWidthToHeight
-: <a class="el" href="df/dda/class_sphere_widget.html#a66eaf7bcee8035c24b53c420c93c02e8">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a66eaf7bcee8035c24b53c420c93c02e8">SphereWidget</a>
 </li>
 </ul>
 
 
 <h3><a id="index_c"></a>- c -</h3><ul>
 <li>calculateNextSubdivision()
-: <a class="el" href="da/dce/class_render_data.html#ac1bbf9770f040e452f676358ee699767">RenderData</a>
+: <a class="el" href="class_render_data.html#ac1bbf9770f040e452f676358ee699767">RenderData</a>
 </li>
 <li>changeColorMap()
-: <a class="el" href="d9/dc6/class_main_window.html#a1cfcf14a3dbba8db45a2444a0fbe5a9f">MainWindow</a>
+: <a class="el" href="class_main_window.html#a1cfcf14a3dbba8db45a2444a0fbe5a9f">MainWindow</a>
 </li>
 <li>changeTriangleDepth()
-: <a class="el" href="d9/dc6/class_main_window.html#a7bdf36376a7474c5218923ed66baa937">MainWindow</a>
+: <a class="el" href="class_main_window.html#a7bdf36376a7474c5218923ed66baa937">MainWindow</a>
 </li>
 <li>colorMap
-: <a class="el" href="da/dce/class_render_data.html#a78b66cb01444d2d36c3ed9179705a716">RenderData</a>
+: <a class="el" href="class_render_data.html#a78b66cb01444d2d36c3ed9179705a716">RenderData</a>
 </li>
 <li>currentSphereDepth
-: <a class="el" href="da/dce/class_render_data.html#addeb27eb3a3e9c8bf50a3615fbcc8752">RenderData</a>
+: <a class="el" href="class_render_data.html#addeb27eb3a3e9c8bf50a3615fbcc8752">RenderData</a>
 </li>
 </ul>
 
 
 <h3><a id="index_d"></a>- d -</h3><ul>
 <li>depth
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#a32dc63866d12b3102942e14bb28238ff">SphereDepthData</a>
+: <a class="el" href="struct_sphere_depth_data.html#a32dc63866d12b3102942e14bb28238ff">SphereDepthData</a>
 </li>
 </ul>
 
 
 <h3><a id="index_f"></a>- f -</h3><ul>
 <li>filterPointsForTriangle()
-: <a class="el" href="da/dce/class_render_data.html#af74f8858b9e0dedb914f24390e140a04">RenderData</a>
+: <a class="el" href="class_render_data.html#af74f8858b9e0dedb914f24390e140a04">RenderData</a>
 </li>
 </ul>
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
 <li>generateIcosahedronAtDepthZero()
-: <a class="el" href="da/dce/class_render_data.html#adee024bdbedaae2cfd38bb2038b4aa48">RenderData</a>
+: <a class="el" href="class_render_data.html#adee024bdbedaae2cfd38bb2038b4aa48">RenderData</a>
 </li>
 <li>getColorsForTriangles()
-: <a class="el" href="da/dce/class_render_data.html#a58fe3351334cd518b930dfe0a0aa8732">RenderData</a>
+: <a class="el" href="class_render_data.html#a58fe3351334cd518b930dfe0a0aa8732">RenderData</a>
 </li>
 <li>getDepth()
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#a925a7e0a5486b49151d823471ebe7fe6">SphereDepthData</a>
+: <a class="el" href="struct_sphere_depth_data.html#a925a7e0a5486b49151d823471ebe7fe6">SphereDepthData</a>
 </li>
 <li>getInstance()
-: <a class="el" href="da/dce/class_render_data.html#a1fffc72f3dd17ab052d4fb2f025ef5a0">RenderData</a>
+: <a class="el" href="class_render_data.html#a1fffc72f3dd17ab052d4fb2f025ef5a0">RenderData</a>
 </li>
-<li>getMaxPointsPerTriangle()
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#ad151dd50ed037d91aecec6b285a3e342">SphereDepthData</a>
+<li>getMaxOfPointsPerTriangle()
+: <a class="el" href="struct_sphere_depth_data.html#a8794f19983ff01aaa21d7e4d46ae6615">SphereDepthData</a>
 </li>
 <li>getPointsAsVector()
-: <a class="el" href="da/dce/class_render_data.html#a24e60dcccd94c47c02e0e47f2ca7b5c2">RenderData</a>
+: <a class="el" href="class_render_data.html#a24e60dcccd94c47c02e0e47f2ca7b5c2">RenderData</a>
 </li>
 <li>getPointsPerTriangle()
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#af42bd1ede7948a735367755a61148adc">SphereDepthData</a>
+: <a class="el" href="struct_sphere_depth_data.html#af42bd1ede7948a735367755a61148adc">SphereDepthData</a>
 </li>
 <li>getTransformationMatrix()
-: <a class="el" href="da/dce/class_render_data.html#afbc604f853739d0198c9da5097987fa7">RenderData</a>
+: <a class="el" href="class_render_data.html#afbc604f853739d0198c9da5097987fa7">RenderData</a>
 </li>
 <li>getVertices()
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#adab658de163c515ec9a41a70300a0af9">SphereDepthData</a>
+: <a class="el" href="struct_sphere_depth_data.html#adab658de163c515ec9a41a70300a0af9">SphereDepthData</a>
 </li>
 <li>getVerticesAtCurrentDepth()
-: <a class="el" href="da/dce/class_render_data.html#a2aff56e1742b853bcae6f251e258085e">RenderData</a>
+: <a class="el" href="class_render_data.html#a2aff56e1742b853bcae6f251e258085e">RenderData</a>
 </li>
 </ul>
 
 
 <h3><a id="index_i"></a>- i -</h3><ul>
 <li>initializeGL()
-: <a class="el" href="df/dda/class_sphere_widget.html#a323d335cf261b7156da1a59aaf28c40c">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a323d335cf261b7156da1a59aaf28c40c">SphereWidget</a>
 </li>
 <li>insertTriangleIntoVerticesVector()
-: <a class="el" href="da/dce/class_render_data.html#a4fca77ce81a628de0ddaeb7d75a4c371">RenderData</a>
+: <a class="el" href="class_render_data.html#a4fca77ce81a628de0ddaeb7d75a4c371">RenderData</a>
 </li>
 <li>isEmpty()
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#acdda270334d050e23b82ad0f700c5c1c">SphereDepthData</a>
+: <a class="el" href="struct_sphere_depth_data.html#acdda270334d050e23b82ad0f700c5c1c">SphereDepthData</a>
 </li>
 </ul>
 
 
 <h3><a id="index_l"></a>- l -</h3><ul>
 <li>loadPointsFromFile()
-: <a class="el" href="da/dce/class_render_data.html#ac161f29f7d6ae6fd3912e8af7bdccdfd">RenderData</a>
+: <a class="el" href="class_render_data.html#ac161f29f7d6ae6fd3912e8af7bdccdfd">RenderData</a>
 </li>
 </ul>
 
 
 <h3><a id="index_m"></a>- m -</h3><ul>
 <li>m_fovy
-: <a class="el" href="df/dda/class_sphere_widget.html#a8bd9a3973094ca2bbb1481a0e8451087">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a8bd9a3973094ca2bbb1481a0e8451087">SphereWidget</a>
 </li>
 <li>m_lastPosition
-: <a class="el" href="df/dda/class_sphere_widget.html#a9c74179ab1176fd399908f8c02fb2074">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a9c74179ab1176fd399908f8c02fb2074">SphereWidget</a>
 </li>
 <li>m_position
-: <a class="el" href="df/dda/class_sphere_widget.html#a7521b0a71d5dd0d8787e041406caf5b7">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a7521b0a71d5dd0d8787e041406caf5b7">SphereWidget</a>
 </li>
 <li>m_rotation
-: <a class="el" href="df/dda/class_sphere_widget.html#a1f7581e37c8a223893db2127b8e272d7">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a1f7581e37c8a223893db2127b8e272d7">SphereWidget</a>
 </li>
 <li>MainWindow()
-: <a class="el" href="d9/dc6/class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db">MainWindow</a>
+: <a class="el" href="class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db">MainWindow</a>
 </li>
-<li>maxPointsPerTriangle
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#a2c3d3f7d890da5ebb7ae989c648d169f">SphereDepthData</a>
+<li>maxOfPointsPerTriangle
+: <a class="el" href="struct_sphere_depth_data.html#a6b284bce41596c9cbe39bda421c16cc6">SphereDepthData</a>
 </li>
 <li>mouseMoveEvent()
-: <a class="el" href="df/dda/class_sphere_widget.html#aef63eed14a55be78015576296dce516e">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#aef63eed14a55be78015576296dce516e">SphereWidget</a>
 </li>
 <li>mousePressEvent()
-: <a class="el" href="df/dda/class_sphere_widget.html#ac658d6e1cdc99280ecff045f92fe1ba3">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#ac658d6e1cdc99280ecff045f92fe1ba3">SphereWidget</a>
 </li>
 </ul>
 
 
 <h3><a id="index_n"></a>- n -</h3><ul>
 <li>normalize()
-: <a class="el" href="da/dce/class_render_data.html#ad8c590fd11eda06875112a74d318267f">RenderData</a>
+: <a class="el" href="class_render_data.html#ad8c590fd11eda06875112a74d318267f">RenderData</a>
 </li>
 </ul>
 
 
 <h3><a id="index_o"></a>- o -</h3><ul>
 <li>openFile()
-: <a class="el" href="d9/dc6/class_main_window.html#a288b768c3c21a9171bdc56fe845ece8b">MainWindow</a>
+: <a class="el" href="class_main_window.html#a288b768c3c21a9171bdc56fe845ece8b">MainWindow</a>
 </li>
 </ul>
 
 
 <h3><a id="index_p"></a>- p -</h3><ul>
 <li>paintGL()
-: <a class="el" href="df/dda/class_sphere_widget.html#a122b798a2eb0c251f53671009abdf8c8">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a122b798a2eb0c251f53671009abdf8c8">SphereWidget</a>
 </li>
 <li>pointInFirstQuadrantAfterTransformation()
-: <a class="el" href="da/dce/class_render_data.html#a7b32e615d46ac5ffbd3d14de0da2c406">RenderData</a>
+: <a class="el" href="class_render_data.html#a7b32e615d46ac5ffbd3d14de0da2c406">RenderData</a>
 </li>
 <li>points
-: <a class="el" href="da/dce/class_render_data.html#aaab890b2c9bac7bb08d5f257e98a7cb9">RenderData</a>
+: <a class="el" href="class_render_data.html#aaab890b2c9bac7bb08d5f257e98a7cb9">RenderData</a>
 </li>
 <li>pointsPerTriangle
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#a9decfacc00300c153ecff80288b7413f">SphereDepthData</a>
+: <a class="el" href="struct_sphere_depth_data.html#a9decfacc00300c153ecff80288b7413f">SphereDepthData</a>
 </li>
 </ul>
 
 
 <h3><a id="index_r"></a>- r -</h3><ul>
 <li>RenderData()
-: <a class="el" href="da/dce/class_render_data.html#a16b04b2437ea3fa034381a138cbf2f83">RenderData</a>
-, <a class="el" href="dc/d7c/struct_sphere_depth_data.html#a85dbb35e50f4a9c4a1d0f0c783959bdb">SphereDepthData</a>
+: <a class="el" href="class_render_data.html#a16b04b2437ea3fa034381a138cbf2f83">RenderData</a>
+, <a class="el" href="struct_sphere_depth_data.html#a85dbb35e50f4a9c4a1d0f0c783959bdb">SphereDepthData</a>
 </li>
 <li>renderData
-: <a class="el" href="df/dda/class_sphere_widget.html#a3b76a33d6cd44b6932cd5abfd87aa437">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a3b76a33d6cd44b6932cd5abfd87aa437">SphereWidget</a>
 </li>
 <li>resizeGL()
-: <a class="el" href="df/dda/class_sphere_widget.html#aaf11c928f52c91d7f60317922df7ca73">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#aaf11c928f52c91d7f60317922df7ca73">SphereWidget</a>
 </li>
 </ul>
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
 <li>setColorMap()
-: <a class="el" href="da/dce/class_render_data.html#adb1961bf93370d67c9efb416fde8fefb">RenderData</a>
+: <a class="el" href="class_render_data.html#adb1961bf93370d67c9efb416fde8fefb">RenderData</a>
 </li>
 <li>setPointsPerTriangle()
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#ac0d61e109f98ac7c5b7f4ea7381bc963">SphereDepthData</a>
+: <a class="el" href="struct_sphere_depth_data.html#ac0d61e109f98ac7c5b7f4ea7381bc963">SphereDepthData</a>
 </li>
 <li>setSphereDepth()
-: <a class="el" href="da/dce/class_render_data.html#a8d5f7285d29dc9ca0f93fcf2b5826283">RenderData</a>
+: <a class="el" href="class_render_data.html#a8d5f7285d29dc9ca0f93fcf2b5826283">RenderData</a>
 </li>
 <li>setVertices()
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#a95e070bea3d8ec4a0449044e4616208f">SphereDepthData</a>
+: <a class="el" href="struct_sphere_depth_data.html#a95e070bea3d8ec4a0449044e4616208f">SphereDepthData</a>
 </li>
 <li>sphereBorderVertices
-: <a class="el" href="da/dce/class_render_data.html#aadf6eefa26ab7f440571b651d38d6e0e">RenderData</a>
+: <a class="el" href="class_render_data.html#aadf6eefa26ab7f440571b651d38d6e0e">RenderData</a>
 </li>
 <li>SphereDepthData()
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#adf3b418ea38626e3d768240d257504ea">SphereDepthData</a>
+: <a class="el" href="struct_sphere_depth_data.html#adf3b418ea38626e3d768240d257504ea">SphereDepthData</a>
 </li>
 <li>spheres
-: <a class="el" href="da/dce/class_render_data.html#af8d7292450ad6bba825a6dbb75be217c">RenderData</a>
+: <a class="el" href="class_render_data.html#af8d7292450ad6bba825a6dbb75be217c">RenderData</a>
 </li>
 <li>sphereWidget
-: <a class="el" href="d9/dc6/class_main_window.html#afc60f18ae3cf60a9c231d8344a5bbda8">MainWindow</a>
+: <a class="el" href="class_main_window.html#afc60f18ae3cf60a9c231d8344a5bbda8">MainWindow</a>
 </li>
 <li>SphereWidget()
-: <a class="el" href="df/dda/class_sphere_widget.html#a6ee7b3a4b58e5d62fb1c901aafdd1790">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a6ee7b3a4b58e5d62fb1c901aafdd1790">SphereWidget</a>
 </li>
 </ul>
 
 
 <h3><a id="index_u"></a>- u -</h3><ul>
 <li>ui
-: <a class="el" href="d9/dc6/class_main_window.html#a35466a70ed47252a0191168126a352a5">MainWindow</a>
+: <a class="el" href="class_main_window.html#a35466a70ed47252a0191168126a352a5">MainWindow</a>
 </li>
-<li>updateMaxPointsPerTriangle()
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#a4cf92f63341fd72e6659dcd1501eb2ac">SphereDepthData</a>
+<li>updateMaxOfPointsPerTriangle()
+: <a class="el" href="struct_sphere_depth_data.html#abd8824844f88cc2b9b794c6586f5b30c">SphereDepthData</a>
 </li>
 <li>updatePoints()
-: <a class="el" href="df/dda/class_sphere_widget.html#a692ca1c1e7556f6abd7b5f6a49a2557c">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a692ca1c1e7556f6abd7b5f6a49a2557c">SphereWidget</a>
 </li>
 <li>updateSphereVertices()
-: <a class="el" href="df/dda/class_sphere_widget.html#a7d132800fb4d6b7b925c253679bb6445">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a7d132800fb4d6b7b925c253679bb6445">SphereWidget</a>
 </li>
 <li>updateTriangleColor()
-: <a class="el" href="df/dda/class_sphere_widget.html#a871c5252a7a218c5d405be5dfc3dbfa1">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a871c5252a7a218c5d405be5dfc3dbfa1">SphereWidget</a>
 </li>
 </ul>
 
 
 <h3><a id="index_v"></a>- v -</h3><ul>
 <li>vbo_points
-: <a class="el" href="df/dda/class_sphere_widget.html#aba9b46a78fb5eff80d02063d4152a9d6">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#aba9b46a78fb5eff80d02063d4152a9d6">SphereWidget</a>
 </li>
 <li>vbo_sphereVertices
-: <a class="el" href="df/dda/class_sphere_widget.html#a8c162cb7ab54e55f24ccc2c3eb8bad23">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a8c162cb7ab54e55f24ccc2c3eb8bad23">SphereWidget</a>
 </li>
 <li>vbo_vertexColors
-: <a class="el" href="df/dda/class_sphere_widget.html#a0fda2683474fcdc448cd73fb6329da8b">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a0fda2683474fcdc448cd73fb6329da8b">SphereWidget</a>
 </li>
 <li>vertices
-: <a class="el" href="dc/d7c/struct_sphere_depth_data.html#a139a9131aa15308e012fc8190de2011d">SphereDepthData</a>
+: <a class="el" href="struct_sphere_depth_data.html#a139a9131aa15308e012fc8190de2011d">SphereDepthData</a>
 </li>
 </ul>
 
 
 <h3><a id="index_w"></a>- w -</h3><ul>
 <li>wheelEvent()
-: <a class="el" href="df/dda/class_sphere_widget.html#aaecd84d746763a4bd6f46a6d55a36d84">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#aaecd84d746763a4bd6f46a6d55a36d84">SphereWidget</a>
 </li>
 </ul>
 
 
 <h3><a id="index_0x7e"></a>- ~ -</h3><ul>
 <li>~MainWindow()
-: <a class="el" href="d9/dc6/class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow</a>
+: <a class="el" href="class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7">MainWindow</a>
 </li>
 <li>~SphereWidget()
-: <a class="el" href="df/dda/class_sphere_widget.html#a1766e5d68f4c57f52d6b1ee40cc0326c">SphereWidget</a>
+: <a class="el" href="class_sphere_widget.html#a1766e5d68f4c57f52d6b1ee40cc0326c">SphereWidget</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

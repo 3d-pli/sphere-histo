@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ui',['Ui',['../dc/df0/namespace_ui.html',1,'']]]
+  ['ui',['Ui',['../namespace_ui.html',1,'']]]
 ];

@@ -1,0 +1,7 @@
+<map id="SphereDepthData::getMaxPointsPerTriangle" name="SphereDepthData::getMaxPointsPerTriangle">
+<area shape="rect" id="node2" href="$da/dce/class_render_data.html#a58fe3351334cd518b930dfe0a0aa8732" title="RenderData::getColorsFor\lTriangles" alt="" coords="268,18,443,59"/>
+<area shape="rect" id="node3" href="$df/dda/class_sphere_widget.html#a871c5252a7a218c5d405be5dfc3dbfa1" title="SphereWidget::updateTriangle\lColor" alt="" coords="491,18,688,59"/>
+<area shape="rect" id="node4" href="$df/dda/class_sphere_widget.html#a323d335cf261b7156da1a59aaf28c40c" title="SphereWidget::initializeGL" alt="" coords="976,26,1152,53"/>
+<area shape="rect" id="node5" href="$df/dda/class_sphere_widget.html#a1766e5d68f4c57f52d6b1ee40cc0326c" title="SphereWidget::~SphereWidget" alt="" coords="1200,26,1403,53"/>
+<area shape="rect" id="node6" href="$df/dda/class_sphere_widget.html#a7d132800fb4d6b7b925c253679bb6445" title="SphereWidget::updateSphere\lVertices" alt="" coords="736,76,928,118"/>
+</map>

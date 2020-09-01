@@ -1,2 +1,4 @@
 <map id="MainWindow" name="MainWindow">
+<area shape="rect" id="node3" href="$class_sphere_widget.html" title="{SphereWidget\n|&#45; m_lastPosition\l&#45; m_position\l&#45; m_rotation\l&#45; m_fovy\l&#45; aspectRatioWidthToHeight\l&#45; vbo_points\l&#45; vbo_sphereVertices\l&#45; vbo_vertexColors\l|+ SphereWidget()\l+ ~SphereWidget()\l+ updatePoints()\l+ updateSphereVertices()\l+ updateTriangleColor()\l# initializeGL()\l# resizeGL()\l# paintGL()\l# mousePressEvent()\l# mouseMoveEvent()\l# wheelEvent()\l}" alt="" coords="136,453,323,780"/>
+<area shape="rect" id="node6" href="$class_render_data.html" title="Singleton that stores and calculates all logical application data. " alt="" coords="322,5,555,391"/>
 </map>
