@@ -1,7 +1,6 @@
 <map id="spherewidget.cpp" name="spherewidget.cpp">
-<area shape="rect" id="node2" href="$spherewidget_8h.html" title="spherewidget.h" alt="" coords="480,80,591,107"/>
-<area shape="rect" id="node10" href="$icosphere_8h.html" title="icosphere.h" alt="" coords="947,229,1036,256"/>
-<area shape="rect" id="node19" href="$colormaps__matplotlib_8h.html" title="resources/colormaps\l_matplotlib.h" alt="" coords="1764,393,1907,435"/>
-<area shape="rect" id="node22" href="$renderdata_8h.html" title="renderdata.h" alt="" coords="1527,155,1621,181"/>
-<area shape="rect" id="node17" href="$spheredepthdata_8h.html" title="spheredepthdata.h" alt="" coords="1555,311,1684,338"/>
+<area shape="rect" id="node2" href="$spherewidget_8h.html" title="spherewidget.h" alt="" coords="757,80,868,107"/>
+<area shape="rect" id="node10" href="$renderdata_8h.html" title="renderdata.h" alt="" coords="851,155,945,181"/>
+<area shape="rect" id="node18" href="$colormaps__matplotlib_8h.html" title="resources/colormaps\l_matplotlib.h" alt="" coords="943,319,1085,360"/>
+<area shape="rect" id="node20" href="$spheredepthdata_8h.html" title="spheredepthdata.h" alt="" coords="1049,237,1179,263"/>
 </map>

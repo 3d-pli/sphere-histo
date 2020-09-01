@@ -14,5 +14,5 @@ var colormaps__matplotlib_8h =
     [ "_plasma_data", "colormaps__matplotlib_8h.html#a5e6bdf45c99146f14941db900036b42c", null ],
     [ "_turbo_data", "colormaps__matplotlib_8h.html#a1394411b557deb7b6f8c58a9c39ff4a3", null ],
     [ "_viridis_data", "colormaps__matplotlib_8h.html#af931122787ac6cf5d5c8d834adcb3fc8", null ],
-    [ "qStringToColorEnum", "colormaps__matplotlib_8h.html#a15083c75e20e3cb25b34ac29a4d66413", null ]
+    [ "stringToColorEnum", "colormaps__matplotlib_8h.html#a62bba085a1fd823321f70d53df62ed53", null ]
 ];

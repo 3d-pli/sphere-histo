@@ -4,9 +4,9 @@ SphereDepthData::SphereDepthData(short depth, std::vector<float> vertices, std::
     : depth(depth),
       vertices(vertices),
       pointsPerTriangle(pointsPerTriangle),
-      maxPointsPerTriangle(0)
+      maxOfPointsPerTriangle(0)
 {
-    updateMaxPointsPerTriangle();
+    updateMaxOfPointsPerTriangle();
 }
 
 std::vector<float> SphereDepthData::getVertices() const
@@ -14,16 +14,16 @@ std::vector<float> SphereDepthData::getVertices() const
     return vertices;
 }
 
-size_t SphereDepthData::getMaxPointsPerTriangle()
+size_t SphereDepthData::getMaxOfPointsPerTriangle()
 {
-    updateMaxPointsPerTriangle();
-    return maxPointsPerTriangle;
+    updateMaxOfPointsPerTriangle();
+    return maxOfPointsPerTriangle;
 }
 
 void SphereDepthData::setVertices(std::vector<float> value)
 {
     vertices = value;
-    updateMaxPointsPerTriangle();
+    updateMaxOfPointsPerTriangle();
 }
 
 std::vector<std::list<QVector3D> > SphereDepthData::getPointsPerTriangle() const
@@ -34,7 +34,7 @@ std::vector<std::list<QVector3D> > SphereDepthData::getPointsPerTriangle() const
 void SphereDepthData::setPointsPerTriangle(const std::vector<std::list<QVector3D> > &value)
 {
     pointsPerTriangle = value;
-    updateMaxPointsPerTriangle();
+    updateMaxOfPointsPerTriangle();
 }
 
 short SphereDepthData::getDepth() const
@@ -42,11 +42,11 @@ short SphereDepthData::getDepth() const
     return depth;
 }
 
-void SphereDepthData::updateMaxPointsPerTriangle(){
-    maxPointsPerTriangle = 0;
+void SphereDepthData::updateMaxOfPointsPerTriangle(){
+    maxOfPointsPerTriangle = 0;
     for(std::list<QVector3D>& points: pointsPerTriangle){
-        if(points.size() > maxPointsPerTriangle){
-            maxPointsPerTriangle = points.size();
+        if(points.size() > maxOfPointsPerTriangle){
+            maxOfPointsPerTriangle = points.size();
         }
     }
 }

@@ -2,45 +2,138 @@
 \label{class_main_window}\index{Main\+Window@{Main\+Window}}
 
 
-Inheritance diagram for Main\+Window\+:
-\nopagebreak
+{\ttfamily \#include $<$mainwindow.\+h$>$}
+
+
+
+Inheritance diagram for Main\+Window\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=160pt]{class_main_window__inherit__graph}
+\includegraphics[width=204pt]{class_main_window__inherit__graph}
 \end{center}
 \end{figure}
 
 
-Collaboration diagram for Main\+Window\+:
-\nopagebreak
+Collaboration diagram for Main\+Window\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=160pt]{class_main_window__coll__graph}
+\includegraphics[width=350pt]{class_main_window__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Slots}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_main_window_a7bdf36376a7474c5218923ed66baa937}\label{class_main_window_a7bdf36376a7474c5218923ed66baa937}} 
-void {\bfseries change\+Triangle\+Depth} (int depth)
+void \hyperlink{class_main_window_a7bdf36376a7474c5218923ed66baa937}{change\+Triangle\+Depth} (int depth)
 \item 
-\mbox{\Hypertarget{class_main_window_a288b768c3c21a9171bdc56fe845ece8b}\label{class_main_window_a288b768c3c21a9171bdc56fe845ece8b}} 
-void {\bfseries open\+File} ()
+void \hyperlink{class_main_window_a288b768c3c21a9171bdc56fe845ece8b}{open\+File} ()
 \item 
-\mbox{\Hypertarget{class_main_window_a1cfcf14a3dbba8db45a2444a0fbe5a9f}\label{class_main_window_a1cfcf14a3dbba8db45a2444a0fbe5a9f}} 
-void {\bfseries change\+Color\+Map} (Q\+String map\+Name)
+void \hyperlink{class_main_window_a1cfcf14a3dbba8db45a2444a0fbe5a9f}{change\+Color\+Map} (Q\+String map\+Name)
 \end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}\label{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}} 
-{\bfseries Main\+Window} (Q\+Widget $\ast$parent=0)
+\hyperlink{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}{Main\+Window} (Q\+Widget $\ast$parent=0)
+\item 
+\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{$\sim$\+Main\+Window} ()
 \end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Ui\+::\+Main\+Window $\ast$ \hyperlink{class_main_window_a35466a70ed47252a0191168126a352a5}{ui}
+\item 
+\hyperlink{class_sphere_widget}{Sphere\+Widget} $\ast$ \hyperlink{class_main_window_afc60f18ae3cf60a9c231d8344a5bbda8}{sphere\+Widget}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 14 of file mainwindow.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}\label{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}} 
+\index{Main\+Window@{Main\+Window}!Main\+Window@{Main\+Window}}
+\index{Main\+Window@{Main\+Window}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{Main\+Window()}{MainWindow()}}
+{\footnotesize\ttfamily Main\+Window\+::\+Main\+Window (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Definition at line 6 of file mainwindow.\+cpp.
+
+\mbox{\Hypertarget{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}\label{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}} 
+\index{Main\+Window@{Main\+Window}!````~Main\+Window@{$\sim$\+Main\+Window}}
+\index{````~Main\+Window@{$\sim$\+Main\+Window}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{$\sim$\+Main\+Window()}{~MainWindow()}}
+{\footnotesize\ttfamily Main\+Window\+::$\sim$\+Main\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file mainwindow.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_main_window_a1cfcf14a3dbba8db45a2444a0fbe5a9f}\label{class_main_window_a1cfcf14a3dbba8db45a2444a0fbe5a9f}} 
+\index{Main\+Window@{Main\+Window}!change\+Color\+Map@{change\+Color\+Map}}
+\index{change\+Color\+Map@{change\+Color\+Map}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{change\+Color\+Map}{changeColorMap}}
+{\footnotesize\ttfamily void Main\+Window\+::change\+Color\+Map (\begin{DoxyParamCaption}\item[{Q\+String}]{map\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Definition at line 46 of file mainwindow.\+cpp.
+
+\mbox{\Hypertarget{class_main_window_a7bdf36376a7474c5218923ed66baa937}\label{class_main_window_a7bdf36376a7474c5218923ed66baa937}} 
+\index{Main\+Window@{Main\+Window}!change\+Triangle\+Depth@{change\+Triangle\+Depth}}
+\index{change\+Triangle\+Depth@{change\+Triangle\+Depth}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{change\+Triangle\+Depth}{changeTriangleDepth}}
+{\footnotesize\ttfamily void Main\+Window\+::change\+Triangle\+Depth (\begin{DoxyParamCaption}\item[{int}]{depth }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Definition at line 28 of file mainwindow.\+cpp.
+
+\mbox{\Hypertarget{class_main_window_a288b768c3c21a9171bdc56fe845ece8b}\label{class_main_window_a288b768c3c21a9171bdc56fe845ece8b}} 
+\index{Main\+Window@{Main\+Window}!open\+File@{open\+File}}
+\index{open\+File@{open\+File}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{open\+File}{openFile}}
+{\footnotesize\ttfamily void Main\+Window\+::open\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Definition at line 34 of file mainwindow.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{class_main_window_afc60f18ae3cf60a9c231d8344a5bbda8}\label{class_main_window_afc60f18ae3cf60a9c231d8344a5bbda8}} 
+\index{Main\+Window@{Main\+Window}!sphere\+Widget@{sphere\+Widget}}
+\index{sphere\+Widget@{sphere\+Widget}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{sphere\+Widget}{sphereWidget}}
+{\footnotesize\ttfamily \hyperlink{class_sphere_widget}{Sphere\+Widget}$\ast$ Main\+Window\+::sphere\+Widget\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 29 of file mainwindow.\+h.
+
+\mbox{\Hypertarget{class_main_window_a35466a70ed47252a0191168126a352a5}\label{class_main_window_a35466a70ed47252a0191168126a352a5}} 
+\index{Main\+Window@{Main\+Window}!ui@{ui}}
+\index{ui@{ui}!Main\+Window@{Main\+Window}}
+\subsubsection{\texorpdfstring{ui}{ui}}
+{\footnotesize\ttfamily Ui\+::\+Main\+Window$\ast$ Main\+Window\+::ui\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Definition at line 28 of file mainwindow.\+h.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-mainwindow.\+h\item 
-mainwindow.\+cpp\end{DoxyCompactItemize}
+\hyperlink{mainwindow_8h}{mainwindow.\+h}\item 
+\hyperlink{mainwindow_8cpp}{mainwindow.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,17 @@
+<map id="MainWindow::MainWindow" name="MainWindow::MainWindow">
+<area shape="rect" id="node2" href="$d9/dc6/class_main_window.html#a7bdf36376a7474c5218923ed66baa937" title="MainWindow::changeTriangle\lDepth" alt="" coords="238,77,431,119"/>
+<area shape="rect" id="node3" href="$da/dce/class_render_data.html#a1fffc72f3dd17ab052d4fb2f025ef5a0" title="RenderData::getInstance" alt="" coords="487,143,655,170"/>
+<area shape="rect" id="node13" href="$d9/dc6/class_main_window.html#a288b768c3c21a9171bdc56fe845ece8b" title="MainWindow::openFile" alt="" coords="257,194,412,221"/>
+<area shape="rect" id="node15" href="$d9/dc6/class_main_window.html#a1cfcf14a3dbba8db45a2444a0fbe5a9f" title="MainWindow::changeColorMap" alt="" coords="233,245,436,271"/>
+<area shape="rect" id="node16" href="$da/dce/class_render_data.html#adb1961bf93370d67c9efb416fde8fefb" title="RenderData::setColorMap" alt="" coords="484,270,659,297"/>
+<area shape="rect" id="node5" href="$da/dce/class_render_data.html#a8d5f7285d29dc9ca0f93fcf2b5826283" title="RenderData::setSphereDepth" alt="" coords="967,143,1161,170"/>
+<area shape="rect" id="node4" href="$da/dce/class_render_data.html#a16b04b2437ea3fa034381a138cbf2f83" title="Sets initial sphere depth to 3. " alt="" coords="727,143,898,170"/>
+<area shape="rect" id="node6" href="$da/dce/class_render_data.html#adee024bdbedaae2cfd38bb2038b4aa48" title="RenderData::generateIcosahedron\lAtDepthZero" alt="" coords="1437,165,1659,207"/>
+<area shape="rect" id="node11" href="$da/dce/class_render_data.html#ac1bbf9770f040e452f676358ee699767" title="RenderData::calculateNext\lSubdivision" alt="" coords="1209,107,1389,148"/>
+<area shape="rect" id="node7" href="$da/dce/class_render_data.html#af74f8858b9e0dedb914f24390e140a04" title="RenderData::filterPoints\lForTriangle" alt="" coords="1715,67,1877,108"/>
+<area shape="rect" id="node10" href="$da/dce/class_render_data.html#a4fca77ce81a628de0ddaeb7d75a4c371" title="RenderData::insertTriangle\lIntoVerticesVector" alt="" coords="1707,149,1885,191"/>
+<area shape="rect" id="node8" href="$da/dce/class_render_data.html#afbc604f853739d0198c9da5097987fa7" title="RenderData::getTransformation\lMatrix" alt="" coords="1933,71,2139,112"/>
+<area shape="rect" id="node9" href="$da/dce/class_render_data.html#a7b32e615d46ac5ffbd3d14de0da2c406" title="RenderData::pointInFirst\lQuadrantAfterTransformation" alt="" coords="1941,5,2131,47"/>
+<area shape="rect" id="node12" href="$da/dce/class_render_data.html#ad8c590fd11eda06875112a74d318267f" title="RenderData::normalize" alt="" coords="1470,13,1626,39"/>
+<area shape="rect" id="node14" href="$da/dce/class_render_data.html#ac161f29f7d6ae6fd3912e8af7bdccdfd" title="RenderData::loadPointsFromFile" alt="" coords="707,194,919,221"/>
+</map>

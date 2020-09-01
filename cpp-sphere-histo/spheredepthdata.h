@@ -25,7 +25,7 @@ public:
 
     // Getters
     short getDepth() const;
-    size_t getMaxPointsPerTriangle();
+    size_t getMaxOfPointsPerTriangle();
     std::vector<std::list<QVector3D> > getPointsPerTriangle() const;
     std::vector<float> getVertices() const;
     inline bool isEmpty() const {  return vertices.empty(); }
@@ -41,9 +41,9 @@ private:
     short depth;      // probably unnecessary
     std::vector<float> vertices;
     std::vector<std::list<QVector3D> > pointsPerTriangle;
-    size_t maxPointsPerTriangle;
+    size_t maxOfPointsPerTriangle;
 
-    void updateMaxPointsPerTriangle();
+    void updateMaxOfPointsPerTriangle();
 };
 
 #endif // SPHEREDEPTHDATA_H

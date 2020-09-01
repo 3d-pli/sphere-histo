@@ -5,13 +5,23 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Kugelhisto: RenderData Class Reference</title>
+<title>Spherical Histogram: RenderData Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -20,10 +30,26 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_smaller.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Kugelhisto
+   <div id="projectname">Spherical Histogram
    </div>
   </td>
+   <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Search" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+</td>
  </tr>
  </tbody>
 </table>
@@ -33,15 +59,21 @@
 <script type="text/javascript">
 var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
-<script type="text/javascript" src="menudata.js"></script>
-<script type="text/javascript" src="menu.js"></script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
-$(function() {
-  initMenu('',true,false,'search.php','Search');
-  $(document).ready(function() { init_search(); });
-});
+$(document).ready(function(){initNavTree('class_render_data.html','');});
 </script>
-<div id="main-nav"></div>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -56,73 +88,478 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#friends">Friends</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="class_render_data-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">RenderData Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
+<p>Singleton that stores and calculates all logical application data.  
+ <a href="class_render_data.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="renderdata_8h_source.html">renderdata.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for RenderData:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_render_data__coll__graph.svg" width="334" height="396"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa07295cc6e370997b02e68c917ff05de"><td class="memItemLeft" align="right" valign="top"><a id="aa07295cc6e370997b02e68c917ff05de"></a>
-short&#160;</td><td class="memItemRight" valign="bottom"><b>getCurrentSphereDepth</b> () const</td></tr>
-<tr class="separator:aa07295cc6e370997b02e68c917ff05de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabd6bd86800c7fc53788ef92ccf1ceb8"><td class="memItemLeft" align="right" valign="top"><a id="aabd6bd86800c7fc53788ef92ccf1ceb8"></a>
-const float *&#160;</td><td class="memItemRight" valign="bottom"><b>getColorMap</b> () const</td></tr>
-<tr class="separator:aabd6bd86800c7fc53788ef92ccf1ceb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9683c1cf21e861efaf1f7c1b7aaa2cf9"><td class="memItemLeft" align="right" valign="top"><a id="a9683c1cf21e861efaf1f7c1b7aaa2cf9"></a>
-std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getPointsAsVector</b> (void)</td></tr>
-<tr class="separator:a9683c1cf21e861efaf1f7c1b7aaa2cf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac3ddb0af8cf9a0f2fb4d69815cf76b9d"><td class="memItemLeft" align="right" valign="top"><a id="ac3ddb0af8cf9a0f2fb4d69815cf76b9d"></a>
-std::list&lt; QVector3D &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getPoints</b> ()</td></tr>
-<tr class="separator:ac3ddb0af8cf9a0f2fb4d69815cf76b9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9896a3ed194123ccf5cca42012d4b5e5"><td class="memItemLeft" align="right" valign="top"><a id="a9896a3ed194123ccf5cca42012d4b5e5"></a>
-const std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getTriangleVerticesAndColorsAtCurrentDepth</b> ()</td></tr>
-<tr class="separator:a9896a3ed194123ccf5cca42012d4b5e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a58fe3351334cd518b930dfe0a0aa8732"><td class="memItemLeft" align="right" valign="top"><a id="a58fe3351334cd518b930dfe0a0aa8732"></a>
-std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getColorsForTriangles</b> (float alpha=1)</td></tr>
+<tr class="memitem:a58fe3351334cd518b930dfe0a0aa8732"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#a58fe3351334cd518b930dfe0a0aa8732">getColorsForTriangles</a> (float alpha=1)</td></tr>
 <tr class="separator:a58fe3351334cd518b930dfe0a0aa8732"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cd691fd6f3cfbd22a1b84daffd2dba2"><td class="memItemLeft" align="right" valign="top"><a id="a8cd691fd6f3cfbd22a1b84daffd2dba2"></a>
-std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getVerticesAtCurrentDepth</b> ()</td></tr>
-<tr class="separator:a8cd691fd6f3cfbd22a1b84daffd2dba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d5f7285d29dc9ca0f93fcf2b5826283"><td class="memItemLeft" align="right" valign="top"><a id="a8d5f7285d29dc9ca0f93fcf2b5826283"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setSphereDepth</b> (short depth)</td></tr>
+<tr class="memitem:a24e60dcccd94c47c02e0e47f2ca7b5c2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#a24e60dcccd94c47c02e0e47f2ca7b5c2">getPointsAsVector</a> () const</td></tr>
+<tr class="separator:a24e60dcccd94c47c02e0e47f2ca7b5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2aff56e1742b853bcae6f251e258085e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#a2aff56e1742b853bcae6f251e258085e">getVerticesAtCurrentDepth</a> () const</td></tr>
+<tr class="separator:a2aff56e1742b853bcae6f251e258085e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d5f7285d29dc9ca0f93fcf2b5826283"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#a8d5f7285d29dc9ca0f93fcf2b5826283">setSphereDepth</a> (short depth)</td></tr>
 <tr class="separator:a8d5f7285d29dc9ca0f93fcf2b5826283"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb1961bf93370d67c9efb416fde8fefb"><td class="memItemLeft" align="right" valign="top"><a id="adb1961bf93370d67c9efb416fde8fefb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setColorMap</b> (QString colorMapName)</td></tr>
+<tr class="memitem:adb1961bf93370d67c9efb416fde8fefb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#adb1961bf93370d67c9efb416fde8fefb">setColorMap</a> (QString colorMapName)</td></tr>
 <tr class="separator:adb1961bf93370d67c9efb416fde8fefb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac161f29f7d6ae6fd3912e8af7bdccdfd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#ac161f29f7d6ae6fd3912e8af7bdccdfd">loadPointsFromFile</a> (std::string filename)</td></tr>
 <tr class="separator:ac161f29f7d6ae6fd3912e8af7bdccdfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a1fffc72f3dd17ab052d4fb2f025ef5a0"><td class="memItemLeft" align="right" valign="top"><a id="a1fffc72f3dd17ab052d4fb2f025ef5a0"></a>
-static <a class="el" href="class_render_data.html">RenderData</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getInstance</b> ()</td></tr>
+<tr class="memitem:a1fffc72f3dd17ab052d4fb2f025ef5a0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_render_data.html">RenderData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#a1fffc72f3dd17ab052d4fb2f025ef5a0">getInstance</a> ()</td></tr>
 <tr class="separator:a1fffc72f3dd17ab052d4fb2f025ef5a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:aae9e6e2f2e7f9a8cde35b65facc0750b"><td class="memItemLeft" align="right" valign="top"><a id="aae9e6e2f2e7f9a8cde35b65facc0750b"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>Icosphere</b></td></tr>
-<tr class="separator:aae9e6e2f2e7f9a8cde35b65facc0750b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a16b04b2437ea3fa034381a138cbf2f83"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#a16b04b2437ea3fa034381a138cbf2f83">RenderData</a> ()</td></tr>
+<tr class="memdesc:a16b04b2437ea3fa034381a138cbf2f83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets initial sphere depth to 3.  <a href="#a16b04b2437ea3fa034381a138cbf2f83">More...</a><br /></td></tr>
+<tr class="separator:a16b04b2437ea3fa034381a138cbf2f83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5f9324f666abc4b85fd2c6ed868c6be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#ab5f9324f666abc4b85fd2c6ed868c6be">RenderData</a> (const <a class="el" href="class_render_data.html">RenderData</a> &amp;)=delete</td></tr>
+<tr class="memdesc:ab5f9324f666abc4b85fd2c6ed868c6be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Explicit removal to guarantee strict singleton pattern.  <a href="#ab5f9324f666abc4b85fd2c6ed868c6be">More...</a><br /></td></tr>
+<tr class="separator:ab5f9324f666abc4b85fd2c6ed868c6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adee024bdbedaae2cfd38bb2038b4aa48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#adee024bdbedaae2cfd38bb2038b4aa48">generateIcosahedronAtDepthZero</a> ()</td></tr>
+<tr class="separator:adee024bdbedaae2cfd38bb2038b4aa48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1bbf9770f040e452f676358ee699767"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#ac1bbf9770f040e452f676358ee699767">calculateNextSubdivision</a> ()</td></tr>
+<tr class="separator:ac1bbf9770f040e452f676358ee699767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af74f8858b9e0dedb914f24390e140a04"><td class="memItemLeft" align="right" valign="top">std::list&lt; QVector3D &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#af74f8858b9e0dedb914f24390e140a04">filterPointsForTriangle</a> (std::list&lt; QVector3D &gt; &amp;pointList, float *v1, float *v2, float *v3)</td></tr>
+<tr class="separator:af74f8858b9e0dedb914f24390e140a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbc604f853739d0198c9da5097987fa7"><td class="memItemLeft" align="right" valign="top">glm::mat3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#afbc604f853739d0198c9da5097987fa7">getTransformationMatrix</a> (float *v1, float *v2, float *v3)</td></tr>
+<tr class="separator:afbc604f853739d0198c9da5097987fa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fca77ce81a628de0ddaeb7d75a4c371"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#a4fca77ce81a628de0ddaeb7d75a4c371">insertTriangleIntoVerticesVector</a> (std::vector&lt; float &gt; &amp;vertVec, float *vec1, float *vec2, float *vec3)</td></tr>
+<tr class="separator:a4fca77ce81a628de0ddaeb7d75a4c371"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8c590fd11eda06875112a74d318267f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#ad8c590fd11eda06875112a74d318267f">normalize</a> (float v[3])</td></tr>
+<tr class="separator:ad8c590fd11eda06875112a74d318267f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b32e615d46ac5ffbd3d14de0da2c406"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#a7b32e615d46ac5ffbd3d14de0da2c406">pointInFirstQuadrantAfterTransformation</a> (const glm::vec3 &amp;point, const glm::mat3 &amp;transformationMatrix)</td></tr>
+<tr class="separator:a7b32e615d46ac5ffbd3d14de0da2c406"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aaab890b2c9bac7bb08d5f257e98a7cb9"><td class="memItemLeft" align="right" valign="top">std::list&lt; QVector3D &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#aaab890b2c9bac7bb08d5f257e98a7cb9">points</a></td></tr>
+<tr class="memdesc:aaab890b2c9bac7bb08d5f257e98a7cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">points currently loaded from .npy file  <a href="#aaab890b2c9bac7bb08d5f257e98a7cb9">More...</a><br /></td></tr>
+<tr class="separator:aaab890b2c9bac7bb08d5f257e98a7cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8d7292450ad6bba825a6dbb75be217c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_sphere_depth_data.html">SphereDepthData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#af8d7292450ad6bba825a6dbb75be217c">spheres</a></td></tr>
+<tr class="memdesc:af8d7292450ad6bba825a6dbb75be217c"><td class="mdescLeft">&#160;</td><td class="mdescRight">data of the triangles' vertices and respective points for all depths calculated yet  <a href="#af8d7292450ad6bba825a6dbb75be217c">More...</a><br /></td></tr>
+<tr class="separator:af8d7292450ad6bba825a6dbb75be217c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadf6eefa26ab7f440571b651d38d6e0e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#aadf6eefa26ab7f440571b651d38d6e0e">sphereBorderVertices</a></td></tr>
+<tr class="memdesc:aadf6eefa26ab7f440571b651d38d6e0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">vertices per depth in order to draw triangle borders  <a href="#aadf6eefa26ab7f440571b651d38d6e0e">More...</a><br /></td></tr>
+<tr class="separator:aadf6eefa26ab7f440571b651d38d6e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addeb27eb3a3e9c8bf50a3615fbcc8752"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#addeb27eb3a3e9c8bf50a3615fbcc8752">currentSphereDepth</a></td></tr>
+<tr class="memdesc:addeb27eb3a3e9c8bf50a3615fbcc8752"><td class="mdescLeft">&#160;</td><td class="mdescRight">0-10: depth currently selected by application (restriction enforced by <a class="el" href="class_render_data.html#a8d5f7285d29dc9ca0f93fcf2b5826283">setSphereDepth()</a>)  <a href="#addeb27eb3a3e9c8bf50a3615fbcc8752">More...</a><br /></td></tr>
+<tr class="separator:addeb27eb3a3e9c8bf50a3615fbcc8752"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78b66cb01444d2d36c3ed9179705a716"><td class="memItemLeft" align="right" valign="top">const float *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#a78b66cb01444d2d36c3ed9179705a716">colorMap</a></td></tr>
+<tr class="separator:a78b66cb01444d2d36c3ed9179705a716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a133da67a805762c95284248a7ea1526c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_render_data.html">RenderData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#a133da67a805762c95284248a7ea1526c">_instance</a> = 0</td></tr>
+<tr class="separator:a133da67a805762c95284248a7ea1526c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Singleton to calculate and store data of the</p><ul>
+<div class="textblock"><p>Singleton that stores and calculates all logical application data. </p>
+<p>Calculates and stores data of the</p><ul>
 <li>points currently loaded</li>
-<li>icosphere in various depths</li>
+<li>icosphere in all calculated depths</li>
 <li>current rendering depth</li>
 <li>currently used colormap</li>
 <li>color of the icosphere triangles according to the respective point count </li>
 </ul>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00039">39</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a16b04b2437ea3fa034381a138cbf2f83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16b04b2437ea3fa034381a138cbf2f83">&#9670;&nbsp;</a></span>RenderData() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RenderData::RenderData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets initial sphere depth to 3. </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00184">184</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ab5f9324f666abc4b85fd2c6ed868c6be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5f9324f666abc4b85fd2c6ed868c6be">&#9670;&nbsp;</a></span>RenderData() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">RenderData::RenderData </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_render_data.html">RenderData</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Explicit removal to guarantee strict singleton pattern. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac1bbf9770f040e452f676358ee699767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1bbf9770f040e452f676358ee699767">&#9670;&nbsp;</a></span>calculateNextSubdivision()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RenderData::calculateNextSubdivision </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Calculates vertex data and points per respective triangles for next depth to be saved in spheres</p>
+<p>Calculates vertices and points per triangle for next sphere in spheres based on data from last calculated sphere. If no sphere exists, triggers 'generateIcosahedronAtDepthZero' instead. </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00245">245</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af74f8858b9e0dedb914f24390e140a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af74f8858b9e0dedb914f24390e140a04">&#9670;&nbsp;</a></span>filterPointsForTriangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::list&lt; QVector3D &gt; RenderData::filterPointsForTriangle </td>
+          <td>(</td>
+          <td class="paramtype">std::list&lt; QVector3D &gt; &amp;&#160;</td>
+          <td class="paramname"><em>pointList</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>v2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>v3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>list of points lying 'inside' the triangle (v1, v2, v3) while eliminating these points from pointList. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pointList</td><td>List of all points to search for points 'inside' triangle (v1, v2, v3) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00300">300</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="adee024bdbedaae2cfd38bb2038b4aa48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adee024bdbedaae2cfd38bb2038b4aa48">&#9670;&nbsp;</a></span>generateIcosahedronAtDepthZero()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RenderData::generateIcosahedronAtDepthZero </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Calculates vertex data and points per respective triangles for depth 0 and saves it at spheres[0]</p>
+<p>Generates first 'sphere', a 20-sided icosahedron, and its respective points per triangle and saves them as <a class="el" href="struct_sphere_depth_data.html">SphereDepthData</a> in spheres </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00198">198</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a58fe3351334cd518b930dfe0a0aa8732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58fe3351334cd518b930dfe0a0aa8732">&#9670;&nbsp;</a></span>getColorsForTriangles()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; float &gt; RenderData::getColorsForTriangles </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>alpha</em> = <code>1</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>color values in rgba format per point in vertices vector </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">alpha</td><td>(optional) alpha value for transparancy - not yet implemented</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Retrieves number of points per triangle of the currently selected sphere depth and the maximum number of points in one triangle of that depth. Retrieves the rgb color values from the currently selected colormap using one triangle's point count divided by the maximum point count. For possible lighting extensions an alpha value can be given as optional parameter (defaults to 1) </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00022">22</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a1fffc72f3dd17ab052d4fb2f025ef5a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fffc72f3dd17ab052d4fb2f025ef5a0">&#9670;&nbsp;</a></span>getInstance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_render_data.html">RenderData</a> * RenderData::getInstance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>instance of singleton</dd></dl>
+<p>Singleton pattern getter for privately constructed instance Checks wether an instance of <a class="el" href="class_render_data.html" title="Singleton that stores and calculates all logical application data. ">RenderData</a> exists, creates a new instance if not and returns it. </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00006">6</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a24e60dcccd94c47c02e0e47f2ca7b5c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24e60dcccd94c47c02e0e47f2ca7b5c2">&#9670;&nbsp;</a></span>getPointsAsVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; float &gt; RenderData::getPointsAsVector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>all points from currently loaded .npy file in format [x1, y1, z1, x2, y2, z2, ... ] </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00055">55</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="afbc604f853739d0198c9da5097987fa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbc604f853739d0198c9da5097987fa7">&#9670;&nbsp;</a></span>getTransformationMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat3 RenderData::getTransformationMatrix </td>
+          <td>(</td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>v1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>v2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>v3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>the inverse of the 3x3 matrix consisting of the columns v1, v2 and v3. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">(v1,v2,v3)</td><td>pointer to 3 float arrays containing 3 floats respectively </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00315">315</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a2aff56e1742b853bcae6f251e258085e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2aff56e1742b853bcae6f251e258085e">&#9670;&nbsp;</a></span>getVerticesAtCurrentDepth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; float &gt; RenderData::getVerticesAtCurrentDepth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>all vertices at current depth in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00069">69</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a4fca77ce81a628de0ddaeb7d75a4c371"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fca77ce81a628de0ddaeb7d75a4c371">&#9670;&nbsp;</a></span>insertTriangleIntoVerticesVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RenderData::insertTriangleIntoVerticesVector </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; float &gt; &amp;&#160;</td>
+          <td class="paramname"><em>vertVec</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>vec1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>vec2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *&#160;</td>
+          <td class="paramname"><em>vec3</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>inserts 3 3D float arrays (vec1, vec2 and vec3) into a vector vertVec </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00326">326</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
 <a id="ac161f29f7d6ae6fd3912e8af7bdccdfd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac161f29f7d6ae6fd3912e8af7bdccdfd">&#9670;&nbsp;</a></span>loadPointsFromFile()</h2>
 
@@ -138,20 +575,310 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Icosphere</b></td></
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Loads data points from given .npy-file containing a double precision Nx3-Numpy-array, passes them to Spherewidget in a render-friendly form and notifies the Icosphere to re-calculate the respective colors </p>
+<p>Loads new set of points from .npy file with given filename. Deletes current points and respective calculations. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>absolute or relative file path</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Loads data points from given .npy-file containing a double precision Nx3-Numpy-array, mirrors them and saves them into points list. Triggers recalculation of sphere at current depth with newly loaded points. </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00131">131</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad8c590fd11eda06875112a74d318267f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8c590fd11eda06875112a74d318267f">&#9670;&nbsp;</a></span>normalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RenderData::normalize </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>v</em>[3]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>normalizes a given 3D vector </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00111">111</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+
+</div>
+</div>
+<a id="a7b32e615d46ac5ffbd3d14de0da2c406"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b32e615d46ac5ffbd3d14de0da2c406">&#9670;&nbsp;</a></span>pointInFirstQuadrantAfterTransformation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RenderData::pointInFirstQuadrantAfterTransformation </td>
+          <td>(</td>
+          <td class="paramtype">const glm::vec3 &amp;&#160;</td>
+          <td class="paramname"><em>point</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const glm::mat3 &amp;&#160;</td>
+          <td class="paramname"><em>transformationMatrix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>wether glm::vec3 point transformed by glm::mat3 transformationMatrix lies inside the first octant of 3D space. This represents wether point is counted as lying inside a triangle's space or not. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00336">336</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="adb1961bf93370d67c9efb416fde8fefb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb1961bf93370d67c9efb416fde8fefb">&#9670;&nbsp;</a></span>setColorMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RenderData::setColorMap </td>
+          <td>(</td>
+          <td class="paramtype">QString&#160;</td>
+          <td class="paramname"><em>colorMapName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets currently selected colormap. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">colorMapName</td><td>Options: Cividis, Inferno, Magma, Plasma, Turbo, Viridis </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00098">98</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8d5f7285d29dc9ca0f93fcf2b5826283"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d5f7285d29dc9ca0f93fcf2b5826283">&#9670;&nbsp;</a></span>setSphereDepth()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void RenderData::setSphereDepth </td>
+          <td>(</td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>depth</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets current sphere depth and calculates new sphere depth data if necessary. Maximum depth is 10 - all values above will be evaluated as 10. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">depth</td><td>sphere depth, representing the number of triangle subdivisions starting from an icosahedron at depth 0 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00074">74</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a133da67a805762c95284248a7ea1526c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a133da67a805762c95284248a7ea1526c">&#9670;&nbsp;</a></span>_instance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_render_data.html">RenderData</a> * RenderData::_instance = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00079">79</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+
+</div>
+</div>
+<a id="a78b66cb01444d2d36c3ed9179705a716"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78b66cb01444d2d36c3ed9179705a716">&#9670;&nbsp;</a></span>colorMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const float* RenderData::colorMap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00084">84</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+
+</div>
+</div>
+<a id="addeb27eb3a3e9c8bf50a3615fbcc8752"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addeb27eb3a3e9c8bf50a3615fbcc8752">&#9670;&nbsp;</a></span>currentSphereDepth</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">short RenderData::currentSphereDepth</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>0-10: depth currently selected by application (restriction enforced by <a class="el" href="class_render_data.html#a8d5f7285d29dc9ca0f93fcf2b5826283">setSphereDepth()</a>) </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00083">83</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+
+</div>
+</div>
+<a id="aaab890b2c9bac7bb08d5f257e98a7cb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaab890b2c9bac7bb08d5f257e98a7cb9">&#9670;&nbsp;</a></span>points</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::list&lt;QVector3D&gt; RenderData::points</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>points currently loaded from .npy file </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00080">80</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+
+</div>
+</div>
+<a id="aadf6eefa26ab7f440571b651d38d6e0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadf6eefa26ab7f440571b651d38d6e0e">&#9670;&nbsp;</a></span>sphereBorderVertices</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::vector&lt;float&gt; &gt; RenderData::sphereBorderVertices</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>vertices per depth in order to draw triangle borders </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00082">82</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+
+</div>
+</div>
+<a id="af8d7292450ad6bba825a6dbb75be217c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8d7292450ad6bba825a6dbb75be217c">&#9670;&nbsp;</a></span>spheres</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="struct_sphere_depth_data.html">SphereDepthData</a>&gt; RenderData::spheres</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>data of the triangles' vertices and respective points for all depths calculated yet </p>
+
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00081">81</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="renderdata_8h_source.html">renderdata.h</a></li>
-<li>renderdata.cpp</li>
+<li><a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_render_data.html">RenderData</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -1,8 +1,9 @@
 #include "renderdata.h"
 RenderData * RenderData::_instance = 0;
 
-
-RenderData* RenderData::getInstance()
+/*! Singleton pattern getter for privately constructed instance
+ * Checks wether an instance of RenderData exists, creates a new instance if not and returns it. */
+RenderData * RenderData::getInstance()
 {
     if(!_instance){
         _instance = new RenderData();
@@ -11,22 +12,34 @@ RenderData* RenderData::getInstance()
 }
 
 
+/*!
+ * Retrieves number of points per triangle of the currently selected sphere depth
+ * and the maximum number of points in one triangle of that depth.
+ * Retrieves the rgb color values from the currently selected colormap
+ * using one triangle's point count divided by the maximum point count.
+ * For possible lighting extensions an alpha value can be given as optional parameter (defaults to 1)
+*/
 std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */)  {
 
     SphereDepthData & currentSphere = spheres.at(currentSphereDepth);
     std::vector<std::list<QVector3D> > & pointsPerTriangle = currentSphere.pointsPerTriangle;
-    std::vector<float> colorVector;
+
+
+    std::vector<float> colorVector;         // Return vector
     colorVector.reserve(pointsPerTriangle.size() * 4);
 
-    size_t maxOfPointsPerTriangle = currentSphere.getMaxPointsPerTriangle();
+    size_t maxOfPointsPerTriangle = currentSphere.getMaxOfPointsPerTriangle();
     int colorIndex;
 
     for(std::list<QVector3D>& trianglePoints : pointsPerTriangle){
         if(maxOfPointsPerTriangle == 0){
+            // if no points exist, always use the 'lowest' color
             colorIndex = 0;
         } else {
-            colorIndex = int((trianglePoints.size() / double(maxOfPointsPerTriangle)) * 256) * 3;  // (current triangles' points / max points per one triangle) * colorMaps' row count * colorMaps' column count
+            // (current triangles' points / max points per one triangle) * colorMaps' row count * colorMaps' column count
+            colorIndex = int((trianglePoints.size() / double(maxOfPointsPerTriangle)) * 256) * 3;
         }
+
         for(short i = 0; i < 3; ++i){
             colorVector.push_back(colorMap[colorIndex]);
             colorVector.push_back(colorMap[colorIndex + 1]);
@@ -38,16 +51,20 @@ std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */)  {
     return colorVector;
 }
 
+
 std::vector<float> RenderData::getPointsAsVector() const {
     std::vector<float> renderPoints;
     renderPoints.reserve(points.size()*3);
+
     for (auto point : points){
         renderPoints.push_back(point.x());
         renderPoints.push_back(point.y());
         renderPoints.push_back(point.z());
     }
+
     return renderPoints;
 }
+
 
 std::vector<float> RenderData::getVerticesAtCurrentDepth() const {
     return spheres[currentSphereDepth].getVertices();
@@ -56,7 +73,7 @@ std::vector<float> RenderData::getVerticesAtCurrentDepth() const {
 
 void RenderData::setSphereDepth(short depth)
 {
-    //
+    // Enforces maximum of 10 subdivisions
     if(depth > 10){
         depth = 10;
     }
@@ -77,10 +94,10 @@ void RenderData::setSphereDepth(short depth)
 
 }
 
-void RenderData::setColorMap(QString colorMapName){
-     std::cout << colorMapName.toStdString() << std::endl;
 
-    cm::ColorMapName colorMapEnumValue = cm::qStringToColorEnum.at(colorMapName.toStdString());
+void RenderData::setColorMap(QString colorMapName){
+
+    cm::ColorMapName colorMapEnumValue = cm::stringToColorEnum.at(colorMapName.toStdString());
 
     switch (colorMapEnumValue) {
     case cm::ColorMapName::Cividis:
@@ -107,8 +124,9 @@ void RenderData::setColorMap(QString colorMapName){
 }
 
 /*!
- * Loads data points from given .npy-file containing a double precision Nx3-Numpy-array, passes them to Spherewidget in a render-friendly form and notifies
- * the Icosphere to re-calculate the respective colors
+ * Loads data points from given .npy-file containing a double precision Nx3-Numpy-array,
+ * mirrors them and saves them into points list.
+ * Triggers recalculation of sphere at current depth with newly loaded points.
  */
 void RenderData::loadPointsFromFile(std::string filename){
     try{
@@ -138,14 +156,16 @@ void RenderData::loadPointsFromFile(std::string filename){
                             static_cast<float>(pointData[i+1]),
                             static_cast<float>(pointData[i+2])
                                         };
-            QVector3D mirroredPoint = {
-                            - static_cast<float>(pointData[i]),
-                            - static_cast<float>(pointData[i+1]),
-                            - static_cast<float>(pointData[i+2])
-                                        };
-
             points.push_back(point);
-            points.push_back(mirroredPoint);
+
+            if( MIRROR_POINTS ){
+                QVector3D mirroredPoint = {
+                                - static_cast<float>(pointData[i]),
+                                - static_cast<float>(pointData[i+1]),
+                                - static_cast<float>(pointData[i+2])
+                                            };
+                points.push_back(mirroredPoint);
+            }
         }
     } catch(std::string str){
         std::cerr << str << std::endl;
@@ -154,10 +174,11 @@ void RenderData::loadPointsFromFile(std::string filename){
         points.clear();
         return;
     }
+
+    // Recalculate spheres up to current sphere depth
     spheres.clear();
     setSphereDepth(currentSphereDepth);
 }
-
 
 
 RenderData::RenderData() :
@@ -171,6 +192,9 @@ RenderData::RenderData() :
 }
 
 
+/*! Generates first 'sphere', a 20-sided icosahedron,
+ * and its respective points per triangle and saves them as SphereDepthData in spheres
+*/
 void RenderData::generateIcosahedronAtDepthZero(){
     const float X  =.525731112119133606;
     const float Z  =.850650808352039932;
@@ -212,6 +236,12 @@ void RenderData::generateIcosahedronAtDepthZero(){
     spheres.push_back(SphereDepthData(0, verticesForDepthZero, pointsPerTriangle));
 }
 
+
+/*!
+ * Calculates vertices and points per triangle for next sphere in spheres based on data
+ * from last calculated sphere. If no sphere exists, triggers 'generateIcosahedronAtDepthZero'
+ * instead.
+*/
 void RenderData::calculateNextSubdivision(){
     if(spheres.empty()){
         generateIcosahedronAtDepthZero();
@@ -267,7 +297,6 @@ void RenderData::calculateNextSubdivision(){
 }
 
 
-
 std::list<QVector3D> RenderData::filterPointsForTriangle(std::list<QVector3D> &pointList, float *v1, float *v2, float *v3){
     std::list<QVector3D> pointsInTriangle;
     glm::mat3 transformationMatrix = getTransformationMatrix(v1, v2, v3);
@@ -282,6 +311,7 @@ std::list<QVector3D> RenderData::filterPointsForTriangle(std::list<QVector3D> &p
     return pointsInTriangle;
 }
 
+
 glm::mat3 RenderData::getTransformationMatrix(float * v1, float * v2, float * v3){
     glm::mat3 transformationMatrix = {
         v1[0], v1[1], v1[2],        // first COLUMN
@@ -292,6 +322,7 @@ glm::mat3 RenderData::getTransformationMatrix(float * v1, float * v2, float * v3
     return transformationMatrix;
 }
 
+
 void RenderData::insertTriangleIntoVerticesVector(std::vector<float>& vertVec, float * vec1, float * vec2, float * vec3){
     float v1[3] = {vec1[0], vec1[1], vec1[2]};
     float v2[3] = {vec2[0], vec2[1], vec2[2]};
@@ -300,6 +331,7 @@ void RenderData::insertTriangleIntoVerticesVector(std::vector<float>& vertVec, f
     vertVec.insert(vertVec.end(), std::begin(v2), std::end(v2));
     vertVec.insert(vertVec.end(), std::begin(v3), std::end(v3));
 }
+
 
 bool RenderData::pointInFirstQuadrantAfterTransformation(const glm::vec3 &point, const glm::mat3 &transformationMatrix){
 
