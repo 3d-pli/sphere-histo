@@ -1,4 +1,5 @@
 #include "spherewidget.h"
+#include <QMatrix4x4>
 
 
 SphereWidget::SphereWidget(QWidget *parent)
@@ -31,7 +32,10 @@ void SphereWidget::initializeGL() {
 
     updateSphereVertices();
     updateTriangleColor();
+
+    glEnable(GL_DEPTH_TEST);
 }
+
 void SphereWidget::resizeGL(int w, int h) {
     QOpenGLWidget::resizeGL(w, h);
     aspectRatioWidthToHeight = float(w) / float(h);
@@ -39,15 +43,23 @@ void SphereWidget::resizeGL(int w, int h) {
 
 void SphereWidget::paintGL() {
     // clear screen
-    glClearColor(1.0, 1.0, 1.0, 1.0);                         // background color
+    glClearColor(0.85,0.85,0.85, 1.0);                         // background color
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);     // actually do the clearing
 
     // update projection matrix
     glViewport(0, 0, width(), height());
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(m_fovy, aspectRatioWidthToHeight, 1., 20);
-    gluLookAt(0.5, 0.5, 10 , 0 ,0 ,0.5 , 0, 1 ,0);
+
+    float zNear = 1;
+    float zFar = 10;
+    float fH = tan( m_fovy / 360 * M_PI ) * zNear;
+    float fW = fH * aspectRatioWidthToHeight;
+    glFrustum( -fW, fW, -fH, fH, zNear, zFar );
+    glTranslatef(0,0,-10);
+
+    //gluPerspective(m_fovy, aspectRatioWidthToHeight, 1., 20);
+    //gluLookAt(0.5, 0.5, 10 , 0 ,0 ,0.5 , 0, 1 ,0);
 
     // update view matrix (according to mouse interaction)
     glMatrixMode(GL_MODELVIEW);
@@ -56,6 +68,7 @@ void SphereWidget::paintGL() {
     glRotatef(m_rotation.x(), 0.0f, 1.0f, 0.0f);
     glRotatef(m_rotation.y(), 1.0f, 0.0f, 0.0f);
 
+    /// render points
     // set color and point size
     glColor3f(0.2,0.2,0.2);
     glPointSize(2);
@@ -65,7 +78,6 @@ void SphereWidget::paintGL() {
     glVertexPointer(3, GL_FLOAT, 0, 0);
 
     // enable states
-    glEnable(GL_DEPTH_TEST);
     glEnableClientState(GL_VERTEX_ARRAY);
 
     // render points
@@ -74,26 +86,30 @@ void SphereWidget::paintGL() {
     // release buffer
     glDisableClientState(GL_VERTEX_ARRAY);
     vbo_points.release();
+    /// end: render points
 
+
+    /// render sphere
     // draw icosphere
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glPointSize(1);
+
     vbo_vertexColors.bind();
     glColorPointer(4, GL_FLOAT, 0, 0);
 
     vbo_sphereVertices.bind();
-    glPointSize(1);
-//    glColor4f(0.8,0.8,0.8, 0.6);
     glVertexPointer(3, GL_FLOAT, 0, 0);
 
-
-
-    glEnable(GL_DEPTH_TEST);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
 
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glDrawArrays(GL_TRIANGLES, 0, vbo_sphereVertices.size());
+
+    glDisableClientState(GL_COLOR_ARRAY);
     glDisableClientState(GL_VERTEX_ARRAY);
 
+    vbo_vertexColors.release();
+    vbo_sphereVertices.release();
 }
 
 void SphereWidget::mousePressEvent(QMouseEvent * event){

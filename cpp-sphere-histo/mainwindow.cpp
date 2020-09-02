@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     this->sphereWidget = ui->sphereWidget;
 
-    connect(ui->horizontalSlider, SIGNAL(valueChanged(int)), this, SLOT(changeTriangleDepth(int)));
+    connect(ui->horizontalScrollBar, SIGNAL(valueChanged(int)), this, SLOT(changeTriangleDepth(int)));
 
     connect(ui->actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));

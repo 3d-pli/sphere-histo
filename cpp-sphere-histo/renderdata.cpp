@@ -37,7 +37,7 @@ std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */)  {
             colorIndex = 0;
         } else {
             // (current triangles' points / max points per one triangle) * colorMaps' row count * colorMaps' column count
-            colorIndex = int((trianglePoints.size() / double(maxOfPointsPerTriangle)) * 256) * 3;
+            colorIndex = int((trianglePoints.size() / double(maxOfPointsPerTriangle)) * 255) * 3;
         }
 
         for(short i = 0; i < 3; ++i){

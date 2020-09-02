@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-
+QT += opengl
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = cpp-sphere-histo
@@ -45,31 +45,34 @@ HEADERS += \
     spheredepthdata.h
 
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/release/ -lcnpy
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/debug/ -lcnpy
-else:unix: LIBS += -L$$PWD/../external-libraries/cnpy-master/build/ -lcnpy
+#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/release/ -lcnpy
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/debug/ -lcnpy
+#else:unix: LIBS += -L$$PWD/../external-libraries/cnpy-master/build/ -lcnpy
 
-INCLUDEPATH += $$PWD/../external-libraries/cnpy-master/build
-DEPENDPATH += $$PWD/../external-libraries/cnpy-master/build
+#INCLUDEPATH += $$PWD/../external-libraries/cnpy-master/build
+#DEPENDPATH += $$PWD/../external-libraries/cnpy-master/build
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../external-libraries/cnpy-master/build/release/libcnpy.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../external-libraries/cnpy-master/build/debug/libcnpy.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../external-libraries/cnpy-master/build/release/cnpy.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../external-libraries/cnpy-master/build/debug/cnpy.lib
-else:unix: PRE_TARGETDEPS += $$PWD/../external-libraries/cnpy-master/build/libcnpy.a
+#win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../external-libraries/cnpy-master/build/release/libcnpy.a
+#else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../external-libraries/cnpy-master/build/debug/libcnpy.a
+#else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../external-libraries/cnpy-master/build/release/cnpy.lib
+#else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../external-libraries/cnpy-master/build/debug/cnpy.lib
+#else:unix: PRE_TARGETDEPS += $$PWD/../external-libraries/cnpy-master/build/libcnpy.a
 
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../../usr/lib/x86_64-linux-gnu/release/ -lGLU
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../usr/lib/x86_64-linux-gnu/debug/ -lGLU
-else:unix: LIBS += -L$$PWD/../../../../../usr/lib/x86_64-linux-gnu/ -lGLU
+#win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../../../../../usr/lib/x86_64-linux-gnu/release/ -lGLU
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../usr/lib/x86_64-linux-gnu/debug/ -lGLU
+#else:unix: LIBS += -L$$PWD/../../../../../usr/lib/x86_64-linux-gnu/ -lGLU
 
-INCLUDEPATH += $$PWD/../../../../../usr/lib/x86_64-linux-gnu
-DEPENDPATH += $$PWD/../../../../../usr/lib/x86_64-linux-gnu
+#INCLUDEPATH += $$PWD/../../../../../usr/lib/x86_64-linux-gnu
+#DEPENDPATH += $$PWD/../../../../../usr/lib/x86_64-linux-gnu
 
-win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/release/libGLU.a
-else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/debug/libGLU.a
-else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/release/GLU.lib
-else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/debug/GLU.lib
-else:unix: PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/libGLU.a
+#win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/release/libGLU.a
+#else:win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/debug/libGLU.a
+#else:win32:!win32-g++:CONFIG(release, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/release/GLU.lib
+#else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/debug/GLU.lib
+#else:unix: PRE_TARGETDEPS += $$PWD/../../../../../usr/lib/x86_64-linux-gnu/libGLU.a
 
 FORMS += \
     mainwindow.ui
+
+unix:!macx: LIBS += -L$$PWD/../external-libraries/cnpy-master/build/ -lcnpy
+INCLUDEPATH += $$PWD/../external-libraries/cnpy-master/

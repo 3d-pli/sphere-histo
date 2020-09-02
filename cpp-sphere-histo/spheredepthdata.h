@@ -14,7 +14,7 @@
 /*!
 * Container class for all data regarding one sphere depth at a given set of points
 */
-struct SphereDepthData
+class SphereDepthData
 {
 
 public:

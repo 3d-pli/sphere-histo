@@ -12,9 +12,9 @@
 
 // External libraries
 #include <cnpy.h>
-#include <../external-libraries/glm-master/glm/mat3x3.hpp>
-#include <../external-libraries/glm-master/glm/matrix.hpp>
-#include <../external-libraries/glm-master/glm/vec3.hpp>
+#include <glm/mat3x3.hpp>
+#include <glm/matrix.hpp>
+#include <glm/vec3.hpp>
 
 // Internal dependencies
 #include "resources/colormaps_matplotlib.h"
