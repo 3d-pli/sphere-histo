@@ -11,7 +11,8 @@ Singleton that stores and calculates all logical application data.
 
 
 
-Collaboration diagram for Render\+Data\+:\nopagebreak
+Collaboration diagram for Render\+Data\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -66,8 +67,6 @@ std\+::list$<$ Q\+Vector3D $>$ \hyperlink{class_render_data_aaab890b2c9bac7bb08d
 \begin{DoxyCompactList}\small\item\em points currently loaded from .npy file \end{DoxyCompactList}\item 
 std\+::vector$<$ \hyperlink{struct_sphere_depth_data}{Sphere\+Depth\+Data} $>$ \hyperlink{class_render_data_af8d7292450ad6bba825a6dbb75be217c}{spheres}
 \begin{DoxyCompactList}\small\item\em data of the triangles\textquotesingle{} vertices and respective points for all depths calculated yet \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::vector$<$ float $>$ $>$ \hyperlink{class_render_data_aadf6eefa26ab7f440571b651d38d6e0e}{sphere\+Border\+Vertices}
-\begin{DoxyCompactList}\small\item\em vertices per depth in order to draw triangle borders \end{DoxyCompactList}\item 
 short \hyperlink{class_render_data_addeb27eb3a3e9c8bf50a3615fbcc8752}{current\+Sphere\+Depth}
 \begin{DoxyCompactList}\small\item\em 0-\/10\+: depth currently selected by application (restriction enforced by \hyperlink{class_render_data_a8d5f7285d29dc9ca0f93fcf2b5826283}{set\+Sphere\+Depth()}) \end{DoxyCompactList}\item 
 const float $\ast$ \hyperlink{class_render_data_a78b66cb01444d2d36c3ed9179705a716}{color\+Map}
@@ -91,7 +90,7 @@ Calculates and stores data of the
 \item color of the icosphere triangles according to the respective point count 
 \end{DoxyItemize}
 
-Definition at line 39 of file renderdata.\+h.
+Definition at line 41 of file renderdata.\+h.
 
 
 
@@ -108,7 +107,7 @@ Sets initial sphere depth to 3.
 
 
 
-Definition at line 184 of file renderdata.\+cpp.
+Definition at line 198 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_ab5f9324f666abc4b85fd2c6ed868c6be}\label{class_render_data_ab5f9324f666abc4b85fd2c6ed868c6be}} 
 \index{Render\+Data@{Render\+Data}!Render\+Data@{Render\+Data}}
@@ -133,7 +132,7 @@ Calculates vertex data and points per respective triangles for next depth to be 
 
 Calculates vertices and points per triangle for next sphere in spheres based on data from last calculated sphere. If no sphere exists, triggers \textquotesingle{}generate\+Icosahedron\+At\+Depth\+Zero\textquotesingle{} instead. 
 
-Definition at line 245 of file renderdata.\+cpp.
+Definition at line 259 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_af74f8858b9e0dedb914f24390e140a04}\label{class_render_data_af74f8858b9e0dedb914f24390e140a04}} 
 \index{Render\+Data@{Render\+Data}!filter\+Points\+For\+Triangle@{filter\+Points\+For\+Triangle}}
@@ -151,7 +150,7 @@ list of points lying \textquotesingle{}inside\textquotesingle{} the triangle (v1
 \end{DoxyParams}
 
 
-Definition at line 300 of file renderdata.\+cpp.
+Definition at line 314 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_adee024bdbedaae2cfd38bb2038b4aa48}\label{class_render_data_adee024bdbedaae2cfd38bb2038b4aa48}} 
 \index{Render\+Data@{Render\+Data}!generate\+Icosahedron\+At\+Depth\+Zero@{generate\+Icosahedron\+At\+Depth\+Zero}}
@@ -163,7 +162,7 @@ Calculates vertex data and points per respective triangles for depth 0 and saves
 
 Generates first \textquotesingle{}sphere\textquotesingle{}, a 20-\/sided icosahedron, and its respective points per triangle and saves them as \hyperlink{struct_sphere_depth_data}{Sphere\+Depth\+Data} in spheres 
 
-Definition at line 198 of file renderdata.\+cpp.
+Definition at line 212 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_a58fe3351334cd518b930dfe0a0aa8732}\label{class_render_data_a58fe3351334cd518b930dfe0a0aa8732}} 
 \index{Render\+Data@{Render\+Data}!get\+Colors\+For\+Triangles@{get\+Colors\+For\+Triangles}}
@@ -181,7 +180,7 @@ color values in rgba format per point in vertices vector
 \end{DoxyParams}
 Retrieves number of points per triangle of the currently selected sphere depth and the maximum number of points in one triangle of that depth. Retrieves the rgb color values from the currently selected colormap using one triangle\textquotesingle{}s point count divided by the maximum point count. For possible lighting extensions an alpha value can be given as optional parameter (defaults to 1) 
 
-Definition at line 22 of file renderdata.\+cpp.
+Definition at line 24 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_a1fffc72f3dd17ab052d4fb2f025ef5a0}\label{class_render_data_a1fffc72f3dd17ab052d4fb2f025ef5a0}} 
 \index{Render\+Data@{Render\+Data}!get\+Instance@{get\+Instance}}
@@ -194,7 +193,7 @@ instance of singleton
 \end{DoxyReturn}
 Singleton pattern getter for privately constructed instance Checks wether an instance of \hyperlink{class_render_data}{Render\+Data} exists, creates a new instance if not and returns it. 
 
-Definition at line 6 of file renderdata.\+cpp.
+Definition at line 8 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_a24e60dcccd94c47c02e0e47f2ca7b5c2}\label{class_render_data_a24e60dcccd94c47c02e0e47f2ca7b5c2}} 
 \index{Render\+Data@{Render\+Data}!get\+Points\+As\+Vector@{get\+Points\+As\+Vector}}
@@ -207,7 +206,7 @@ all points from currently loaded .npy file in format \mbox{[}x1, y1, z1, x2, y2,
 \end{DoxyReturn}
 
 
-Definition at line 55 of file renderdata.\+cpp.
+Definition at line 61 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_afbc604f853739d0198c9da5097987fa7}\label{class_render_data_afbc604f853739d0198c9da5097987fa7}} 
 \index{Render\+Data@{Render\+Data}!get\+Transformation\+Matrix@{get\+Transformation\+Matrix}}
@@ -225,7 +224,7 @@ the inverse of the 3x3 matrix consisting of the columns v1, v2 and v3.
 \end{DoxyParams}
 
 
-Definition at line 315 of file renderdata.\+cpp.
+Definition at line 329 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_a2aff56e1742b853bcae6f251e258085e}\label{class_render_data_a2aff56e1742b853bcae6f251e258085e}} 
 \index{Render\+Data@{Render\+Data}!get\+Vertices\+At\+Current\+Depth@{get\+Vertices\+At\+Current\+Depth}}
@@ -238,7 +237,7 @@ all vertices at current depth in format \mbox{[}x1, y1, z1, x2, y2, z2, ... \mbo
 \end{DoxyReturn}
 
 
-Definition at line 69 of file renderdata.\+cpp.
+Definition at line 77 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_a4fca77ce81a628de0ddaeb7d75a4c371}\label{class_render_data_a4fca77ce81a628de0ddaeb7d75a4c371}} 
 \index{Render\+Data@{Render\+Data}!insert\+Triangle\+Into\+Vertices\+Vector@{insert\+Triangle\+Into\+Vertices\+Vector}}
@@ -248,7 +247,7 @@ Definition at line 69 of file renderdata.\+cpp.
 
 inserts 3 3D float arrays (vec1, vec2 and vec3) into a vector vert\+Vec 
 
-Definition at line 326 of file renderdata.\+cpp.
+Definition at line 340 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_ac161f29f7d6ae6fd3912e8af7bdccdfd}\label{class_render_data_ac161f29f7d6ae6fd3912e8af7bdccdfd}} 
 \index{Render\+Data@{Render\+Data}!load\+Points\+From\+File@{load\+Points\+From\+File}}
@@ -263,7 +262,7 @@ Loads new set of points from .npy file with given filename. Deletes current poin
 \end{DoxyParams}
 Loads data points from given .npy-\/file containing a double precision Nx3-\/\+Numpy-\/array, mirrors them and saves them into points list. Triggers recalculation of sphere at current depth with newly loaded points. 
 
-Definition at line 131 of file renderdata.\+cpp.
+Definition at line 145 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_ad8c590fd11eda06875112a74d318267f}\label{class_render_data_ad8c590fd11eda06875112a74d318267f}} 
 \index{Render\+Data@{Render\+Data}!normalize@{normalize}}
@@ -278,7 +277,7 @@ normalizes a given 3D vector
 \end{DoxyParams}
 
 
-Definition at line 111 of file renderdata.\+h.
+Definition at line 113 of file renderdata.\+h.
 
 \mbox{\Hypertarget{class_render_data_a7b32e615d46ac5ffbd3d14de0da2c406}\label{class_render_data_a7b32e615d46ac5ffbd3d14de0da2c406}} 
 \index{Render\+Data@{Render\+Data}!point\+In\+First\+Quadrant\+After\+Transformation@{point\+In\+First\+Quadrant\+After\+Transformation}}
@@ -291,7 +290,7 @@ wether glm\+::vec3 point transformed by glm\+::mat3 transformation\+Matrix lies 
 \end{DoxyReturn}
 
 
-Definition at line 336 of file renderdata.\+cpp.
+Definition at line 350 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_adb1961bf93370d67c9efb416fde8fefb}\label{class_render_data_adb1961bf93370d67c9efb416fde8fefb}} 
 \index{Render\+Data@{Render\+Data}!set\+Color\+Map@{set\+Color\+Map}}
@@ -306,7 +305,7 @@ Sets currently selected colormap.
 \end{DoxyParams}
 
 
-Definition at line 98 of file renderdata.\+cpp.
+Definition at line 112 of file renderdata.\+cpp.
 
 \mbox{\Hypertarget{class_render_data_a8d5f7285d29dc9ca0f93fcf2b5826283}\label{class_render_data_a8d5f7285d29dc9ca0f93fcf2b5826283}} 
 \index{Render\+Data@{Render\+Data}!set\+Sphere\+Depth@{set\+Sphere\+Depth}}
@@ -321,7 +320,7 @@ Sets current sphere depth and calculates new sphere depth data if necessary. Max
 \end{DoxyParams}
 
 
-Definition at line 74 of file renderdata.\+cpp.
+Definition at line 84 of file renderdata.\+cpp.
 
 
 
@@ -334,7 +333,7 @@ Definition at line 74 of file renderdata.\+cpp.
 
 
 
-Definition at line 79 of file renderdata.\+h.
+Definition at line 81 of file renderdata.\+h.
 
 \mbox{\Hypertarget{class_render_data_a78b66cb01444d2d36c3ed9179705a716}\label{class_render_data_a78b66cb01444d2d36c3ed9179705a716}} 
 \index{Render\+Data@{Render\+Data}!color\+Map@{color\+Map}}
@@ -344,7 +343,7 @@ Definition at line 79 of file renderdata.\+h.
 
 
 
-Definition at line 84 of file renderdata.\+h.
+Definition at line 86 of file renderdata.\+h.
 
 \mbox{\Hypertarget{class_render_data_addeb27eb3a3e9c8bf50a3615fbcc8752}\label{class_render_data_addeb27eb3a3e9c8bf50a3615fbcc8752}} 
 \index{Render\+Data@{Render\+Data}!current\+Sphere\+Depth@{current\+Sphere\+Depth}}
@@ -358,7 +357,7 @@ Definition at line 84 of file renderdata.\+h.
 
 
 
-Definition at line 83 of file renderdata.\+h.
+Definition at line 85 of file renderdata.\+h.
 
 \mbox{\Hypertarget{class_render_data_aaab890b2c9bac7bb08d5f257e98a7cb9}\label{class_render_data_aaab890b2c9bac7bb08d5f257e98a7cb9}} 
 \index{Render\+Data@{Render\+Data}!points@{points}}
@@ -369,20 +368,6 @@ Definition at line 83 of file renderdata.\+h.
 
 
 points currently loaded from .npy file 
-
-
-
-Definition at line 80 of file renderdata.\+h.
-
-\mbox{\Hypertarget{class_render_data_aadf6eefa26ab7f440571b651d38d6e0e}\label{class_render_data_aadf6eefa26ab7f440571b651d38d6e0e}} 
-\index{Render\+Data@{Render\+Data}!sphere\+Border\+Vertices@{sphere\+Border\+Vertices}}
-\index{sphere\+Border\+Vertices@{sphere\+Border\+Vertices}!Render\+Data@{Render\+Data}}
-\subsubsection{\texorpdfstring{sphere\+Border\+Vertices}{sphereBorderVertices}}
-{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$float$>$ $>$ Render\+Data\+::sphere\+Border\+Vertices\hspace{0.3cm}{\ttfamily [private]}}
-
-
-
-vertices per depth in order to draw triangle borders 
 
 
 
@@ -400,7 +385,7 @@ data of the triangles\textquotesingle{} vertices and respective points for all d
 
 
 
-Definition at line 81 of file renderdata.\+h.
+Definition at line 83 of file renderdata.\+h.
 
 
 

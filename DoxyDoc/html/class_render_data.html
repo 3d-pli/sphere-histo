@@ -108,7 +108,8 @@ $(document).ready(function(){initNavTree('class_render_data.html','');});
 <div class="dynheader">
 Collaboration diagram for RenderData:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="class_render_data__coll__graph.svg" width="334" height="396"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="class_render_data__coll__graph.svg" width="334" height="382"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -162,9 +163,6 @@ Private Attributes</h2></td></tr>
 <tr class="memitem:af8d7292450ad6bba825a6dbb75be217c"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_sphere_depth_data.html">SphereDepthData</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#af8d7292450ad6bba825a6dbb75be217c">spheres</a></td></tr>
 <tr class="memdesc:af8d7292450ad6bba825a6dbb75be217c"><td class="mdescLeft">&#160;</td><td class="mdescRight">data of the triangles' vertices and respective points for all depths calculated yet  <a href="#af8d7292450ad6bba825a6dbb75be217c">More...</a><br /></td></tr>
 <tr class="separator:af8d7292450ad6bba825a6dbb75be217c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadf6eefa26ab7f440571b651d38d6e0e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::vector&lt; float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#aadf6eefa26ab7f440571b651d38d6e0e">sphereBorderVertices</a></td></tr>
-<tr class="memdesc:aadf6eefa26ab7f440571b651d38d6e0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">vertices per depth in order to draw triangle borders  <a href="#aadf6eefa26ab7f440571b651d38d6e0e">More...</a><br /></td></tr>
-<tr class="separator:aadf6eefa26ab7f440571b651d38d6e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addeb27eb3a3e9c8bf50a3615fbcc8752"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_render_data.html#addeb27eb3a3e9c8bf50a3615fbcc8752">currentSphereDepth</a></td></tr>
 <tr class="memdesc:addeb27eb3a3e9c8bf50a3615fbcc8752"><td class="mdescLeft">&#160;</td><td class="mdescRight">0-10: depth currently selected by application (restriction enforced by <a class="el" href="class_render_data.html#a8d5f7285d29dc9ca0f93fcf2b5826283">setSphereDepth()</a>)  <a href="#addeb27eb3a3e9c8bf50a3615fbcc8752">More...</a><br /></td></tr>
 <tr class="separator:addeb27eb3a3e9c8bf50a3615fbcc8752"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,7 +184,7 @@ Static Private Attributes</h2></td></tr>
 <li>color of the icosphere triangles according to the respective point count </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00039">39</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00041">41</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a16b04b2437ea3fa034381a138cbf2f83"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a16b04b2437ea3fa034381a138cbf2f83">&#9670;&nbsp;</a></span>RenderData() <span class="overload">[1/2]</span></h2>
@@ -213,7 +211,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>Sets initial sphere depth to 3. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00184">184</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00198">198</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -271,7 +269,7 @@ Static Private Attributes</h2></td></tr>
 <p>Calculates vertex data and points per respective triangles for next depth to be saved in spheres</p>
 <p>Calculates vertices and points per triangle for next sphere in spheres based on data from last calculated sphere. If no sphere exists, triggers 'generateIcosahedronAtDepthZero' instead. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00245">245</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00259">259</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -328,7 +326,7 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00300">300</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00314">314</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -357,7 +355,7 @@ Static Private Attributes</h2></td></tr>
 <p>Calculates vertex data and points per respective triangles for depth 0 and saves it at spheres[0]</p>
 <p>Generates first 'sphere', a 20-sided icosahedron, and its respective points per triangle and saves them as <a class="el" href="struct_sphere_depth_data.html">SphereDepthData</a> in spheres </p>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00198">198</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00212">212</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -385,7 +383,7 @@ Static Private Attributes</h2></td></tr>
 </dl>
 <p>Retrieves number of points per triangle of the currently selected sphere depth and the maximum number of points in one triangle of that depth. Retrieves the rgb color values from the currently selected colormap using one triangle's point count divided by the maximum point count. For possible lighting extensions an alpha value can be given as optional parameter (defaults to 1) </p>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00022">22</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00024">24</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -414,7 +412,7 @@ Static Private Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>instance of singleton</dd></dl>
 <p>Singleton pattern getter for privately constructed instance Checks wether an instance of <a class="el" href="class_render_data.html" title="Singleton that stores and calculates all logical application data. ">RenderData</a> exists, creates a new instance if not and returns it. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00006">6</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00008">8</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -434,7 +432,7 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>all points from currently loaded .npy file in format [x1, y1, z1, x2, y2, z2, ... ] </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00055">55</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00061">61</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -485,7 +483,7 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00315">315</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00329">329</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -505,7 +503,7 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>all vertices at current depth in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00069">69</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00077">77</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -556,7 +554,7 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>inserts 3 3D float arrays (vec1, vec2 and vec3) into a vector vertVec </p>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00326">326</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00340">340</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -583,7 +581,7 @@ Static Private Attributes</h2></td></tr>
 </dl>
 <p>Loads data points from given .npy-file containing a double precision Nx3-Numpy-array, mirrors them and saves them into points list. Triggers recalculation of sphere at current depth with newly loaded points. </p>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00131">131</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00145">145</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -617,7 +615,7 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00111">111</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00113">113</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
 
 </div>
 </div>
@@ -656,7 +654,7 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>wether glm::vec3 point transformed by glm::mat3 transformationMatrix lies inside the first octant of 3D space. This represents wether point is counted as lying inside a triangle's space or not. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00336">336</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00350">350</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -682,7 +680,7 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00098">98</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00112">112</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -708,7 +706,7 @@ Static Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00074">74</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8cpp_source.html#l00084">84</a> of file <a class="el" href="renderdata_8cpp_source.html">renderdata.cpp</a>.</p>
 
 </div>
 </div>
@@ -733,7 +731,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00079">79</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00081">81</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
 
 </div>
 </div>
@@ -757,7 +755,7 @@ Static Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00084">84</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00086">86</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
 
 </div>
 </div>
@@ -783,7 +781,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>0-10: depth currently selected by application (restriction enforced by <a class="el" href="class_render_data.html#a8d5f7285d29dc9ca0f93fcf2b5826283">setSphereDepth()</a>) </p>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00083">83</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00085">85</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
 
 </div>
 </div>
@@ -808,32 +806,6 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>points currently loaded from .npy file </p>
-
-<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00080">80</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
-
-</div>
-</div>
-<a id="aadf6eefa26ab7f440571b651d38d6e0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadf6eefa26ab7f440571b651d38d6e0e">&#9670;&nbsp;</a></span>sphereBorderVertices</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;std::vector&lt;float&gt; &gt; RenderData::sphereBorderVertices</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>vertices per depth in order to draw triangle borders </p>
 
 <p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00082">82</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
 
@@ -861,7 +833,7 @@ Static Private Attributes</h2></td></tr>
 
 <p>data of the triangles' vertices and respective points for all depths calculated yet </p>
 
-<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00081">81</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="renderdata_8h_source.html#l00083">83</a> of file <a class="el" href="renderdata_8h_source.html">renderdata.h</a>.</p>
 
 </div>
 </div>

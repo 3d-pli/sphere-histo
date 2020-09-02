@@ -20,6 +20,5 @@ var class_render_data =
     [ "colorMap", "class_render_data.html#a78b66cb01444d2d36c3ed9179705a716", null ],
     [ "currentSphereDepth", "class_render_data.html#addeb27eb3a3e9c8bf50a3615fbcc8752", null ],
     [ "points", "class_render_data.html#aaab890b2c9bac7bb08d5f257e98a7cb9", null ],
-    [ "sphereBorderVertices", "class_render_data.html#aadf6eefa26ab7f440571b651d38d6e0e", null ],
     [ "spheres", "class_render_data.html#af8d7292450ad6bba825a6dbb75be217c", null ]
 ];

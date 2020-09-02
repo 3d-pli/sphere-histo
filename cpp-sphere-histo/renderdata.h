@@ -15,9 +15,11 @@
 #include <../external-libraries/glm-master/glm/mat3x3.hpp>
 #include <../external-libraries/glm-master/glm/matrix.hpp>
 #include <../external-libraries/glm-master/glm/vec3.hpp>
+// TODO: Korrekt in QMake einbinden und dann Header korrekt einbinden
 
 // Internal dependencies
 #include "resources/colormaps_matplotlib.h"
+// TODO: s. oben
 #include "spheredepthdata.h"
 
 // MACROS
@@ -79,7 +81,7 @@ private:
     static RenderData * _instance;
     std::list<QVector3D> points;                            //!< points currently loaded from .npy file
     std::vector<SphereDepthData> spheres;                   //!< data of the triangles' vertices and respective points for all depths calculated yet
-    std::vector<std::vector<float> > sphereBorderVertices;  //!< vertices per depth in order to draw triangle borders
+//    std::vector<std::vector<float> > sphereBorderVertices;  //!< vertices per depth in order to draw triangle borders
     short currentSphereDepth;                               //!< 0-10: depth currently selected by application (restriction enforced by setSphereDepth())
     const float * colorMap;
 

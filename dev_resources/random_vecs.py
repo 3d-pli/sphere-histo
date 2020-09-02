@@ -6,7 +6,7 @@ Created on Thu Apr  2 15:42:13 2020
 @author: tyrion
 """
 import numpy as np
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 #from mpl_toolkits.mplot3d import Axes3D
 
 
@@ -43,8 +43,8 @@ print(npvecs2)
 np.save('../test_data/punkteTest', npvecs2)
 
 
-# fig = plt.figure()
-# ax = fig.add_subplot(1,1,1,projection = '3d')
+fig = plt.figure()
+ax = fig.add_subplot(1,1,1,projection = '3d')
 # ax.scatter(vecs[:, 0], vecs[:, 1], vecs[:, 2])
 
 # plt.show()

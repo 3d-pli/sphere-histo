@@ -1,5 +1,7 @@
 #include "renderdata.h"
 RenderData * RenderData::_instance = 0;
+// TODO: Singleton pattern schöner machen
+
 
 /*! Singleton pattern getter for privately constructed instance
  * Checks wether an instance of RenderData exists, creates a new instance if not and returns it. */
@@ -20,16 +22,19 @@ RenderData * RenderData::getInstance()
  * For possible lighting extensions an alpha value can be given as optional parameter (defaults to 1)
 */
 std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */)  {
-
+// TODO: Zu Generate umbenennen - zu viel für Getter
     SphereDepthData & currentSphere = spheres.at(currentSphereDepth);
+    // TODO: Private member-Variablen mit m_ beginnen (je nach dann neu geklärtem Styleguide)
     std::vector<std::list<QVector3D> > & pointsPerTriangle = currentSphere.pointsPerTriangle;
 
 
     std::vector<float> colorVector;         // Return vector
-    colorVector.reserve(pointsPerTriangle.size() * 4);
+    colorVector.reserve(pointsPerTriangle.size() * 4 * 3);
 
     size_t maxOfPointsPerTriangle = currentSphere.getMaxOfPointsPerTriangle();
+    // TODO: Struct wieder zu Class machen
     int colorIndex;
+    // TODO: UINT
 
     for(std::list<QVector3D>& trianglePoints : pointsPerTriangle){
         if(maxOfPointsPerTriangle == 0){
@@ -37,7 +42,8 @@ std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */)  {
             colorIndex = 0;
         } else {
             // (current triangles' points / max points per one triangle) * colorMaps' row count * colorMaps' column count
-            colorIndex = int((trianglePoints.size() / double(maxOfPointsPerTriangle)) * 256) * 3;
+            colorIndex = int(trianglePoints.size() / double(maxOfPointsPerTriangle)) * 255 * 3;
+            // CHANGED
         }
 
         for(short i = 0; i < 3; ++i){
@@ -53,6 +59,8 @@ std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */)  {
 
 
 std::vector<float> RenderData::getPointsAsVector() const {
+    // TODO: Umbennenen zu generate/ convert
+
     std::vector<float> renderPoints;
     renderPoints.reserve(points.size()*3);
 
@@ -68,14 +76,19 @@ std::vector<float> RenderData::getPointsAsVector() const {
 
 std::vector<float> RenderData::getVerticesAtCurrentDepth() const {
     return spheres[currentSphereDepth].getVertices();
+    // TODO: Abfragen ob currentSphereDepth gesetzt und Sphere dazu berechnet
+    // TODO: Zusätzlichen Getter mit Depth als Parameter
 }
 
 
 void RenderData::setSphereDepth(short depth)
 {
+    // TODO: Alle von vornherein laden
+
     // Enforces maximum of 10 subdivisions
     if(depth > 10){
         depth = 10;
+        // TODO: Neue Variable im Zweifelsfall!
     }
 
     int maxCalculatedDepth = spheres.size() - 1;
@@ -85,13 +98,14 @@ void RenderData::setSphereDepth(short depth)
             generateIcosahedronAtDepthZero();
             maxCalculatedDepth = 0;
         }
+
         for(int i = 0; i < depth - maxCalculatedDepth; ++i){
             calculateNextSubdivision();
         }
     }
     currentSphereDepth = depth;
     return;
-
+    // TODO: Style-Guide befragen
 }
 
 
@@ -184,7 +198,7 @@ void RenderData::loadPointsFromFile(std::string filename){
 RenderData::RenderData() :
     points(),
     spheres(),
-    sphereBorderVertices(),
+//    sphereBorderVertices(),
     currentSphereDepth(-1),
     colorMap(cm::_viridis_data)
 {
