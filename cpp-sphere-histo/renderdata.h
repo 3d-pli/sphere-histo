@@ -17,7 +17,7 @@
 #include <glm/vec3.hpp>
 
 // Internal dependencies
-#include "resources/colormaps_matplotlib.h"
+#include "colormaps_matplotlib.h"
 #include "spheredepthdata.h"
 
 // MACROS
@@ -42,6 +42,7 @@ public:
 
     /*! \returns instance of singleton */
     static RenderData * getInstance();
+    // TODO: Singleton verschönern (statische Variable in getInstance)
 
 
     // GETTERS
@@ -49,21 +50,26 @@ public:
     /*! \returns color values in rgba format per point in vertices vector
      *  \param alpha: (optional) alpha value for transparancy - not yet implemented
     */
-    std::vector<float> getColorsForTriangles(float alpha = 1);
+    std::vector<float> generateColorsForTriangles(float alpha = 1);
 
     /*! \returns all points from currently loaded .npy file in format [x1, y1, z1, x2, y2, z2, ... ] */
-    std::vector<float> getPointsAsVector() const;
+    std::vector<float> generatePointsAsVector() const;
 
     /*! \returns all vertices at current depth in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES */
     std::vector<float> getVerticesAtCurrentDepth() const;
+
+    /*! \returns all vertices at depth 'depth' in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES
+     *  \param depth: sphere subdivision level. Valid values: 0-8
+    */
+    std::vector<float> getVerticesAtDepth(unsigned short depth) const;
 
 
     // SETTERS
 
     /*! Sets current sphere depth and calculates new sphere depth data if necessary.
-     *  Maximum depth is 10 - all values above will be evaluated as 10.
+     *  Maximum depth is 8 - all values above will be evaluated as 8.
      *  \param depth: sphere depth, representing the number of triangle subdivisions starting from an icosahedron at depth 0 */
-    void setSphereDepth(short depth);
+    void setSphereDepth(unsigned short depth);
 
     /*! Sets currently selected colormap.
      *  \param colorMapName: Options: Cividis, Inferno, Magma, Plasma, Turbo, Viridis */
@@ -74,12 +80,12 @@ public:
     void loadPointsFromFile(std::string filename);
 
 
+
 private:
 
     static RenderData * _instance;
     std::list<QVector3D> points;                            //!< points currently loaded from .npy file
     std::vector<SphereDepthData> spheres;                   //!< data of the triangles' vertices and respective points for all depths calculated yet
-    std::vector<std::vector<float> > sphereBorderVertices;  //!< vertices per depth in order to draw triangle borders
     short currentSphereDepth;                               //!< 0-10: depth currently selected by application (restriction enforced by setSphereDepth())
     const float * colorMap;
 

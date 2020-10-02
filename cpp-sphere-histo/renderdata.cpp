@@ -1,5 +1,6 @@
 #include "renderdata.h"
-RenderData * RenderData::_instance = 0;
+
+RenderData* RenderData::_instance = NULL; // Needs forward initialization outside header.
 
 /*! Singleton pattern getter for privately constructed instance
  * Checks wether an instance of RenderData exists, creates a new instance if not and returns it. */
@@ -18,18 +19,18 @@ RenderData * RenderData::getInstance()
  * Retrieves the rgb color values from the currently selected colormap
  * using one triangle's point count divided by the maximum point count.
  * For possible lighting extensions an alpha value can be given as optional parameter (defaults to 1)
-*/
-std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */)  {
+*/ 
+std::vector<float> RenderData::generateColorsForTriangles(float alpha /* = 1 */)  {
 
     SphereDepthData & currentSphere = spheres.at(currentSphereDepth);
     std::vector<std::list<QVector3D> > & pointsPerTriangle = currentSphere.pointsPerTriangle;
 
 
     std::vector<float> colorVector;         // Return vector
-    colorVector.reserve(pointsPerTriangle.size() * 4);
+    colorVector.reserve(pointsPerTriangle.size() * 4 * 3);
 
     size_t maxOfPointsPerTriangle = currentSphere.getMaxOfPointsPerTriangle();
-    int colorIndex;
+    unsigned int colorIndex;
 
     for(std::list<QVector3D>& trianglePoints : pointsPerTriangle){
         if(maxOfPointsPerTriangle == 0){
@@ -52,7 +53,7 @@ std::vector<float> RenderData::getColorsForTriangles(float alpha /* = 1 */)  {
 }
 
 
-std::vector<float> RenderData::getPointsAsVector() const {
+std::vector<float> RenderData::generatePointsAsVector() const {
     std::vector<float> renderPoints;
     renderPoints.reserve(points.size()*3);
 
@@ -70,28 +71,23 @@ std::vector<float> RenderData::getVerticesAtCurrentDepth() const {
     return spheres[currentSphereDepth].getVertices();
 }
 
+std::vector<float> RenderData::getVerticesAtDepth(unsigned short depth) const {
+    if(depth <= 8){
+        return spheres[depth].getVertices();
+    } else {
+        throw "Sphere depth needs to be between 0 and 8";
+    }
+}
 
-void RenderData::setSphereDepth(short depth)
+void RenderData::setSphereDepth(unsigned short depth)
 {
-    // Enforces maximum of 10 subdivisions
-    if(depth > 10){
-        depth = 10;
+    // Enforces maximum of 8 subdivisions
+    unsigned short valid_depth = depth;
+    if(depth > 8){
+        valid_depth = 8;
     }
-
-    int maxCalculatedDepth = spheres.size() - 1;
-
-    if(depth > maxCalculatedDepth){
-        if(spheres.empty()){
-            generateIcosahedronAtDepthZero();
-            maxCalculatedDepth = 0;
-        }
-        for(int i = 0; i < depth - maxCalculatedDepth; ++i){
-            calculateNextSubdivision();
-        }
-    }
-    currentSphereDepth = depth;
+    currentSphereDepth = valid_depth;
     return;
-
 }
 
 
@@ -126,7 +122,7 @@ void RenderData::setColorMap(QString colorMapName){
 /*!
  * Loads data points from given .npy-file containing a double precision Nx3-Numpy-array,
  * mirrors them and saves them into points list.
- * Triggers recalculation of sphere at current depth with newly loaded points.
+ * Triggers recalculation of sphere with newly loaded points.
  */
 void RenderData::loadPointsFromFile(std::string filename){
     try{
@@ -175,19 +171,23 @@ void RenderData::loadPointsFromFile(std::string filename){
         return;
     }
 
-    // Recalculate spheres up to current sphere depth
+    // Recalculate spheres with new points
     spheres.clear();
-    setSphereDepth(currentSphereDepth);
+    for(int i = 0; i <= 8; ++i){
+        calculateNextSubdivision();
+    }
 }
 
 
 RenderData::RenderData() :
     points(),
     spheres(),
-    sphereBorderVertices(),
     currentSphereDepth(-1),
     colorMap(cm::_viridis_data)
 {
+    for(int i = 0; i <= 8; ++i){
+        calculateNextSubdivision();
+    }
     setSphereDepth(3);
 }
 

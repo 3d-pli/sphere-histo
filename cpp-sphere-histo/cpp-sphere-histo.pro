@@ -29,6 +29,8 @@ OBJECTS_DIR = build/obj
 UI_DIR      = build/ui
 RCC_DIR     = build/
 
+INCLUDEPATH += $$PWD/../external-libraries/cnpy-master/ \
+                $$PWD/resources/
 
 SOURCES += \
         main.cpp \
@@ -37,12 +39,13 @@ SOURCES += \
     renderdata.cpp \
     spheredepthdata.cpp
 
+
 HEADERS += \
         spherewidget.h \
         mainwindow.h \
-        resources/colormaps_matplotlib.h \
     renderdata.h \
-    spheredepthdata.h
+    spheredepthdata.h \
+    colormaps_matplotlib.h
 
 
 #win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/release/ -lcnpy
@@ -75,4 +78,4 @@ FORMS += \
     mainwindow.ui
 
 unix:!macx: LIBS += -L$$PWD/../external-libraries/cnpy-master/build/ -lcnpy
-INCLUDEPATH += $$PWD/../external-libraries/cnpy-master/
+

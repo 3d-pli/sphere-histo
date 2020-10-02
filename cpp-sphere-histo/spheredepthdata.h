@@ -9,7 +9,7 @@
 #include <QVector3D>
 
 // internal
-#include "resources/colormaps_matplotlib.h"
+#include "colormaps_matplotlib.h"
 
 /*!
 * Container class for all data regarding one sphere depth at a given set of points

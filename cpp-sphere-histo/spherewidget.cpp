@@ -146,7 +146,7 @@ void SphereWidget::wheelEvent(QWheelEvent * event){
 
 void SphereWidget::updatePoints(){
     // TODO: Test
-    std::vector<float> points = renderData->getPointsAsVector();
+    std::vector<float> points = renderData->generatePointsAsVector();
     Q_ASSERT(vbo_points.bind());
     vbo_points.allocate(points.data(), points.size()*sizeof(float));
     vbo_points.release();
@@ -168,7 +168,7 @@ void SphereWidget::updateSphereVertices()
 
 void SphereWidget::updateTriangleColor()
 {
-    std::vector<float> colors4f = renderData->getColorsForTriangles();
+    std::vector<float> colors4f = renderData->generateColorsForTriangles();
     Q_ASSERT(vbo_vertexColors.bind());
     vbo_vertexColors.allocate(colors4f.data(), colors4f.size() * sizeof(float));
     vbo_vertexColors.release();
