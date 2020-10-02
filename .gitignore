@@ -8,4 +8,5 @@ external-libraries/*
 *build*
 *cpp-sphere-histo.pro.user
 cpp-sphere-histo/cpp-sphere-histo.pro.user
+cpp-sphere-histo/glm
 

@@ -18,7 +18,7 @@
     <item row="1" column="2">
      <widget class="QComboBox" name="comboBox">
       <property name="currentText">
-       <string>Cividis</string>
+       <string>Viridis</string>
       </property>
       <item>
        <property name="text">
