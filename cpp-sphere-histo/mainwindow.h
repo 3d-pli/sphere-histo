@@ -1,7 +1,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "resources/colormaps_matplotlib.h"
 #include <QMainWindow>
 #include <QOpenGLWidget>
 #include "spherewidget.h"
@@ -19,6 +18,8 @@ public slots:
     void changeTriangleDepth(int depth);
     void openFile();
     void changeColorMap(QString mapName);
+    void changeShowPoints(int showPoints);
+    void changeShowSphere(int showSphere);
 
 public:
     explicit MainWindow(QWidget *parent = 0);

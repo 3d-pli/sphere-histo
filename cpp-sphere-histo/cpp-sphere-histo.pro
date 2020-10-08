@@ -8,7 +8,7 @@ QT       += core gui
 QT += opengl
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = cpp-sphere-histo
+TARGET = sphere-histo
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -29,8 +29,8 @@ OBJECTS_DIR = build/obj
 UI_DIR      = build/ui
 RCC_DIR     = build/
 
-INCLUDEPATH += $$PWD/../external-libraries/cnpy-master/ \
-                $$PWD/resources/
+INCLUDEPATH +=  $$PWD/./resources/ #\
+#                $$PWD/../external-libraries/cnpy-master/
 
 SOURCES += \
         main.cpp \
@@ -44,8 +44,7 @@ HEADERS += \
         spherewidget.h \
         mainwindow.h \
     renderdata.h \
-    spheredepthdata.h \
-    colormaps_matplotlib.h
+    spheredepthdata.h
 
 
 #win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../external-libraries/cnpy-master/build/release/ -lcnpy
@@ -78,4 +77,3 @@ FORMS += \
     mainwindow.ui
 
 unix:!macx: LIBS += -L$$PWD/../external-libraries/cnpy-master/build/ -lcnpy
-

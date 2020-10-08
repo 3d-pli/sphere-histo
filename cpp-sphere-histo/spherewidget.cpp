@@ -30,8 +30,10 @@ void SphereWidget::initializeGL() {
     vbo_vertexColors.create();
     vbo_vertexColors.release();
 
+    updatePoints();
     updateSphereVertices();
     updateTriangleColor();
+
 
     glEnable(GL_DEPTH_TEST);
 }
@@ -68,48 +70,51 @@ void SphereWidget::paintGL() {
     glRotatef(m_rotation.x(), 0.0f, 1.0f, 0.0f);
     glRotatef(m_rotation.y(), 1.0f, 0.0f, 0.0f);
 
-    /// render points
-    // set color and point size
-    glColor3f(0.2,0.2,0.2);
-    glPointSize(2);
+    /// render points if selected
+    if(renderData->getPointsSelected()){
+        // set color and point size
+        glColor3f(0.2,0.2,0.2);
+        glPointSize(2);
 
-    // bind point buffer
-    vbo_points.bind();
-    glVertexPointer(3, GL_FLOAT, 0, 0);
+        // bind point buffer
+        vbo_points.bind();
+        glVertexPointer(3, GL_FLOAT, 0, 0);
 
-    // enable states
-    glEnableClientState(GL_VERTEX_ARRAY);
+        // enable states
+        glEnableClientState(GL_VERTEX_ARRAY);
 
-    // render points
-    glDrawArrays(GL_POINTS, 0, vbo_points.size());
+        // render points
+        glDrawArrays(GL_POINTS, 0, vbo_points.size());
 
-    // release buffer
-    glDisableClientState(GL_VERTEX_ARRAY);
-    vbo_points.release();
-    /// end: render points
-
+        // release buffer
+        glDisableClientState(GL_VERTEX_ARRAY);
+        vbo_points.release();
+        /// end: render points
+    }
 
     /// render sphere
-    // draw icosphere
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    glPointSize(1);
+    // draw icosphere if selected
+    if(renderData->getIcosphereSelected()){
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        glPointSize(1);
 
-    vbo_vertexColors.bind();
-    glColorPointer(4, GL_FLOAT, 0, 0);
+        vbo_vertexColors.bind();
+        glColorPointer(4, GL_FLOAT, 0, 0);
 
-    vbo_sphereVertices.bind();
-    glVertexPointer(3, GL_FLOAT, 0, 0);
+        vbo_sphereVertices.bind();
+        glVertexPointer(3, GL_FLOAT, 0, 0);
 
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_COLOR_ARRAY);
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_COLOR_ARRAY);
 
-    glDrawArrays(GL_TRIANGLES, 0, vbo_sphereVertices.size());
+        glDrawArrays(GL_TRIANGLES, 0, vbo_sphereVertices.size());
 
-    glDisableClientState(GL_COLOR_ARRAY);
-    glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_COLOR_ARRAY);
+        glDisableClientState(GL_VERTEX_ARRAY);
 
-    vbo_vertexColors.release();
-    vbo_sphereVertices.release();
+        vbo_vertexColors.release();
+        vbo_sphereVertices.release();
+    }
 }
 
 void SphereWidget::mousePressEvent(QMouseEvent * event){

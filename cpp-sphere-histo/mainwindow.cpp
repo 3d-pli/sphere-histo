@@ -15,8 +15,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionOpen, SIGNAL(triggered()), this, SLOT(openFile()));
     connect(ui->actionExit, SIGNAL(triggered()), this, SLOT(close()));
     connect(ui->comboBox, SIGNAL(currentTextChanged(QString)), this , SLOT(changeColorMap(QString)));
+    connect(ui->checkBoxShowPoints, SIGNAL(stateChanged(int)), this , SLOT(changeShowPoints(int)));
+    connect(ui->checkBoxShowSphere, SIGNAL(stateChanged(int)), this , SLOT(changeShowSphere(int)));
 
     RenderData::getInstance()->setColorMap("Viridis");
+//    if(QCoreApplication::arguments().size() > 1){
+//        std::string filename = QCoreApplication::arguments().at(1).toStdString();
+//        RenderData::getInstance()->loadPointsFromFile(filename);
+//        updatePoints();
+//        updateTriangleColor();
+//    }
 }
 
 MainWindow::~MainWindow()
@@ -47,3 +55,17 @@ void MainWindow::changeColorMap(QString mapName){
     RenderData::getInstance()->setColorMap(mapName);
     ui->sphereWidget->updateTriangleColor();
 }
+
+void MainWindow::changeShowPoints(int showPoints)
+{
+    RenderData::getInstance()->setPointsSelected(!!showPoints);
+    ui->sphereWidget->update();
+}
+
+void MainWindow::changeShowSphere(int showSphere)
+{
+    RenderData::getInstance()->setIcosphereSelected(!!showSphere);
+    ui->sphereWidget->update();
+}
+
+

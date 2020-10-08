@@ -42,20 +42,16 @@ public:
 
     /*! \returns instance of singleton */
     static RenderData * getInstance();
-    // TODO: Singleton verschönern (statische Variable in getInstance)
 
 
     // GETTERS
 
+    bool getIcosphereSelected() const;
+    bool getPointsSelected() const;
+
     /*! \returns color values in rgba format per point in vertices vector
      *  \param alpha: (optional) alpha value for transparancy - not yet implemented
     */
-    std::vector<float> generateColorsForTriangles(float alpha = 1);
-
-    /*! \returns all points from currently loaded .npy file in format [x1, y1, z1, x2, y2, z2, ... ] */
-    std::vector<float> generatePointsAsVector() const;
-
-    /*! \returns all vertices at current depth in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES */
     std::vector<float> getVerticesAtCurrentDepth() const;
 
     /*! \returns all vertices at depth 'depth' in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES
@@ -65,6 +61,9 @@ public:
 
 
     // SETTERS
+
+    void setIcosphereSelected(bool value);
+    void setPointsSelected(bool value);
 
     /*! Sets current sphere depth and calculates new sphere depth data if necessary.
      *  Maximum depth is 8 - all values above will be evaluated as 8.
@@ -80,6 +79,15 @@ public:
     void loadPointsFromFile(std::string filename);
 
 
+    // GENERATORS
+
+    std::vector<float> generateColorsForTriangles(float alpha = 1);
+
+    /*! \returns all points from currently loaded .npy file in format [x1, y1, z1, x2, y2, z2, ... ] */
+    std::vector<float> generatePointsAsVector() const;
+
+    /*! \returns all vertices at current depth in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES */
+
 
 private:
 
@@ -87,6 +95,8 @@ private:
     std::list<QVector3D> points;                            //!< points currently loaded from .npy file
     std::vector<SphereDepthData> spheres;                   //!< data of the triangles' vertices and respective points for all depths calculated yet
     short currentSphereDepth;                               //!< 0-10: depth currently selected by application (restriction enforced by setSphereDepth())
+    bool icosphereSelected;
+    bool pointsSelected;
     const float * colorMap;
 
     RenderData();                                           //!< Sets initial sphere depth to 3
@@ -113,6 +123,11 @@ private:
     /*! inserts 3 3D float arrays (vec1, vec2 and vec3) into a vector vertVec */
     void insertTriangleIntoVerticesVector(std::vector<float> & vertVec, float * vec1, float * vec2, float * vec3);
 
+    /*! \returns wether glm::vec3 point transformed by glm::mat3 transformationMatrix lies inside the first octant of 3D space.
+     *  This represents wether point is counted as lying inside a triangle's space or not.*/
+    bool pointInFirstQuadrantAfterTransformation(const glm::vec3 & point, const glm::mat3 & transformationMatrix);
+
+
     /*! normalizes a given 3D vector \param v */
     inline void normalize(float v[3]) {
        float d = sqrt(v[0]*v[0]+v[1]*v[1]+v[2]*v[2]);
@@ -122,10 +137,6 @@ private:
        }
        v[0] /= d; v[1] /= d; v[2] /= d;
     }
-
-    /*! \returns wether glm::vec3 point transformed by glm::mat3 transformationMatrix lies inside the first octant of 3D space.
-     *  This represents wether point is counted as lying inside a triangle's space or not.*/
-    bool pointInFirstQuadrantAfterTransformation(const glm::vec3 & point, const glm::mat3 & transformationMatrix);
 
 };
 

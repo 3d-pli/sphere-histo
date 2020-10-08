@@ -133,36 +133,57 @@ void RenderData::loadPointsFromFile(std::string filename){
         size_t row_size = np_points.shape[0];
         size_t column_size = np_points.shape[1];
         if(column_size != 3){
-            // TODO: Maybe throw a "real" exception
             throw "Invalid input file";
         }
-
 
         double * pointData = np_points.data<double>();
 
         // clear previous data from point list
         points.clear();
+        if(!np_points.fortran_order){
+            // iterate over rows and save both the respective point and its mirrored version into points list
+            for(size_t i = 0; i < row_size * column_size; i += column_size){
 
-        // iterate over rows and save both the respective point and its mirrored version into points list
-        for(size_t i = 0; i < row_size * column_size; i += column_size){
-
-            // TODO: make data type depend on word size of np_points (4 -> float, 8 -> double) - mabye use a template?
-            QVector3D point = {
-                            static_cast<float>(pointData[i]),
-                            static_cast<float>(pointData[i+1]),
-                            static_cast<float>(pointData[i+2])
-                                        };
-            points.push_back(point);
-
-            if( MIRROR_POINTS ){
-                QVector3D mirroredPoint = {
-                                - static_cast<float>(pointData[i]),
-                                - static_cast<float>(pointData[i+1]),
-                                - static_cast<float>(pointData[i+2])
+                // TODO: make data type depend on word size of np_points (4 -> float, 8 -> double) - mabye use a template?
+                QVector3D point = {
+                                static_cast<float>(pointData[i]),
+                                static_cast<float>(pointData[i+1]),
+                                static_cast<float>(pointData[i+2])
                                             };
-                points.push_back(mirroredPoint);
+                points.push_back(point);
+
+                if( MIRROR_POINTS ){
+                    QVector3D mirroredPoint = {
+                                    - static_cast<float>(pointData[i]),
+                                    - static_cast<float>(pointData[i+1]),
+                                    - static_cast<float>(pointData[i+2])
+                                                };
+                    points.push_back(mirroredPoint);
+                }
+            }
+        }else{
+            // iterate over rows and save both the respective point and its mirrored version into points list
+            for(size_t i = 0; i < row_size; ++i){
+
+                // TODO: make data type depend on word size of np_points (4 -> float, 8 -> double) - mabye use a template?
+                QVector3D point = {
+                                static_cast<float>(pointData[i]),
+                                static_cast<float>(pointData[i+(1*row_size)]),
+                                static_cast<float>(pointData[i+(2*row_size)])
+                                            };
+                points.push_back(point);
+
+                if( MIRROR_POINTS ){
+                    QVector3D mirroredPoint = {
+                                    - static_cast<float>(pointData[i]),
+                                    - static_cast<float>(pointData[i+(1*row_size)]),
+                                    - static_cast<float>(pointData[i+(2*row_size)])
+                                                };
+                    points.push_back(mirroredPoint);
+                }
             }
         }
+
     } catch(std::string str){
         std::cerr << str << std::endl;
     } catch(std::runtime_error e){
@@ -178,11 +199,33 @@ void RenderData::loadPointsFromFile(std::string filename){
     }
 }
 
+bool RenderData::getIcosphereSelected() const
+{
+    return icosphereSelected;
+}
+
+void RenderData::setIcosphereSelected(bool value)
+{
+    icosphereSelected = value;
+}
+
+bool RenderData::getPointsSelected() const
+{
+    return pointsSelected;
+}
+
+void RenderData::setPointsSelected(bool value)
+{
+    pointsSelected = value;
+}
+
 
 RenderData::RenderData() :
     points(),
     spheres(),
     currentSphereDepth(-1),
+    icosphereSelected(true),
+    pointsSelected(true),
     colorMap(cm::_viridis_data)
 {
     for(int i = 0; i <= 8; ++i){
@@ -301,11 +344,13 @@ std::list<QVector3D> RenderData::filterPointsForTriangle(std::list<QVector3D> &p
     std::list<QVector3D> pointsInTriangle;
     glm::mat3 transformationMatrix = getTransformationMatrix(v1, v2, v3);
 
-    for(std::list<QVector3D>::iterator i = pointList.begin(); i != pointList.end(); ++i){
+    for(std::list<QVector3D>::iterator i = pointList.begin(); i != pointList.end(); ){
        glm::vec3 point = {i->x(), i->y(), i->z()};
        if(pointInFirstQuadrantAfterTransformation(point , transformationMatrix)){
           pointsInTriangle.push_back(*i);
           i = pointList.erase(i);
+       } else {
+          ++i;
        }
     }
     return pointsInTriangle;
@@ -336,6 +381,19 @@ void RenderData::insertTriangleIntoVerticesVector(std::vector<float>& vertVec, f
 bool RenderData::pointInFirstQuadrantAfterTransformation(const glm::vec3 &point, const glm::mat3 &transformationMatrix){
 
     glm::vec3 transformedPoint = transformationMatrix * point;             // point in coordinate system of triangle vertices
+//    if(this->spheres.size() == 1){
+//        std::cout << "POINT: " << point[0] << "   " << point[1] << "   " << point[2] << "   " << std::endl;
+//        std::cout << "NORMALIZED POINT: " << normalizedPoint[0] << "   " << normalizedPoint[1] << "   " << normalizedPoint[2] << "   " << std::endl;
+//        std::cout << "TRANSFORMATION MATRIX: " << transformationMatrix[0][0] << "   "
+//                  << transformationMatrix[0][1] << "   " << transformationMatrix[0][2] << "   "
+//                  << transformationMatrix[1][0] << "   " << transformationMatrix[1][1] << "   "
+//                  << transformationMatrix[1][2] << "   " << transformationMatrix[2][0] << "   "
+//                  << transformationMatrix[2][1] << "   " << transformationMatrix[2][2] << "   "
+//                  << std::endl;
+//        std::cout << "TRANSFORMED POINT: " << transformedPoint[0] << "   " << transformedPoint[1] << "   " << transformedPoint[2] << "   " << std::endl;
+//        std::cout << std::endl;
+//    }
+
 
     if(transformedPoint[0] >= 0 && transformedPoint[1] >= 0 && transformedPoint[2] >= 0){
         return true;
