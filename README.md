@@ -6,6 +6,7 @@ Points can be read in from .npy files with shape (n, 3).
 ## Dependencies
 - qt5-default
 - zlib1g-dev
+- libglm-dev
 
 ## How to deploy
 0. Make sure to have the __dependencies__ installed on your system
