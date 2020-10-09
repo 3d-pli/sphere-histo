@@ -49,9 +49,7 @@ public:
     bool getIcosphereSelected() const;
     bool getPointsSelected() const;
 
-    /*! \returns color values in rgba format per point in vertices vector
-     *  \param alpha: (optional) alpha value for transparancy - not yet implemented
-    */
+    /*! \returns all vertices at current depth in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES */
     std::vector<float> getVerticesAtCurrentDepth() const;
 
     /*! \returns all vertices at depth 'depth' in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES
@@ -81,12 +79,14 @@ public:
 
     // GENERATORS
 
+    /*! \returns color values in rgba format per point in vertices vector
+     *  \param alpha: (optional) alpha value for transparancy - not yet used in further application
+    */
     std::vector<float> generateColorsForTriangles(float alpha = 1);
 
     /*! \returns all points from currently loaded .npy file in format [x1, y1, z1, x2, y2, z2, ... ] */
     std::vector<float> generatePointsAsVector() const;
 
-    /*! \returns all vertices at current depth in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES */
 
 
 private:

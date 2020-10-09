@@ -6,6 +6,7 @@
 #include "spherewidget.h"
 #include "renderdata.h"
 
+
 namespace Ui {
 class MainWindow;
 }

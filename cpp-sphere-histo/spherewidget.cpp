@@ -24,11 +24,19 @@ void SphereWidget::initializeGL() {
 
     vbo_points.create();
     vbo_points.release();
-    Q_ASSERT(vbo_sphereVertices.create());
+    if(!vbo_points.isCreated()){
+        std::cerr << "Point VBO could not be created." << std::endl;
+    }
+    vbo_sphereVertices.create();
     vbo_sphereVertices.release();
-    Q_ASSERT(vbo_sphereVertices.isCreated());
+    if(!vbo_sphereVertices.isCreated()){
+        std::cerr << "Sphere vertex VBO could not be created." << std::endl;
+    }
     vbo_vertexColors.create();
     vbo_vertexColors.release();
+    if(!vbo_vertexColors.isCreated()){
+        std::cerr << "Sphere color VBO could not be created." << std::endl;
+    }
 
     updatePoints();
     updateSphereVertices();
@@ -150,9 +158,8 @@ void SphereWidget::wheelEvent(QWheelEvent * event){
 
 
 void SphereWidget::updatePoints(){
-    // TODO: Test
     std::vector<float> points = renderData->generatePointsAsVector();
-    Q_ASSERT(vbo_points.bind());
+    vbo_points.bind();
     vbo_points.allocate(points.data(), points.size()*sizeof(float));
     vbo_points.release();
 //    vbo_points.write(0, points.data(), points.size());
@@ -161,9 +168,8 @@ void SphereWidget::updatePoints(){
 
 void SphereWidget::updateSphereVertices()
 {
-    // TODO: VBO mit aktuellen Vertices der Icosphere fuellen
     std::vector<float> vertices = renderData->getVerticesAtCurrentDepth();
-    Q_ASSERT(vbo_sphereVertices.bind());
+    vbo_sphereVertices.bind();
     vbo_sphereVertices.allocate(vertices.data(), vertices.size()*sizeof(float));
     vbo_sphereVertices.release();
     this->updateTriangleColor();
@@ -174,7 +180,7 @@ void SphereWidget::updateSphereVertices()
 void SphereWidget::updateTriangleColor()
 {
     std::vector<float> colors4f = renderData->generateColorsForTriangles();
-    Q_ASSERT(vbo_vertexColors.bind());
+    vbo_vertexColors.bind();
     vbo_vertexColors.allocate(colors4f.data(), colors4f.size() * sizeof(float));
     vbo_vertexColors.release();
 

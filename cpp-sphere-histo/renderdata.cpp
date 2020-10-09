@@ -275,7 +275,10 @@ void RenderData::generateIcosahedronAtDepthZero(){
         insertTriangleIntoVerticesVector(verticesForDepthZero, v1, v2, v3);
     }
     // Save data for current depth into respective SphereDepthData in the vertices array
-    Q_ASSERT(spheres.empty());
+    if(!(spheres.empty())){
+        std::cerr << "Error while trying to generate icosahedron - there already exists a sphere at depth 0" << std::endl;
+        return;
+    }
     spheres.push_back(SphereDepthData(0, verticesForDepthZero, pointsPerTriangle));
 }
 
