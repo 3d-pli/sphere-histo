@@ -28,6 +28,8 @@ Points can be read in from .npy files with shape (n, 3).
 
 ## How to use
 
+![Example image](sphere-histo-example.png "Example of application window with open point file")
+
 - Inside the application window click File->Open to open a .npy file
 - Use the slider below the sphere to change the number of triangles, that approximate the sphere
 - Use the selection box next to the slider to choose your preferred color map
