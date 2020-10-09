@@ -17,14 +17,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->comboBox, SIGNAL(currentTextChanged(QString)), this , SLOT(changeColorMap(QString)));
     connect(ui->checkBoxShowPoints, SIGNAL(stateChanged(int)), this , SLOT(changeShowPoints(int)));
     connect(ui->checkBoxShowSphere, SIGNAL(stateChanged(int)), this , SLOT(changeShowSphere(int)));
+    connect(ui->checkBoxMirrorPoints, SIGNAL(stateChanged(int)), SLOT(changeMirrorPoints(int)));
 
     RenderData::getInstance()->setColorMap("Viridis");
-//    if(QCoreApplication::arguments().size() > 1){
-//        std::string filename = QCoreApplication::arguments().at(1).toStdString();
-//        RenderData::getInstance()->loadPointsFromFile(filename);
-//        updatePoints();
-//        updateTriangleColor();
-//    }
+
 }
 
 MainWindow::~MainWindow()
@@ -66,6 +62,13 @@ void MainWindow::changeShowSphere(int showSphere)
 {
     RenderData::getInstance()->setIcosphereSelected(!!showSphere);
     ui->sphereWidget->update();
+}
+
+void MainWindow::changeMirrorPoints(int mirrorPoints)
+{
+    RenderData::getInstance()->setMirrorPointsAndRecalculate(!!mirrorPoints);
+    ui->sphereWidget->updatePoints();
+    ui->sphereWidget->updateTriangleColor();
 }
 
 

@@ -20,9 +20,6 @@
 #include "colormaps_matplotlib.h"
 #include "spheredepthdata.h"
 
-// MACROS
-#define MIRROR_POINTS true
-
 /*!
  * \class RenderData
  * \brief Singleton that stores and calculates all logical application data
@@ -48,6 +45,7 @@ public:
 
     bool getIcosphereSelected() const;
     bool getPointsSelected() const;
+    bool getMirrorPoints() const;
 
     /*! \returns all vertices at current depth in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES */
     std::vector<float> getVerticesAtCurrentDepth() const;
@@ -62,6 +60,7 @@ public:
 
     void setIcosphereSelected(bool value);
     void setPointsSelected(bool value);
+    void setMirrorPointsAndRecalculate(bool value);
 
     /*! Sets current sphere depth and calculates new sphere depth data if necessary.
      *  Maximum depth is 8 - all values above will be evaluated as 8.
@@ -89,6 +88,8 @@ public:
 
 
 
+
+
 private:
 
     static RenderData * _instance;
@@ -97,6 +98,8 @@ private:
     short currentSphereDepth;                               //!< 0-10: depth currently selected by application (restriction enforced by setSphereDepth())
     bool icosphereSelected;
     bool pointsSelected;
+    bool mirrorPoints;
+    std::string last_filename;
     const float * colorMap;
 
     RenderData();                                           //!< Sets initial sphere depth to 3

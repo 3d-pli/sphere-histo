@@ -66,6 +66,17 @@ std::vector<float> RenderData::generatePointsAsVector() const {
     return renderPoints;
 }
 
+bool RenderData::getMirrorPoints() const
+{
+    return mirrorPoints;
+}
+
+void RenderData::setMirrorPointsAndRecalculate(bool value)
+{
+    mirrorPoints = value;
+    loadPointsFromFile(last_filename);
+}
+
 
 std::vector<float> RenderData::getVerticesAtCurrentDepth() const {
     return spheres[currentSphereDepth].getVertices();
@@ -152,7 +163,7 @@ void RenderData::loadPointsFromFile(std::string filename){
                                             };
                 points.push_back(point);
 
-                if( MIRROR_POINTS ){
+                if(this->mirrorPoints){
                     QVector3D mirroredPoint = {
                                     - static_cast<float>(pointData[i]),
                                     - static_cast<float>(pointData[i+1]),
@@ -173,7 +184,7 @@ void RenderData::loadPointsFromFile(std::string filename){
                                             };
                 points.push_back(point);
 
-                if( MIRROR_POINTS ){
+                if(this->mirrorPoints){
                     QVector3D mirroredPoint = {
                                     - static_cast<float>(pointData[i]),
                                     - static_cast<float>(pointData[i+(1*row_size)]),
@@ -183,6 +194,7 @@ void RenderData::loadPointsFromFile(std::string filename){
                 }
             }
         }
+        this->last_filename = filename;
 
     } catch(std::string str){
         std::cerr << str << std::endl;
@@ -226,6 +238,8 @@ RenderData::RenderData() :
     currentSphereDepth(-1),
     icosphereSelected(true),
     pointsSelected(true),
+    mirrorPoints(true),
+    last_filename(""),
     colorMap(cm::_viridis_data)
 {
     for(int i = 0; i <= 8; ++i){

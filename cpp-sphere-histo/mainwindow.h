@@ -21,6 +21,7 @@ public slots:
     void changeColorMap(QString mapName);
     void changeShowPoints(int showPoints);
     void changeShowSphere(int showSphere);
+    void changeMirrorPoints(int mirrorPoints);
 
 public:
     explicit MainWindow(QWidget *parent = 0);
