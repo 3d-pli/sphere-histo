@@ -37,7 +37,9 @@ void SphereWidget::initializeGL() {
     if(!vbo_vertexColors.isCreated()){
         std::cerr << "Sphere color VBO could not be created." << std::endl;
     }
-
+    if(QCoreApplication::arguments().size() > 1){
+            renderData->loadPointsFromFile(QCoreApplication::arguments().at(1).toStdString());
+    }
     updatePoints();
     updateSphereVertices();
     updateTriangleColor();
@@ -174,7 +176,6 @@ void SphereWidget::updateSphereVertices()
     vbo_sphereVertices.release();
     this->updateTriangleColor();
     this->update();
-
 }
 
 void SphereWidget::updateTriangleColor()

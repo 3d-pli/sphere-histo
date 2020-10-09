@@ -6,6 +6,7 @@
 #include <QOpenGLFunctions>
 #include <QMouseEvent>
 #include <QOpenGLBuffer>
+#include <QCoreApplication>
 
 // STL
 #include <vector>
