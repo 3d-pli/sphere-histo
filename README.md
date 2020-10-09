@@ -28,7 +28,7 @@ Points can be read in from .npy files with shape (n, 3).
 
 ## How to use
 
-![Example image](sphere-histo-example.png "Example of application window with open point file")
+![Example image](img/sphere-histo-example.png "Example of application window with open point file")
 
 - Inside the application window click File->Open to open a .npy file
 - Use the selection box next to the slider to choose your preferred color map
@@ -46,5 +46,5 @@ Points can be read in from .npy files with shape (n, 3).
 - Use the checkbox "Mirror Points" to select wether the opened points should be mirrored with reference to (0,0,0)
 
 
-![Slider example image](slider.png "Example of slider usage")
-![Options example image](options.png "Example of display options")
+![Slider example image](img/slider.png "Example of slider usage")
+![Options example image](img/options.png "Example of display options")
