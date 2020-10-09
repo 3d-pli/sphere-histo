@@ -1,1 +1,0 @@
-[] QVector3D arbeitet mit floats - bei Genauigkeitsproblemen durch std::vector<double>(x, y, z) ersetzen
