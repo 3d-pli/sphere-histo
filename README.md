@@ -5,6 +5,7 @@ Points can be read in from .npy files with shape (n, 3).
 
 ## Dependencies
 - qt5-default
+- libgl1-mesa-dev
 - zlib1g-dev
 - libglm-dev
 
