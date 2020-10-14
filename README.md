@@ -1,7 +1,7 @@
 # Sphere Histogram
 ## Brief description
-_Sphere Histogram_ is a graphical tool to depict a distribution of points in 3D space on a sphere approximated by congruent triangles. The triangles' colors indicate the density of points lying in the respective direction.
-Points can be read in from .npy files with shape (n, 3).
+`sphere-histo` is a graphical tool to depict a distribution of points in 3D space on a sphere approximated by congruent triangles. The triangles' colors indicate the density of points lying in the respective direction.
+Points can be read from .npy files with shape (n, 3).
 
 ## Dependencies
 - qt5-default
@@ -17,25 +17,25 @@ For building:
 ## How to deploy
 0. Make sure to have the __dependencies__ installed on your system
 
-1. Clone this Git repository \\
+1. Clone this Git repository  
 `$ git clone https://jugit.fz-juelich.de/a.roethenbacher/sphere-histo.git`
 
-2. Change into the project's source directory \\
+2. Change into the project's source directory  
 `$ cd sphere-histo/sphere-histo`
 
-3. Create a build directory and change into it \\
+3. Create a build directory and change into it  
 `$ mkdir build`
 
-4. Change into build directory \\
+4. Change into build directory  
 `$ cd build`
 
-5. Use CMake to generate Makefile \\
+5. Use CMake to generate Makefile  
 `$ cmake ..`
 
-6. Use make to install \\
+6. Use make to install  
 `$ make`
 
-7. Start application from the same directory \\
+7. Start application from the same directory  
 `$ ./sphere-histo [optional: filepath of .npy file]`
 
 ## How to use
