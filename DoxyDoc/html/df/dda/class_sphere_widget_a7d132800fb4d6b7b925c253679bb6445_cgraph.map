@@ -1,7 +1,0 @@
-<map id="SphereWidget::updateSphereVertices" name="SphereWidget::updateSphereVertices">
-<area shape="rect" id="node2" href="$da/dce/class_render_data.html#a2aff56e1742b853bcae6f251e258085e" title="RenderData::getVerticesAt\lCurrentDepth" alt="" coords="255,5,433,47"/>
-<area shape="rect" id="node3" href="$df/dda/class_sphere_widget.html#a871c5252a7a218c5d405be5dfc3dbfa1" title="SphereWidget::updateTriangle\lColor" alt="" coords="245,71,443,112"/>
-<area shape="rect" id="node4" href="$da/dce/class_render_data.html#a58fe3351334cd518b930dfe0a0aa8732" title="RenderData::getColorsFor\lTriangles" alt="" coords="491,71,665,112"/>
-<area shape="rect" id="node5" href="$dc/d7c/struct_sphere_depth_data.html#ad151dd50ed037d91aecec6b285a3e342" title="SphereDepthData::getMaxPoints\lPerTriangle" alt="" coords="713,71,928,112"/>
-<area shape="rect" id="node6" href="$dc/d7c/struct_sphere_depth_data.html#a4cf92f63341fd72e6659dcd1501eb2ac" title="SphereDepthData::updateMax\lPointsPerTriangle" alt="" coords="976,71,1175,112"/>
-</map>

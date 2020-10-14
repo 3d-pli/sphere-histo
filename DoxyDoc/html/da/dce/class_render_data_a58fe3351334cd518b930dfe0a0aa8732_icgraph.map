@@ -1,6 +1,0 @@
-<map id="RenderData::getColorsForTriangles" name="RenderData::getColorsForTriangles">
-<area shape="rect" id="node2" href="$df/dda/class_sphere_widget.html#a871c5252a7a218c5d405be5dfc3dbfa1" title="SphereWidget::updateTriangle\lColor" alt="" coords="228,18,425,59"/>
-<area shape="rect" id="node3" href="$df/dda/class_sphere_widget.html#a323d335cf261b7156da1a59aaf28c40c" title="SphereWidget::initializeGL" alt="" coords="713,26,889,53"/>
-<area shape="rect" id="node4" href="$df/dda/class_sphere_widget.html#a1766e5d68f4c57f52d6b1ee40cc0326c" title="SphereWidget::~SphereWidget" alt="" coords="937,26,1140,53"/>
-<area shape="rect" id="node5" href="$df/dda/class_sphere_widget.html#a7d132800fb4d6b7b925c253679bb6445" title="SphereWidget::updateSphere\lVertices" alt="" coords="473,76,665,118"/>
-</map>

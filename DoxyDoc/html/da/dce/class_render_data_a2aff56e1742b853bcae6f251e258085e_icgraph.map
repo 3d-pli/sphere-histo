@@ -1,5 +1,0 @@
-<map id="RenderData::getVerticesAtCurrentDepth" name="RenderData::getVerticesAtCurrentDepth">
-<area shape="rect" id="node2" href="$df/dda/class_sphere_widget.html#a7d132800fb4d6b7b925c253679bb6445" title="SphereWidget::updateSphere\lVertices" alt="" coords="232,23,424,65"/>
-<area shape="rect" id="node3" href="$df/dda/class_sphere_widget.html#a323d335cf261b7156da1a59aaf28c40c" title="SphereWidget::initializeGL" alt="" coords="472,5,648,32"/>
-<area shape="rect" id="node4" href="$df/dda/class_sphere_widget.html#a1766e5d68f4c57f52d6b1ee40cc0326c" title="SphereWidget::~SphereWidget" alt="" coords="696,31,899,57"/>
-</map>

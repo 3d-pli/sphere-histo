@@ -1,5 +1,0 @@
-<map id="SphereDepthData::isEmpty" name="SphereDepthData::isEmpty">
-<area shape="rect" id="node2" href="$dc/d7c/struct_sphere_depth_data.html#a95e070bea3d8ec4a0449044e4616208f" title="SphereDepthData::setVertices" alt="" coords="236,5,436,32"/>
-<area shape="rect" id="node4" href="$dc/d7c/struct_sphere_depth_data.html#ac0d61e109f98ac7c5b7f4ea7381bc963" title="SphereDepthData::setPoints\lPerTriangle" alt="" coords="241,57,431,98"/>
-<area shape="rect" id="node3" href="$dc/d7c/struct_sphere_depth_data.html#a4cf92f63341fd72e6659dcd1501eb2ac" title="SphereDepthData::updateMax\lPointsPerTriangle" alt="" coords="484,27,683,69"/>
-</map>

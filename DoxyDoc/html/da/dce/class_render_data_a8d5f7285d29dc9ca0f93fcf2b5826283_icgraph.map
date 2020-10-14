@@ -1,9 +1,0 @@
-<map id="RenderData::setSphereDepth" name="RenderData::setSphereDepth">
-<area shape="rect" id="node2" href="$d9/dc6/class_main_window.html#a7bdf36376a7474c5218923ed66baa937" title="MainWindow::changeTriangle\lDepth" alt="" coords="731,5,925,47"/>
-<area shape="rect" id="node4" href="$da/dce/class_render_data.html#ac161f29f7d6ae6fd3912e8af7bdccdfd" title="RenderData::loadPointsFromFile" alt="" coords="467,158,679,185"/>
-<area shape="rect" id="node6" href="$da/dce/class_render_data.html#a16b04b2437ea3fa034381a138cbf2f83" title="Sets initial sphere depth to 3. " alt="" coords="248,107,419,134"/>
-<area shape="rect" id="node3" href="$d9/dc6/class_main_window.html#a8b244be8b7b7db1b08de2a2acb9409db" title="MainWindow::MainWindow" alt="" coords="977,97,1157,123"/>
-<area shape="rect" id="node5" href="$d9/dc6/class_main_window.html#a288b768c3c21a9171bdc56fe845ece8b" title="MainWindow::openFile" alt="" coords="751,173,905,199"/>
-<area shape="rect" id="node7" href="$da/dce/class_render_data.html#a1fffc72f3dd17ab052d4fb2f025ef5a0" title="RenderData::getInstance" alt="" coords="489,107,657,134"/>
-<area shape="rect" id="node8" href="$d9/dc6/class_main_window.html#a1cfcf14a3dbba8db45a2444a0fbe5a9f" title="MainWindow::changeColorMap" alt="" coords="727,122,929,149"/>
-</map>

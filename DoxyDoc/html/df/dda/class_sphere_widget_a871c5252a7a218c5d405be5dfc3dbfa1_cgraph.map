@@ -1,5 +1,0 @@
-<map id="SphereWidget::updateTriangleColor" name="SphereWidget::updateTriangleColor">
-<area shape="rect" id="node2" href="$da/dce/class_render_data.html#a58fe3351334cd518b930dfe0a0aa8732" title="RenderData::getColorsFor\lTriangles" alt="" coords="251,5,425,47"/>
-<area shape="rect" id="node3" href="$dc/d7c/struct_sphere_depth_data.html#ad151dd50ed037d91aecec6b285a3e342" title="SphereDepthData::getMaxPoints\lPerTriangle" alt="" coords="473,5,688,47"/>
-<area shape="rect" id="node4" href="$dc/d7c/struct_sphere_depth_data.html#a4cf92f63341fd72e6659dcd1501eb2ac" title="SphereDepthData::updateMax\lPointsPerTriangle" alt="" coords="736,5,935,47"/>
-</map>
