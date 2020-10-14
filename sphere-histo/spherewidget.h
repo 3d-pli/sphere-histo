@@ -13,8 +13,6 @@
 #define _USE_MATH_DEFINES   // for compatibility with older systems
 #include <math.h>
 
-// OpenGL
-#include <GL/glu.h>
 
 // Internal classes
 #include "renderdata.h"

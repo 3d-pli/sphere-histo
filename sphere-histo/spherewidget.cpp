@@ -70,8 +70,6 @@ void SphereWidget::paintGL() {
     glFrustum( -fW, fW, -fH, fH, zNear, zFar );
     glTranslatef(0,0,-10);
 
-    //gluPerspective(m_fovy, aspectRatioWidthToHeight, 1., 20);
-    //gluLookAt(0.5, 0.5, 10 , 0 ,0 ,0.5 , 0, 1 ,0);
 
     // update view matrix (according to mouse interaction)
     glMatrixMode(GL_MODELVIEW);

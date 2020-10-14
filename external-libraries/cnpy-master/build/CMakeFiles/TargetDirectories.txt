@@ -1,9 +1,0 @@
-/home/annika/WORK/sphere-histo/external-libraries/cnpy-master/build/CMakeFiles/install/strip.dir
-/home/annika/WORK/sphere-histo/external-libraries/cnpy-master/build/CMakeFiles/install/local.dir
-/home/annika/WORK/sphere-histo/external-libraries/cnpy-master/build/CMakeFiles/install.dir
-/home/annika/WORK/sphere-histo/external-libraries/cnpy-master/build/CMakeFiles/cnpy-static.dir
-/home/annika/WORK/sphere-histo/external-libraries/cnpy-master/build/CMakeFiles/cnpy.dir
-/home/annika/WORK/sphere-histo/external-libraries/cnpy-master/build/CMakeFiles/list_install_components.dir
-/home/annika/WORK/sphere-histo/external-libraries/cnpy-master/build/CMakeFiles/example1.dir
-/home/annika/WORK/sphere-histo/external-libraries/cnpy-master/build/CMakeFiles/edit_cache.dir
-/home/annika/WORK/sphere-histo/external-libraries/cnpy-master/build/CMakeFiles/rebuild_cache.dir
