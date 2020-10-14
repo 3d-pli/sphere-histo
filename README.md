@@ -9,6 +9,11 @@ Points can be read in from .npy files with shape (n, 3).
 - zlib1g-dev
 - libglm-dev
 
+For building:
+- CMake (>= v.3.5)
+- make
+- g++
+
 ## How to deploy
 0. Make sure to have the __dependencies__ installed on your system
 
@@ -16,16 +21,22 @@ Points can be read in from .npy files with shape (n, 3).
 `$ git clone https://jugit.fz-juelich.de/a.roethenbacher/sphere-histo.git`
 
 2. Change into the project's source directory
-`$ cd sphere-histo/cpp-sphere-histo`
+`$ cd sphere-histo/sphere-histo`
 
-3. Use qmake to generate Makefile
-`$ qmake .`
+3. Create a build directory and change into it
+`$ mkdir build`
 
-4. Use make to install
+4. Change into build directory
+`$ cd build`
+
+5. Use CMake to generate Makefile
+`$ cmake ..`
+
+6. Use make to install
 `$ make`
 
-5. Start application from the same directory
-`$ ./sphere-histo`
+7. Start application from the same directory
+`$ ./sphere-histo [optional: filepath of .npy file]`
 
 ## How to use
 
