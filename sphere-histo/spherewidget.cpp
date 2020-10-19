@@ -64,7 +64,7 @@ void SphereWidget::paintGL() {
     glLoadIdentity();
 
     float zNear = 1;
-    float zFar = 10;
+    float zFar = 20;
     float fH = tan( m_fovy / 360 * M_PI ) * zNear;
     float fW = fH * aspectRatioWidthToHeight;
     glFrustum( -fW, fW, -fH, fH, zNear, zFar );
@@ -77,6 +77,8 @@ void SphereWidget::paintGL() {
     glTranslatef(m_position.x(), m_position.y(), 0);
     glRotatef(m_rotation.x(), 0.0f, 1.0f, 0.0f);
     glRotatef(m_rotation.y(), 1.0f, 0.0f, 0.0f);
+
+
 
     /// render points if selected
     if(renderData->getPointsSelected()){
@@ -123,7 +125,50 @@ void SphereWidget::paintGL() {
         vbo_vertexColors.release();
         vbo_sphereVertices.release();
     }
+
+    paintCoordinateSystem();
 }
+
+
+void SphereWidget::paintCoordinateSystem(){
+    // update projection matrix for coordinate system
+    glViewport(0, 0, width()/8, height()/8);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+    float zNear = 1;
+    float zFar = 20;
+    float fH = tan( 20.0 / 360 * M_PI ) * zNear;
+    float fW = fH * aspectRatioWidthToHeight;
+    glFrustum( -fW, fW, -fH, fH, zNear, zFar );
+    glTranslatef(0,0,-10);
+
+
+    // update view matrix (according to mouse interaction) for coordinate system
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+//    glTranslatef(m_position.x(), m_position.y(), 0);
+    glRotatef(m_rotation.x(), 0.0f, 1.0f, 0.0f);
+    glRotatef(m_rotation.y(), 1.0f, 0.0f, 0.0f);
+
+
+    // render coordinate system
+    glPointSize(2);
+    glBegin(GL_LINES);
+    glColor3f(1,0,0);
+    glVertex3f(0,0,0);
+    glVertex3f(1.5,0,0);
+
+    glColor3f(0,1,0);
+    glVertex3f(0,0,0);
+    glVertex3f(0,1.5,0);
+
+    glColor3f(0,0,1);
+    glVertex3f(0,0,0);
+    glVertex3f(0,0,1.5);
+    glEnd();
+}
+
 
 void SphereWidget::mousePressEvent(QMouseEvent * event){
     m_lastPosition = event->pos();
