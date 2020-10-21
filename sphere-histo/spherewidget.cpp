@@ -155,6 +155,8 @@ void SphereWidget::paintCoordinateSystem(){
     // render coordinate system
     glPointSize(2);
     glBegin(GL_LINES);
+
+    // render "unit2" vectors
     glColor3f(1,0,0);
     glVertex3f(0,0,0);
     glVertex3f(1.5,0,0);
@@ -166,6 +168,32 @@ void SphereWidget::paintCoordinateSystem(){
     glColor3f(0,0,1);
     glVertex3f(0,0,0);
     glVertex3f(0,0,1.5);
+
+    // render x/y/z
+    glColor3f(0, 0, 0);
+    glPointSize(10);
+
+    // x
+    glVertex3f(1.9, -0.08, 0.08);
+    glVertex3f(1.6, 0.08, -0.08);
+    glVertex3f(1.9, 0.08, -0.08);
+    glVertex3f(1.6, -0.08, 0.08);
+
+    // y
+    glVertex3f(-0.08, 1.9, 0.08);
+    glVertex3f(0, 1.75, 0);
+    glVertex3f(0.08, 1.9, -0.08);
+    glVertex3f(-0.08, 1.6, 0.08);
+
+    // z
+    glVertex3f(0.08, -0.08, 1.9);
+    glVertex3f(-0.08, 0.08, 1.9);
+    glVertex3f(0.08, -0.08, 1.7);
+    glVertex3f(-0.08, 0.08, 1.9);
+    glVertex3f(0.08, -0.08, 1.7);
+    glVertex3f(-0.08, 0.08, 1.7);
+
+
     glEnd();
 }
 
