@@ -5,6 +5,7 @@
 #include <QOpenGLWidget>
 #include "spherewidget.h"
 #include "renderdata.h"
+#include "colorbarwidget.h"
 
 
 namespace Ui {
@@ -30,6 +31,8 @@ public:
 private:
     Ui::MainWindow *ui;
     SphereWidget * sphereWidget;
+    ColorBarWidget * colorBarWidget;
+    RenderData * renderData;
 };
 
 #endif // MAINWINDOW_H

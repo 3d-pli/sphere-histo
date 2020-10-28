@@ -5,10 +5,12 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    renderData(RenderData::getInstance())
 {
     ui->setupUi(this);
     this->sphereWidget = ui->sphereWidget;
+    this->colorBarWidget = ui->colorBarWidget;
 
     connect(ui->horizontalScrollBar, SIGNAL(valueChanged(int)), this, SLOT(changeTriangleDepth(int)));
 
@@ -19,7 +21,9 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->checkBoxShowSphere, SIGNAL(stateChanged(int)), this , SLOT(changeShowSphere(int)));
     connect(ui->checkBoxMirrorPoints, SIGNAL(stateChanged(int)), SLOT(changeMirrorPoints(int)));
 
-    RenderData::getInstance()->setColorMap("Viridis");
+    this->renderData->setColorMap("Viridis");
+    this->colorBarWidget->update();
+//    this->colormapGraphicsView->setColormap("Viridis");
 
 }
 
@@ -31,7 +35,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::changeTriangleDepth(int depth)
 {
-    RenderData::getInstance()->setSphereDepth(depth);
+    this->renderData->setSphereDepth(depth);
+    ui->labelMaxPointsPerTriangle->setText(QString::number(renderData->getMaxPointsPerTriangle()));
     ui->sphereWidget->updateSphereVertices();
 }
 
@@ -42,31 +47,34 @@ void MainWindow::openFile()
     if(file.isEmpty())
         return;
     std::string filename = file.toStdString();
-    RenderData::getInstance()->loadPointsFromFile(filename);
+    this->renderData->loadPointsFromFile(filename);
+    ui->labelMaxPointsPerTriangle->setText(QString::number(renderData->getMaxPointsPerTriangle()));
     ui->sphereWidget->updatePoints();
     ui->sphereWidget->updateTriangleColor();
 }
 
 void MainWindow::changeColorMap(QString mapName){
-    RenderData::getInstance()->setColorMap(mapName);
-    ui->sphereWidget->updateTriangleColor();
+    this->renderData->setColorMap(mapName);
+    this->sphereWidget->updateTriangleColor();
+    this->colorBarWidget->update();
 }
 
 void MainWindow::changeShowPoints(int showPoints)
 {
-    RenderData::getInstance()->setPointsSelected(!!showPoints);
+    this->renderData->setPointsSelected(!!showPoints);
     ui->sphereWidget->update();
 }
 
 void MainWindow::changeShowSphere(int showSphere)
 {
-    RenderData::getInstance()->setIcosphereSelected(!!showSphere);
+    this->renderData->setIcosphereSelected(!!showSphere);
     ui->sphereWidget->update();
 }
 
 void MainWindow::changeMirrorPoints(int mirrorPoints)
 {
-    RenderData::getInstance()->setMirrorPointsAndRecalculate(!!mirrorPoints);
+    this->renderData->setMirrorPointsAndRecalculate(!!mirrorPoints);
+    ui->labelMaxPointsPerTriangle->setText(QString::number(renderData->getMaxPointsPerTriangle()));
     ui->sphereWidget->updatePoints();
     ui->sphereWidget->updateTriangleColor();
 }

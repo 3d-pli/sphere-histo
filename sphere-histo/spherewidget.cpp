@@ -193,7 +193,6 @@ void SphereWidget::paintCoordinateSystem(){
     glVertex3f(0.08, -0.08, 1.7);
     glVertex3f(-0.08, 0.08, 1.7);
 
-
     glEnd();
 }
 

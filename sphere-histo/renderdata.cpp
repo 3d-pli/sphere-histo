@@ -66,9 +66,23 @@ std::vector<float> RenderData::generatePointsAsVector() const {
     return renderPoints;
 }
 
+const float *RenderData::getColorMap() const
+{
+    return colorMap;
+}
+
 bool RenderData::getMirrorPoints() const
 {
     return mirrorPoints;
+}
+
+size_t RenderData::getMaxPointsPerTriangle()
+{
+    size_t maxPointsPerTriangle = spheres[currentSphereDepth].getMaxOfPointsPerTriangle();
+    if(maxPointsPerTriangle == 0){
+        maxPointsPerTriangle = 255;
+    }
+    return maxPointsPerTriangle;
 }
 
 void RenderData::setMirrorPointsAndRecalculate(bool value)

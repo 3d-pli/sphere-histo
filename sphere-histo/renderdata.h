@@ -46,6 +46,8 @@ public:
     bool getIcosphereSelected() const;
     bool getPointsSelected() const;
     bool getMirrorPoints() const;
+    const float *getColorMap() const;
+    size_t getMaxPointsPerTriangle();
 
     /*! \returns all vertices at current depth in format [x1, y1, z1, x2, y2, z2, ... ] for use with OpenGL's GL_TRIANGLES */
     std::vector<float> getVerticesAtCurrentDepth() const;
@@ -54,6 +56,7 @@ public:
      *  \param depth: sphere subdivision level. Valid values: 0-8
     */
     std::vector<float> getVerticesAtDepth(unsigned short depth) const;
+
 
 
     // SETTERS
@@ -85,9 +88,6 @@ public:
 
     /*! \returns all points from currently loaded .npy file in format [x1, y1, z1, x2, y2, z2, ... ] */
     std::vector<float> generatePointsAsVector() const;
-
-
-
 
 
 private:

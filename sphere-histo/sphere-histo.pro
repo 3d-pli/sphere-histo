@@ -37,14 +37,16 @@ SOURCES += \
         spherewidget.cpp \
         mainwindow.cpp \
     renderdata.cpp \
-    spheredepthdata.cpp
+    spheredepthdata.cpp \
+    colorbarwidget.cpp
 
 
 HEADERS += \
         spherewidget.h \
         mainwindow.h \
     renderdata.h \
-    spheredepthdata.h
+    spheredepthdata.h \
+    colorbarwidget.h
 
 
 FORMS += \
