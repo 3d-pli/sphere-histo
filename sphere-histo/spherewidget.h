@@ -58,6 +58,8 @@ private:
     QOpenGLBuffer vbo_points;
     QOpenGLBuffer vbo_sphereVertices;
     QOpenGLBuffer vbo_vertexColors;
+
+    void paintCoordinateSystem();
 };
 
 

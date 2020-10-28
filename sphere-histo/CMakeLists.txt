@@ -29,12 +29,14 @@ SET(SOURCE
 	renderdata.cpp 
 	spheredepthdata.cpp 
 	spherewidget.cpp
+	colorbarwidget.cpp
 )
 SET(HEADER
 	mainwindow.h 
 	renderdata.h 
 	spheredepthdata.h 
 	spherewidget.h
+	colorbarwidget.h
 )
 
 qt5_wrap_ui(SOURCE mainwindow.ui)
