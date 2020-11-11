@@ -3,7 +3,7 @@
 All input to this repository is greatly appreciated. 
 
 
-### Options of contributing to this project include:
+### Options of contributing to this project include
 - Submitting an issue to report a bug or suggest a feature
 - Creating a pull request to propose additions or corrections to the source code
 
