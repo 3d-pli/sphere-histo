@@ -17,8 +17,8 @@ For building:
 ## How to deploy 
 (Incl. example commands for Debian/Ubuntu based Linux distributions)
 
-0. Make sure to have the __dependencies__ installed on your system
- (Package names for Debian/Ubuntu: qt5-default libgl1-mesa-dev zlib1g-dev libglm-dev) 
+0. Make sure to have the __dependencies__ installed on your system  
+ (Package names for Debian/Ubuntu: `qt5-default libgl1-mesa-dev zlib1g-dev libglm-dev`) 
 
 1. Clone this Git repository  
 `$ git clone https://jugit.fz-juelich.de/a.roethenbacher/sphere-histo.git`
@@ -43,14 +43,13 @@ For building:
 
 ## How to use
 
-![Example image](img/sphere-histo-example.png "Example of application window with open point file")
+![Example overview image](img/overview.png "Example of application window with open point file")
 
 - Inside the application window click File->Open to open a .npy file
 - Use the selection box next to the slider to choose your preferred color map
 - Use the slider below the sphere to change the number of triangles, that approximate the sphere
 
-
-
+- The value above the colorbar indicates the maximum number of points "inside" a single triangle with the current settings in place
 - To turn the sphere, press the left mouse button while moving the mouse
 - To move the sphere, press the right mouse button while moving the mouse
 - Use the mouse wheel to zoom
@@ -76,7 +75,9 @@ This project uses the following third-party open source libraries with great app
 - Qt 5
 - zlib
 
-They are released under the following license conditions:
+Special gratitude is given to matplotlib (https://matplotlib.org/index.html) for freely distributing their wonderful colormaps and the Khronos Group (https://www.khronos.org/) for sharing and maintaining the Free OpenGL API.
+
+The used libraries are released under the following license conditions:
 
 ### cnpy
 - MIT License (https://github.com/rogersce/cnpy/blob/master/LICENSE)
