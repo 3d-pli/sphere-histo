@@ -75,18 +75,18 @@ This project uses the following third-party open source libraries with great app
 - Qt 5
 - zlib
 
-Special gratitude is given to matplotlib (https://matplotlib.org/index.html) for freely distributing their wonderful colormaps and the Khronos Group (https://www.khronos.org/) for sharing and maintaining the Free OpenGL API.
+Special gratitude is given to __matplotlib__ (https://matplotlib.org/index.html) for freely distributing their wonderful colormaps and the __Khronos(c) Group__ (https://www.khronos.org/) for sharing and maintaining the Free __OpenGL API__ (https://www.opengl.org//).
 
 The used libraries are released under the following license conditions:
 
 ### cnpy
-- MIT License (https://github.com/rogersce/cnpy/blob/master/LICENSE)
+MIT License (https://github.com/rogersce/cnpy/blob/master/LICENSE)
 
 ### GLM
-- MIT License (https://glm.g-truc.net/copying.txt)
+MIT License (https://glm.g-truc.net/copying.txt)
 
 ### QT 5
-- GNU General Public License v3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+GNU General Public License v3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 ### zlib
 zlib.h -- interface of the 'zlib' general purpose compression library
