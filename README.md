@@ -46,6 +46,7 @@ For building:
 ![Example overview image](img/overview.png "Example of application window with open point file")
 
 - Inside the application window click File->Open to open a .npy file
+- A first .npy file can also be passed as a command line argument while starting the application
 - Use the selection box next to the slider to choose your preferred color map
 - Use the slider below the sphere to change the number of triangles, that approximate the sphere
 
@@ -63,9 +64,12 @@ For building:
 ![Slider example image](img/slider.png "Example of slider usage")
 ![Options example image](img/options.png "Example of display options")
 
+## How to contribute
+Information on how to contribute to this repository is documented inside [CONTRIBUTING.md](CONTRIBUTING.md).
+
 
 ## License
-This project is licensed under the MIT License (s. LICENSE file).
+This project is licensed under the MIT License (s. [LICENSE](LICENSE) file).
 
 ## Acknowledgements
 
