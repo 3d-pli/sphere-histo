@@ -42,7 +42,7 @@ from mpl_toolkits.mplot3d import Axes3D
 # print(npvecs2)
 # np.save('../test_data/punkteTest', npvecs2)
 
-vecs = np.load('/home/annika/WORK/sphere-histo/test_data/1.npy')
+vecs = np.load('../test_data/1.npy')
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1,projection = '3d')
 ax.scatter(vecs[:, 0], vecs[:, 1], vecs[:, 2])
