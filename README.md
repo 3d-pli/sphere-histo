@@ -1,4 +1,4 @@
-# Sphere Histogram
+![sphere histo logo](img/preview_sphere_histo.png "Application logo")
 ## Brief description
 `sphere-histo` is a graphical tool to depict a distribution of points in 3D space on a sphere approximated by congruent triangles. The triangles' colors indicate the density of points lying in the respective direction.
 Points can be read from .npy files with shape (n, 3).
