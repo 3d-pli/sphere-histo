@@ -90,7 +90,7 @@ MIT License (https://github.com/rogersce/cnpy/blob/master/LICENSE)
 MIT License (https://glm.g-truc.net/copying.txt)
 
 ### QT 5
-GNU General Public License v3 (https://www.gnu.org/licenses/gpl-3.0.en.html)
+GNU Lesser General Public License (LGPL) version 3 (https://doc.qt.io/qt-5/lgpl.html)
 
 ### zlib
 zlib.h -- interface of the 'zlib' general purpose compression library
